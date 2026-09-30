@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101820">
+<title>THADEN DOKUMENTATION V1.0</title>
+<style>
+:root{--navy:#101820;--orange:#ff6b00;--bg:#f3f5f7;--card:#fff;--text:#16232d;--muted:#697680;--green:#159b60;--border:#d8dee3}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{background:var(--navy);color:#fff;padding:15px max(16px,calc((100vw - 980px)/2));display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10;box-shadow:0 3px 14px #0003}
+.logo{width:150px;max-width:45vw;height:auto;display:block}.header-copy{margin-left:auto;text-align:right}.header-copy b{display:block;font-size:15px}.header-copy small{color:#d7dfe5;letter-spacing:1.5px}
+.wrap{max-width:980px;margin:auto;padding:14px}.screen{display:none}.screen.active{display:block}
+.card{background:var(--card);border-radius:18px;padding:18px;margin-bottom:14px;box-shadow:0 4px 18px #18324b12}
+.hero{background:linear-gradient(135deg,#101820,#24313b);color:#fff;border-radius:22px;padding:20px;box-shadow:0 7px 22px #10203022}.hero h1{margin:0;font-size:28px}.hero p{margin:6px 0 0;color:#d5dde3}
+h2{margin:0 0 12px}h3{margin:18px 0 8px}.muted{color:var(--muted);font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
+.tile{border:0;border-radius:18px;padding:17px;min-height:100px;text-align:left;color:#fff;box-shadow:0 5px 16px #10203022}.tile b{display:block;font-size:16px}.tile small{display:block;margin-top:4px;opacity:.9}.orange{background:linear-gradient(135deg,#ff6b00,#ff8a21)}.dark{background:linear-gradient(135deg,#18232d,#2a3742)}.green{background:linear-gradient(135deg,#149c62,#25b879)}.blue{background:linear-gradient(135deg,#2366c7,#3c83e8)}
+label{display:block;font-weight:750;margin:12px 0 6px}input,select,textarea{width:100%;padding:13px 14px;border:1px solid var(--border);border-radius:11px;font-size:16px;background:#fff;color:var(--text)}textarea{min-height:120px;resize:vertical}
+button{border:0;border-radius:12px;padding:13px 16px;font-size:16px;font-weight:750;cursor:pointer}.primary{background:var(--orange);color:#fff}.ghost{background:#e9edf0;color:var(--text)}.green-btn{background:var(--green);color:#fff}.danger{background:#ffecec;color:#a40000}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:15px}.actions button{flex:1;min-width:140px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.timer{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.timer strong{font-size:25px;font-variant-numeric:tabular-nums}.status{padding:6px 9px;border-radius:999px;font-size:12px;font-weight:800;background:#eef3f6;color:#53616c}.status.running{background:#e8f7ef;color:#087044}
+.photo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.photo-card{border:1px solid var(--border);border-radius:14px;overflow:hidden;background:#fff}.photo-card img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}.photo-info{padding:10px;font-size:12px}.photo-info b{display:block;font-size:14px;margin-bottom:3px}.photo-actions{display:flex;gap:6px;margin-top:8px}.photo-actions button{padding:8px 10px;font-size:12px;flex:1}
+.list-item{background:#fff;border:1px solid #e1e5e8;border-radius:15px;padding:14px;margin:9px 0}.list-top{display:flex;justify-content:space-between;gap:10px}.list-item b{font-size:17px}.meta{color:var(--muted);font-size:13px;line-height:1.45;margin-top:4px}
+.empty{padding:24px;text-align:center;color:var(--muted);border:1px dashed #ccd5db;border-radius:14px}
+.notice{padding:12px 14px;border-radius:12px;margin-top:10px;font-weight:700}.notice.ok{background:#e8f7ef;color:#087044;border:1px solid #b9e4cb}.notice.warn{background:#fff5e8;color:#9a4d00;border:1px solid #ffd3a3}
+.bottom{position:sticky;bottom:0;z-index:9;background:#101820;color:#fff;margin:16px -3px -3px;padding:7px 4px calc(7px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(4,1fr);box-shadow:0 -4px 15px #0003;border-radius:16px 16px 0 0}.bottom button{background:transparent;color:#dbe2e7;padding:7px 2px;font-size:11px}.bottom button.active{background:#202e39;color:#ff7a00}.bottom span{display:block;font-size:20px;line-height:22px}
+.print-only{display:none}
+@media(max-width:650px){.row{grid-template-columns:1fr}.wrap{padding:10px}.card{padding:15px}.grid{grid-template-columns:1fr 1fr}.header-copy small{font-size:9px}.logo{width:140px}}
+@media print{
+body{background:#fff}.screen{display:none!important}.print-only{display:block!important}.bottom,header,.no-print{display:none!important}
+.print-page{padding:12mm;page-break-after:always}.print-page:last-child{page-break-after:auto}
+.print-page h1{font-size:26px}.print-meta{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}.print-box{border:1px solid #ddd;border-radius:8px;padding:8px}.print-box b{display:block;font-size:10px;color:#687681;text-transform:uppercase}.print-photo{width:48%;max-height:190px;object-fit:cover;margin:1%;border-radius:7px}.print-footer{margin-top:18px;border-top:1px solid #ddd;padding-top:8px;color:#697680;font-size:10px}
+}
+</style>
+</head>
+<body>
+<header>
+  <img class="logo" src="assets/thaden-logo.png" alt="THADEN">
+  <div class="header-copy"><b>DOKUMENTATION</b><small>V1.0</small></div>
+</header>
+
+<main class="wrap">
+<section id="home" class="screen active">
+  <div class="hero">
+    <h1>THADEN DOKUMENTATION</h1>
+    <p>Störungen · Glasfaser · Aufträge · Zeiten · Fotodokumentation</p>
+  </div>
+  <div class="grid">
+    <button class="tile orange" onclick="newOrder()"><span style="font-size:25px">＋</span><b>Neuer Auftrag</b><small>Dokumentation starten</small></button>
+    <button class="tile dark" onclick="show('orders');renderOrders()"><span style="font-size:25px">▣</span><b>Aufträge</b><small id="orderCount">0 gespeichert</small></button>
+    <button class="tile green" onclick="show('new');startTimerIfNeeded()"><span style="font-size:25px">⏱</span><b>Zeiterfassung</b><small>Start / Stop</small></button>
+    <button class="tile blue" onclick="show('orders');renderOrders()"><span style="font-size:25px">📷</span><b>Dokumentation</b><small>Fotos & Protokolle</small></button>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <h2>Letzte Aufträge</h2><div id="homeList"></div>
+  </div>
+</section>
+
+<section id="new" class="screen">
+  <div class="card">
+    <button class="ghost no-print" onclick="show('home')">← Zur Startseite</button>
+    <h2 style="margin-top:14px">Neuer Auftrag</h2>
+    <div class="row">
+      <div><label>Auftragsnummer *</label><input id="jobNo" placeholder="z. B. 2026-00125"></div>
+      <div><label>Datum</label><input id="jobDate" type="date"></div>
+    </div>
+    <label>Kunde / Objekt</label><input id="customer" placeholder="Kunde oder Objekt">
+    <label>Einsatzort</label><input id="site" placeholder="Straße, Hausnummer, Ort">
+    <div class="row">
+      <div><label>Störungsart / Arbeitsart</label><select id="workType"><option>Störung</option><option>Glasfaser</option><option>Montage</option><option>Messung</option><option>Wartung</option><option>Sonstiges</option></select></div>
+      <div><label>Mitarbeiter</label><input id="worker" placeholder="Name"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>⏱ Zeiterfassung</h2>
+    <div class="timer"><strong id="timerDisplay">00:00:00</strong><span id="timerStatus" class="status">nicht gestartet</span></div>
+    <div class="actions"><button class="green-btn" onclick="startTimer()">▶ Start</button><button class="ghost" onclick="stopTimer()">■ Stop</button><button class="ghost" onclick="resetTimer()">↺ Zurücksetzen</button></div>
+  </div>
+
+  <div class="card">
+    <h2>📷 Fotodokumentation</h2>
+    <p class="muted">Fotos werden dem Auftrag zugeordnet. Beim Aufnehmen wird zusätzlich versucht, die aktuelle GPS-Position zu speichern.</p>
+    <input id="camera" type="file" accept="image/*" capture="environment" style="display:none" onchange="addPhoto(event)">
+    <button class="primary" style="width:100%;margin-top:8px" onclick="document.getElementById('camera').click()">📸 Foto aufnehmen</button>
+    <div id="photoStatus"></div>
+    <div id="photoGrid" class="photo-grid" style="margin-top:12px"></div>
+  </div>
+
+  <div class="card">
+    <h2>📝 Dokumentation</h2>
+    <label>Feststellung / Störung</label><textarea id="finding" placeholder="Was wurde festgestellt?"></textarea>
+    <label>Durchgeführte Arbeiten</label><textarea id="workDone" placeholder="Welche Arbeiten wurden durchgeführt?"></textarea>
+    <label>Material / Besonderheiten</label><textarea id="notes" placeholder="Material, Schäden, offene Punkte usw."></textarea>
+    <div id="saveNotice"></div>
+    <div class="actions"><button class="primary" onclick="saveOrder()">✓ Auftrag speichern</button><button class="ghost" onclick="printCurrent()">📄 PDF / Drucken</button></div>
+  </div>
+</section>
+
+<section id="orders" class="screen">
+  <div class="card">
+    <button class="ghost no-print" onclick="show('home')">← Zur Startseite</button>
+    <h2 style="margin-top:14px">Aufträge</h2>
+    <input id="search" placeholder="🔍 Auftragsnummer, Kunde oder Ort suchen" oninput="renderOrders()">
+    <div id="ordersList" style="margin-top:12px"></div>
+  </div>
+</section>
+
+<section id="detail" class="screen">
+  <div id="detailContent"></div>
+</section>
+
+<div id="printReport" class="print-only"></div>
+
+<nav class="bottom no-print">
+  <button id="nav-home" class="active" onclick="show('home')"><span>⌂</span>Start</button>
+  <button id="nav-new" onclick="newOrder()"><span>＋</span>Auftrag</button>
+  <button id="nav-orders" onclick="show('orders');renderOrders()"><span>▣</span>Aufträge</button>
+  <button id="nav-new2" onclick="show('new');startTimerIfNeeded()"><span>⏱</span>Zeit</button>
+</nav>
+</main>
+
+<script>
+const KEY='thaden_doku_v1_orders';
+let orders=JSON.parse(localStorage.getItem(KEY)||'[]');
+let photos=[], timerSeconds=0, timerStart=null, timerInterval=null, editingId=null;
+
+const $=id=>document.getElementById(id);
+const today=()=>new Date().toISOString().slice(0,10);
+const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const fmtDate=d=>d?new Date(d+'T00:00:00').toLocaleDateString('de-DE'):'';
+const fmtTime=s=>{s=Math.max(0,Math.floor(s));let h=String(Math.floor(s/3600)).padStart(2,'0'),m=String(Math.floor(s%3600/60)).padStart(2,'0'),x=String(s%60).padStart(2,'0');return `${h}:${m}:${x}`};
+
+function show(id){
+ document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));
+ $(id).classList.add('active');
+ document.querySelectorAll('.bottom button').forEach(x=>x.classList.remove('active'));
+ const map={home:'nav-home',new:'nav-new',orders:'nav-orders'};
+ if(map[id])$(map[id]).classList.add('active');
+ if(id==='home')renderHome();
+ if(id==='orders')renderOrders();
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function newOrder(){
+ editingId=null; photos=[]; stopTimer(); resetTimer(false);
+ ['jobNo','customer','site','worker','finding','workDone','notes'].forEach(id=>$(id).value='');
+ $('jobDate').value=today(); $('workType').value='Störung'; $('photoGrid').innerHTML=''; $('photoStatus').innerHTML=''; $('saveNotice').innerHTML='';
+ show('new');
+}
+function loadOrder(id){
+ const o=orders.find(x=>x.id===id); if(!o)return;
+ editingId=id; photos=o.photos||[]; timerSeconds=o.seconds||0;
+ $('jobNo').value=o.jobNo||'';$('jobDate').value=o.date||today();$('customer').value=o.customer||'';$('site').value=o.site||'';$('workType').value=o.workType||'Störung';$('worker').value=o.worker||'';
+ $('finding').value=o.finding||'';$('workDone').value=o.workDone||'';$('notes').value=o.notes||'';
+ $('photoGrid').innerHTML='';renderPhotos();updateTimer();
+ show('new');
+}
+function startTimerIfNeeded(){ if(timerSeconds===0 && !timerStart){} }
+function startTimer(){
+ if(timerInterval)return;
+ timerStart=Date.now();
+ timerInterval=setInterval(()=>{timerSeconds+=1;updateTimer()},1000);
+ updateTimer();
+}
+function stopTimer(){if(timerInterval){clearInterval(timerInterval);timerInterval=null}updateTimer()}
+function resetTimer(update=true){stopTimer();timerSeconds=0;timerStart=null;if(update)updateTimer()}
+function updateTimer(){$('timerDisplay').textContent=fmtTime(timerSeconds);$('timerStatus').textContent=timerInterval?'läuft':'gestoppt';$('timerStatus').className='status '+(timerInterval?'running':'')}
+function addPhoto(ev){
+ const file=ev.target.files?.[0]; if(!file)return;
+ const reader=new FileReader();
+ reader.onload=async()=>{const photo={id:Date.now(),src:reader.result,time:new Date().toISOString(),lat:null,lon:null};photos.push(photo);renderPhotos();$('photoStatus').innerHTML='<div class="notice">GPS wird abgefragt…</div>';
+ if(navigator.geolocation){navigator.geolocation.getCurrentPosition(pos=>{photo.lat=pos.coords.latitude;photo.lon=pos.coords.longitude;renderPhotos();$('photoStatus').innerHTML='<div class="notice ok">✓ Foto und GPS-Position gespeichert.</div>'},()=>{$('photoStatus').innerHTML='<div class="notice warn">Foto gespeichert. GPS konnte nicht ermittelt werden.</div>'},{enableHighAccuracy:true,timeout:8000,maximumAge:0});}
+ else $('photoStatus').innerHTML='<div class="notice warn">Foto gespeichert. Dieser Browser unterstützt keine GPS-Abfrage.</div>';
+ };
+ reader.readAsDataURL(file);ev.target.value='';
+}
+function renderPhotos(){
+ $('photoGrid').innerHTML=photos.map((p,i)=>`<div class="photo-card"><img src="${p.src}" alt="Foto ${i+1}"><div class="photo-info"><b>Foto ${i+1}</b>${new Date(p.time).toLocaleString('de-DE')}<br>${p.lat!==null?`GPS: ${p.lat.toFixed(6)}, ${p.lon.toFixed(6)}`:'GPS: nicht verfügbar'}<div class="photo-actions"><button class="danger" onclick="removePhoto(${p.id})">Löschen</button></div></div></div>`).join('');
+}
+function removePhoto(id){photos=photos.filter(p=>p.id!==id);renderPhotos()}
+function formData(){return {jobNo:$('jobNo').value.trim(),date:$('jobDate').value||today(),customer:$('customer').value.trim(),site:$('site').value.trim(),workType:$('workType').value,worker:$('worker').value.trim(),finding:$('finding').value.trim(),workDone:$('workDone').value.trim(),notes:$('notes').value.trim(),seconds:timerSeconds,photos:[...photos]}}
+function saveOrder(){
+ const d=formData();
+ if(!d.jobNo){$('saveNotice').innerHTML='<div class="notice warn">Bitte eine Auftragsnummer eingeben.</div>';return}
+ if(!d.site){$('saveNotice').innerHTML='<div class="notice warn">Bitte den Einsatzort eingeben.</div>';return}
+ const item={id:editingId||Date.now(),...d,updatedAt:new Date().toISOString()};
+ const idx=orders.findIndex(x=>x.id===item.id); if(idx>=0)orders[idx]=item;else orders.unshift(item);
+ localStorage.setItem(KEY,JSON.stringify(orders));
+ editingId=item.id;$('saveNotice').innerHTML='<div class="notice ok">✓ Auftrag gespeichert.</div>';
+ renderHome();renderOrders();updateCount();
+}
+function updateCount(){$('orderCount').textContent=`${orders.length} gespeichert`}
+function renderHome(){
+ updateCount();const el=$('homeList');
+ if(!orders.length){el.innerHTML='<div class="empty">Noch keine Aufträge. Starte mit „Neuer Auftrag“.</div>';return}
+ el.innerHTML=orders.slice(0,3).map(o=>`<div class="list-item" onclick="openDetail(${o.id})"><div class="list-top"><b>${esc(o.jobNo)}</b><span class="status">${esc(o.workType)}</span></div><div class="meta">${esc(o.site)} · ${fmtDate(o.date)} · ${fmtTime(o.seconds||0)}</div></div>`).join('');
+}
+function renderOrders(){
+ const q=($('search')?.value||'').toLowerCase();const list=orders.filter(o=>[o.jobNo,o.customer,o.site,o.workType].join(' ').toLowerCase().includes(q));
+ $('ordersList').innerHTML=list.length?list.map(o=>`<div class="list-item"><div class="list-top"><div><b>${esc(o.jobNo)}</b><div class="meta">${esc(o.customer||'Kein Kunde')} · ${esc(o.site)}</div></div><span class="status">${fmtDate(o.date)}</span></div><div class="meta">⏱ ${fmtTime(o.seconds||0)} · 📷 ${(o.photos||[]).length} Fotos</div><div class="actions"><button class="primary" onclick="openDetail(${o.id})">Öffnen</button><button class="ghost" onclick="loadOrder(${o.id})">Bearbeiten</button><button class="danger" onclick="deleteOrder(${o.id})">Löschen</button></div></div>`).join(''):'<div class="empty">Keine passenden Aufträge.</div>';
+}
+function openDetail(id){
+ const o=orders.find(x=>x.id===id);if(!o)return;
+ const gps=(o.photos||[]).filter(p=>p.lat!==null);
+ $('detailContent').innerHTML=`<div class="card"><button class="ghost" onclick="show('orders')">← Aufträge</button><h2 style="margin-top:14px">${esc(o.jobNo)}</h2><div class="meta">${fmtDate(o.date)} · ${esc(o.workType)}</div>
+ <div class="row" style="margin-top:15px"><div class="print-box"><b>Kunde / Objekt</b>${esc(o.customer||'—')}</div><div class="print-box"><b>Einsatzort</b>${esc(o.site)}</div><div class="print-box"><b>Mitarbeiter</b>${esc(o.worker||'—')}</div><div class="print-box"><b>Arbeitszeit</b>${fmtTime(o.seconds||0)}</div></div>
+ <h3>Dokumentation</h3><div class="print-box"><b>Feststellung</b>${esc(o.finding||'—')}</div><div class="print-box" style="margin-top:8px"><b>Arbeiten</b>${esc(o.workDone||'—')}</div><div class="print-box" style="margin-top:8px"><b>Material / Besonderheiten</b>${esc(o.notes||'—')}</div>
+ <h3>Fotos (${(o.photos||[]).length})</h3><div class="photo-grid">${(o.photos||[]).map((p,i)=>`<div class="photo-card"><img src="${p.src}"><div class="photo-info"><b>Foto ${i+1}</b>${new Date(p.time).toLocaleString('de-DE')}<br>${p.lat!==null?`GPS: ${p.lat.toFixed(6)}, ${p.lon.toFixed(6)}`:'GPS: nicht verfügbar'}</div></div>`).join('')||'<div class="empty">Keine Fotos.</div>'}</div>
+ <div class="actions"><button class="primary" onclick="printOrder(${o.id})">📄 PDF / Drucken</button><button class="ghost" onclick="loadOrder(${o.id})">Bearbeiten</button></div></div>`;
+ show('detail');
+}
+function deleteOrder(id){if(!confirm('Diesen Auftrag wirklich löschen?'))return;orders=orders.filter(x=>x.id!==id);localStorage.setItem(KEY,JSON.stringify(orders));renderOrders();renderHome();updateCount()}
+function printCurrent(){const d=formData();printObject({...d,id:editingId||Date.now()})}
+function printOrder(id){const o=orders.find(x=>x.id===id);if(o)printObject(o)}
+function printObject(o){
+ const photoHtml=(o.photos||[]).map((p,i)=>`<img class="print-photo" src="${p.src}" alt="Foto ${i+1}">`).join('');
+ $('printReport').innerHTML=`<div class="print-page"><h1>THADEN DOKUMENTATION</h1><div class="meta">Einsatzprotokoll · V1.0</div>
+ <div class="print-meta"><div class="print-box"><b>Auftragsnummer</b>${esc(o.jobNo)}</div><div class="print-box"><b>Datum</b>${fmtDate(o.date)}</div><div class="print-box"><b>Kunde / Objekt</b>${esc(o.customer||'—')}</div><div class="print-box"><b>Einsatzort</b>${esc(o.site)}</div><div class="print-box"><b>Arbeitsart</b>${esc(o.workType)}</div><div class="print-box"><b>Mitarbeiter</b>${esc(o.worker||'—')}</div><div class="print-box"><b>Arbeitszeit</b>${fmtTime(o.seconds||0)}</div></div>
+ <h2>Feststellung</h2><p>${esc(o.finding||'—').replace(/\n/g,'<br>')}</p><h2>Durchgeführte Arbeiten</h2><p>${esc(o.workDone||'—').replace(/\n/g,'<br>')}</p><h2>Material / Besonderheiten</h2><p>${esc(o.notes||'—').replace(/\n/g,'<br>')}</p>
+ <div class="print-footer">THADEN DOKUMENTATION · Auftragsnummer ${esc(o.jobNo)} · ${fmtDate(o.date)}</div></div>
+ <div class="print-page"><h1>Fotodokumentation</h1><div class="meta">${esc(o.jobNo)} · ${fmtDate(o.date)}</div>${photoHtml||'<p>Keine Fotos vorhanden.</p>'}<div class="print-footer">GPS-Daten werden pro Foto ausgewiesen, sofern vom Gerät/Browserservice verfügbar.</div></div>`;
+ setTimeout(()=>window.print(),100);
+}
+renderHome();renderOrders();updateCount();$('jobDate').value=today();updateTimer();
+</script>
+</body>
+</html>
