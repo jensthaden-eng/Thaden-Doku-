@@ -31,3 +31,14 @@ Die acht Funktionskreise wurden auf kleinen Bildschirmen kompakter angeordnet, d
 
 ### V13 – Radial-Menü ein-/ausklappbar
 Das zentrale TD-Logo ist jetzt der Menüschalter. Beim Tippen fahren die acht farbigen Funktionskreise und ihre Verbindungslinien aus dem Zentrum heraus. Beim erneuten Tippen fahren sie wieder zurück und werden ausgeblendet. Das Menü startet beim Öffnen der Home-Seite eingeklappt.
+
+### V14 – neuer 7-Schritte-Auftragsablauf
+1. Auftrag: Auftragsnummer, Ort, PLZ und Adresse
+2. Gerechtigt: Ja/Nein; bei Ja öffentlich/privat
+3. Fotodokumentation
+4. Fehler und Arbeiten nach der Instandsetzung
+5. Datum und Uhrzeit
+6. Einblasprotokoll als PDF oder Bild
+7. Gesamt-PDF: Kopfdaten → Einblasprotokoll → Fotos
+
+Das zentrale TD-Menü zeigt jetzt genau diese sieben Arbeitsschritte. Das Menü bleibt ein- und ausklappbar.
