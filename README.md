@@ -1,9 +1,7 @@
-# THADEN DOKUMENTATION – Home-Screen-Logo V4
+# THADEN DOKUMENTATION – Home-Screen TD Only V5
 
-Die App selbst verwendet weiterhin das Original-Logo direkt in index.html.
+Nur für das iPhone-Home-Screen-Symbol:
+- TD-Symbol ohne „THADEN“
+- TD-Symbol ohne „DOKUMENTATION“
 
-Für den iPhone-Home-Bildschirm wurden neue, eindeutige Icon-Dateinamen (V4) verwendet,
-damit iOS nicht mehr das alte T-Symbol aus dem Cache übernimmt.
-
-Wichtig: Nach dem Upload die alte THADEN-DOKU-Verknüpfung vom Home-Bildschirm löschen,
-Safari neu laden und die Website erneut über „Zum Home-Bildschirm“ hinzufügen.
+Die sichtbaren Logos innerhalb der App bleiben unverändert.
