@@ -29,6 +29,5 @@ Das zuletzt bestätigte TD-Logo wurde als vollflächiges App-Icon übernommen. K
 ### V11 – Mobile-Layout
 Die acht Funktionskreise wurden auf kleinen Bildschirmen kompakter angeordnet, damit alle Kreise vollständig innerhalb der Home-Seite sichtbar bleiben und die untere Navigation nicht überlagert wird.
 
-
-### V12 – Kreise an den Strichenden
-Die Funktionskreise wurden auf mobilen Geräten so positioniert und skaliert, dass sie direkt an den Enden der farbigen Verbindungsstriche sitzen und innerhalb des Home-Bereichs bleiben.
+### V13 – Radial-Menü ein-/ausklappbar
+Das zentrale TD-Logo ist jetzt der Menüschalter. Beim Tippen fahren die acht farbigen Funktionskreise und ihre Verbindungslinien aus dem Zentrum heraus. Beim erneuten Tippen fahren sie wieder zurück und werden ausgeblendet. Das Menü startet beim Öffnen der Home-Seite eingeklappt.
