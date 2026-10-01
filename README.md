@@ -1,23 +1,17 @@
-# THADEN DOKUMENTATION
+# THADEN DOKUMENTATION V1.0
 
-Eigenständiges Projekt – getrennt von THADEN MATERIAL.
+Standalone Web-App zur Baustellen-, Störungs- und Fotodokumentation.
 
-## V1.0
-- Auftragsnummer
-- Kunde / Objekt
-- Einsatzort
-- Störungs-/Arbeitsart
-- Mitarbeiter
+## Aktueller Stand
+- THADEN-Dokumentation als eigenständiges Projekt
+- neues TD-Logo oben links neben „THADEN DOKUMENTATION"
+- Anthrazit/Orange im THADEN-Stil
+- Auftragsnummer, Kunde/Objekt, Einsatzort und Arbeitsart
 - Start/Stop-Zeiterfassung
-- Fotos per Kamera
-- GPS-Abfrage pro Foto
-- Feststellung / Arbeiten / Material & Besonderheiten
-- lokale Speicherung im Browser
-- Auftragsübersicht und Suche
-- PDF/Drucken des Einsatzprotokolls und der Fotodokumentation
+- Fotos mit Zeitstempel und optionaler GPS-Position
+- Protokoll-/Notizfelder
+- Aufträge speichern, suchen, öffnen und löschen
+- Druck/PDF-Ausgabe
+- Speicherung im Browser (localStorage)
 
-## Start
-`index.html` im Browser öffnen.
-
-## GitHub
-Dieses Projekt kann in ein eigenes Repository, z. B. `thaden-dokumentation`, hochgeladen werden.
+Dieses Projekt bleibt getrennt von THADEN MATERIAL.
