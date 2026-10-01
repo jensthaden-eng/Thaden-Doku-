@@ -1,8 +1,9 @@
-# THADEN DOKUMENTATION – Logo Fix
+# THADEN DOKUMENTATION – Home-Screen-Logo V4
 
-Wichtig: Für die sichtbare App ist das Original-Logo direkt in `index.html` eingebettet.
-Dadurch kann der Browser nicht mehr auf ein fehlendes Logo-Asset zeigen.
+Die App selbst verwendet weiterhin das Original-Logo direkt in index.html.
 
-Für das iPhone-Home-Screen-Symbol sind zusätzlich die Dateien im Ordner `assets/` enthalten.
+Für den iPhone-Home-Bildschirm wurden neue, eindeutige Icon-Dateinamen (V4) verwendet,
+damit iOS nicht mehr das alte T-Symbol aus dem Cache übernimmt.
 
-Beim GitHub-Upload müssen `index.html`, `manifest.webmanifest` und der komplette Ordner `assets/` in das Repository.
+Wichtig: Nach dem Upload die alte THADEN-DOKU-Verknüpfung vom Home-Bildschirm löschen,
+Safari neu laden und die Website erneut über „Zum Home-Bildschirm“ hinzufügen.
