@@ -1,17 +1,11 @@
-# THADEN DOKUMENTATION V1.0
+# THADEN DOKUMENTATION – Final Logo V3
 
-Standalone Web-App zur Baustellen-, Störungs- und Fotodokumentation.
+Standalone project for THADEN DOKUMENTATION.
 
-## Aktueller Stand
-- THADEN-Dokumentation als eigenständiges Projekt
-- neues TD-Logo oben links neben „THADEN DOKUMENTATION"
-- Anthrazit/Orange im THADEN-Stil
-- Auftragsnummer, Kunde/Objekt, Einsatzort und Arbeitsart
-- Start/Stop-Zeiterfassung
-- Fotos mit Zeitstempel und optionaler GPS-Position
-- Protokoll-/Notizfelder
-- Aufträge speichern, suchen, öffnen und löschen
-- Druck/PDF-Ausgabe
-- Speicherung im Browser (localStorage)
+This version uses the exact supplied THADEN DOKUMENTATION logo as the visual source for:
+- header logo
+- central home-screen logo
+- browser/PWA icon
+- iPhone home-screen icon
 
-Dieses Projekt bleibt getrennt von THADEN MATERIAL.
+The original THADEN MATERIAL project is not modified.
