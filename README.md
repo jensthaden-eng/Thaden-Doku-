@@ -1,13 +1,14 @@
-THADEN DOKUMENTATION – TD Home-Screen V6
+THADEN DOKUMENTATION – TD ICON V7
 
-Diese Version verwendet das TD-Logo zusätzlich als festes Apple Touch Icon
-im Root-Verzeichnis:
-- apple-touch-icon.png
-- apple-touch-icon-precomposed.png
+Neues Home-Screen/App-Icon:
+- nur das große TD-Monogramm
+- kein THADEN-/DOKUMENTATION-Schriftzug
+- kein orangefarbener Außenrahmen
+- dunkler App-Hintergrund
+- für iPhone/Safari als Apple Touch Icon hinterlegt
 
-Dadurch kann Safari das Symbol beim „Zum Home-Bildschirm“ zuverlässig finden.
-
-Wichtig:
-1. index.html und die Dateien aus diesem Paket im GitHub-Repository ersetzen.
-2. Danach die bestehende THADEN-DOKU-Verknüpfung vom iPhone löschen.
-3. Safari für die Seite neu laden und „Zum Home-Bildschirm“ erneut auswählen.
+Für die Aktualisierung:
+1. Dateien aus diesem Paket ins GitHub-Repository übernehmen.
+2. Den bisherigen THADEN-DOKU Home-Screen-Eintrag löschen.
+3. Safari neu laden.
+4. Die Web-App erneut „Zum Home-Bildschirm“ hinzufügen.
