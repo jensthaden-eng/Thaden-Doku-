@@ -27,7 +27,28 @@ button{border:0;border-radius:12px;padding:13px 16px;font-size:16px;font-weight:
 .notice{padding:12px 14px;border-radius:12px;margin-top:10px;font-weight:700}.notice.ok{background:#e8f7ef;color:#087044;border:1px solid #b9e4cb}.notice.warn{background:#fff5e8;color:#9a4d00;border:1px solid #ffd3a3}
 .bottom{position:sticky;bottom:0;z-index:9;background:#101820;color:#fff;margin:16px -3px -3px;padding:7px 4px calc(7px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(4,1fr);box-shadow:0 -4px 15px #0003;border-radius:16px 16px 0 0}.bottom button{background:transparent;color:#dbe2e7;padding:7px 2px;font-size:11px}.bottom button.active{background:#202e39;color:#ff7a00}.bottom span{display:block;font-size:20px;line-height:22px}
 .print-only{display:none}
-@media(max-width:650px){.row{grid-template-columns:1fr}.wrap{padding:10px}.card{padding:15px}.grid{grid-template-columns:1fr 1fr}.header-copy small{font-size:9px}.td-logo{width:62px;height:40px}.header-copy b{font-size:13px}}
+
+/* --- THADEN DOKUMENTATION home redesign --- */
+body.home-mode{background:#081018;color:#eaf1f6}
+body.home-mode header{background:#081018;box-shadow:none}
+body.home-mode .wrap{max-width:1100px;padding:12px 18px 110px}
+.home-top{display:flex;align-items:center;gap:14px;margin:4px 0 10px}
+.home-top .td-logo{width:92px;height:50px}
+.home-title{display:flex;align-items:baseline;gap:10px;flex:1}
+.home-title b{font-size:24px;letter-spacing:.4px}.home-title span{font-size:13px;color:#8ea7bc}
+.home-subtitle{text-align:center;color:#9eb6cb;font-size:15px;margin:0 0 10px}
+.radial{position:relative;max-width:860px;margin:0 auto;height:670px}
+.radial-core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:245px;height:245px;border:3px solid #ff7a00;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#0b151e;box-shadow:0 0 0 1px #182733 inset}
+.radial-core img{width:190px;height:100px;object-fit:contain}
+.radial-line{position:absolute;height:4px;transform-origin:left center;border-radius:4px;opacity:.95}
+.radial-line.l1{width:205px;left:50%;top:50%;transform:rotate(-90deg);background:#18e28b}.radial-line.l2{width:210px;left:50%;top:50%;transform:rotate(-45deg);background:#ff8a00}.radial-line.l3{width:210px;left:50%;top:50%;transform:rotate(0deg);background:#1687ff}.radial-line.l4{width:210px;left:50%;top:50%;transform:rotate(45deg);background:#c8d3df}.radial-line.l5{width:210px;left:50%;top:50%;transform:rotate(90deg);background:#ff303f}.radial-line.l6{width:210px;left:50%;top:50%;transform:rotate(135deg);background:#10d9e7}.radial-line.l7{width:210px;left:50%;top:50%;transform:rotate(180deg);background:#d000ff}.radial-line.l8{width:210px;left:50%;top:50%;transform:rotate(225deg);background:#1687ff}
+.radial-item{position:absolute;width:150px;height:150px;border-radius:50%;background:#0a141d;border:3px solid currentColor;display:flex;align-items:center;justify-content:center;text-align:center;z-index:2;box-shadow:0 8px 22px #0005}
+.radial-item button{width:100%;height:100%;border:0;background:transparent;color:inherit;padding:10px;border-radius:50%;font-size:15px}.radial-item .ri-icon{display:block;font-size:42px;line-height:1;margin-bottom:8px}.radial-item b{display:block;font-size:16px;color:#fff}.radial-item small{display:block;color:#a9bdd0;margin-top:3px}
+.ri-gps{color:#18e28b;left:calc(50% - 75px);top:18px}.ri-new{color:#ff8a00;right:10px;top:75px}.ri-orders{color:#1687ff;right:-5px;top:300px}.ri-settings{color:#c8d3df;right:105px;bottom:8px}.ri-export{color:#ff303f;left:calc(50% - 75px);bottom:-4px}.ri-protocol{color:#10d9e7;left:105px;bottom:8px}.ri-time{color:#d000ff;left:-5px;top:300px}.ri-photo{color:#1687ff;left:10px;top:75px}
+.home-latest{max-width:860px;margin:4px auto 0;border:1px solid #1b2a36;border-radius:24px;background:#0a141d;padding:18px 20px}.home-latest h2{margin:0 0 12px;font-size:25px;color:#fff}.home-latest-head{display:flex;justify-content:space-between;align-items:center}.home-latest-head button{background:transparent;color:#ff8a00;padding:0}.home-latest .list-item{background:#0d1922;border-color:#1c2c39;color:#fff}.home-latest .empty{border-color:#263947;color:#8fa5b7}
+body.home-mode .bottom{background:#071018;border:1px solid #1a2a36;box-shadow:0 -8px 24px #0008}body.home-mode .bottom button{color:#9eb6cb}body.home-mode .bottom button.active{background:#2a1d10;color:#ff8a00}body.home-mode .bottom button.active span{color:#ff8a00}
+@media(max-width:700px){body.home-mode .wrap{padding:8px 10px 96px}.home-top{gap:8px}.home-top .td-logo{width:78px;height:44px}.home-title b{font-size:19px}.home-title span{font-size:11px}.home-subtitle{font-size:12px;margin-bottom:4px}.radial{height:585px;max-width:420px}.radial-core{width:188px;height:188px}.radial-core img{width:150px;height:80px}.radial-line{width:145px;height:3px}.radial-item{width:118px;height:118px;border-width:2px}.radial-item .ri-icon{font-size:32px;margin-bottom:5px}.radial-item b{font-size:12px}.radial-item small{font-size:9px}.ri-gps{left:calc(50% - 59px);top:6px}.ri-new{right:0;top:55px}.ri-orders{right:-3px;top:245px}.ri-settings{right:38px;bottom:0}.ri-export{left:calc(50% - 59px);bottom:-2px}.ri-protocol{left:38px;bottom:0}.ri-time{left:-3px;top:245px}.ri-photo{left:0;top:55px}.home-latest{padding:14px;border-radius:20px}.home-latest h2{font-size:20px}}
+
 @media print{
 body{background:#fff}.screen{display:none!important}.print-only{display:block!important}.bottom,header,.no-print{display:none!important}
 .print-page{padding:12mm;page-break-after:always}.print-page:last-child{page-break-after:auto}
@@ -35,7 +56,7 @@ body{background:#fff}.screen{display:none!important}.print-only{display:block!im
 }
 </style>
 </head>
-<body>
+<body class="home-mode">
 <header>
   <div class="brand">
     <img class="td-logo" src="assets/td-logo-header.png" alt="TD Logo">
@@ -45,19 +66,21 @@ body{background:#fff}.screen{display:none!important}.print-only{display:block!im
 
 <main class="wrap">
 <section id="home" class="screen active">
-  <div class="hero">
-    <h1>THADEN DOKUMENTATION</h1>
-    <p>Störungen · Glasfaser · Aufträge · Zeiten · Fotodokumentation</p>
+  <div class="home-top"><img class="td-logo" src="assets/td-logo-header.png" alt="THADEN Dokumentation Logo"><div class="home-title"><b>THADEN DOKUMENTATION</b><span>V1.0</span></div></div>
+  <p class="home-subtitle">Störungen · Glasfaser · Aufträge · Zeiten · Fotodokumentation</p>
+  <div class="radial">
+    <div class="radial-line l1"></div><div class="radial-line l2"></div><div class="radial-line l3"></div><div class="radial-line l4"></div><div class="radial-line l5"></div><div class="radial-line l6"></div><div class="radial-line l7"></div><div class="radial-line l8"></div>
+    <div class="radial-item ri-gps"><button onclick="getLocation()"><span class="ri-icon">📍</span><b>Standort</b><small>GPS</small></button></div>
+    <div class="radial-item ri-photo"><button onclick="newOrder();document.getElementById('photoInput').click()"><span class="ri-icon">📷</span><b>Foto</b><small>Aufnehmen</small></button></div>
+    <div class="radial-item ri-new"><button onclick="newOrder()"><span class="ri-icon">📄＋</span><b>Neuer Auftrag</b><small>Starten</small></button></div>
+    <div class="radial-item ri-orders"><button onclick="show('orders');renderOrders()"><span class="ri-icon">📄</span><b>Aufträge</b><small>Anzeigen</small></button></div>
+    <div class="radial-item ri-settings"><button onclick="alert('Einstellungen werden in einer späteren Version ergänzt.')"><span class="ri-icon">⚙</span><b>Einstellungen</b><small>App konfigurieren</small></button></div>
+    <div class="radial-item ri-export"><button onclick="printCurrent()"><span class="ri-icon">PDF</span><b>Export</b><small>Bericht erstellen</small></button></div>
+    <div class="radial-item ri-protocol"><button onclick="show('orders');renderOrders()"><span class="ri-icon">📄</span><b>Protokoll</b><small>Berichte</small></button></div>
+    <div class="radial-item ri-time"><button onclick="newOrder();startTimer()"><span class="ri-icon">⏱</span><b>Zeiterfassung</b><small>Start / Stop</small></button></div>
+    <div class="radial-core"><img src="assets/td-logo-header.png" alt="TD THADEN DOKUMENTATION"></div>
   </div>
-  <div class="grid">
-    <button class="tile orange" onclick="newOrder()"><span style="font-size:25px">＋</span><b>Neuer Auftrag</b><small>Dokumentation starten</small></button>
-    <button class="tile dark" onclick="show('orders');renderOrders()"><span style="font-size:25px">▣</span><b>Aufträge</b><small id="orderCount">0 gespeichert</small></button>
-    <button class="tile green" onclick="show('new');startTimerIfNeeded()"><span style="font-size:25px">⏱</span><b>Zeiterfassung</b><small>Start / Stop</small></button>
-    <button class="tile blue" onclick="show('orders');renderOrders()"><span style="font-size:25px">📷</span><b>Dokumentation</b><small>Fotos & Protokolle</small></button>
-  </div>
-  <div class="card" style="margin-top:14px">
-    <h2>Letzte Aufträge</h2><div id="homeList"></div>
-  </div>
+  <div class="home-latest"><div class="home-latest-head"><h2>Letzte Aufträge</h2><button onclick="show('orders');renderOrders()">Alle anzeigen ›</button></div><div id="homeList"></div></div>
 </section>
 
 <section id="new" class="screen">
@@ -138,12 +161,17 @@ const fmtTime=s=>{s=Math.max(0,Math.floor(s));let h=String(Math.floor(s/3600)).p
 function show(id){
  document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));
  $(id).classList.add('active');
+ document.body.classList.toggle('home-mode',id==='home');
  document.querySelectorAll('.bottom button').forEach(x=>x.classList.remove('active'));
  const map={home:'nav-home',new:'nav-new',orders:'nav-orders'};
  if(map[id])$(map[id]).classList.add('active');
  if(id==='home')renderHome();
  if(id==='orders')renderOrders();
  window.scrollTo({top:0,behavior:'smooth'});
+}
+function getLocation(){
+ if(!navigator.geolocation){alert('GPS wird von diesem Gerät nicht unterstützt.');return;}
+ navigator.geolocation.getCurrentPosition(p=>alert(`Standort erfasst.\nBreite: ${p.coords.latitude.toFixed(6)}\nLänge: ${p.coords.longitude.toFixed(6)}`),()=>alert('Standort konnte nicht erfasst werden. Bitte GPS-Berechtigung prüfen.'),{enableHighAccuracy:true,timeout:10000});
 }
 function newOrder(){
  editingId=null; photos=[]; stopTimer(); resetTimer(false);
