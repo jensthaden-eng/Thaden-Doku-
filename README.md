@@ -24,3 +24,7 @@ Das App-Icon wurde auf eine vollflächige anthrazitfarbene quadratische Bildflä
 
 ### V10 – freigegebenes TD-App-Icon
 Das zuletzt bestätigte TD-Logo wurde als vollflächiges App-Icon übernommen. Keine zusätzliche weiße Umrandung, kein orangefarbener Außenrahmen und kein Text unter dem Logo.
+
+
+### V11 – Mobile-Layout
+Die acht Funktionskreise wurden auf kleinen Bildschirmen kompakter angeordnet, damit alle Kreise vollständig innerhalb der Home-Seite sichtbar bleiben und die untere Navigation nicht überlagert wird.
