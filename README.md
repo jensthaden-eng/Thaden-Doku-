@@ -1,11 +1,8 @@
-# THADEN DOKUMENTATION – Final Logo V3
+# THADEN DOKUMENTATION – Logo Fix
 
-Standalone project for THADEN DOKUMENTATION.
+Wichtig: Für die sichtbare App ist das Original-Logo direkt in `index.html` eingebettet.
+Dadurch kann der Browser nicht mehr auf ein fehlendes Logo-Asset zeigen.
 
-This version uses the exact supplied THADEN DOKUMENTATION logo as the visual source for:
-- header logo
-- central home-screen logo
-- browser/PWA icon
-- iPhone home-screen icon
+Für das iPhone-Home-Screen-Symbol sind zusätzlich die Dateien im Ordner `assets/` enthalten.
 
-The original THADEN MATERIAL project is not modified.
+Beim GitHub-Upload müssen `index.html`, `manifest.webmanifest` und der komplette Ordner `assets/` in das Repository.
