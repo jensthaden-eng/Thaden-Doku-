@@ -146,6 +146,13 @@ body{background:#fff}.screen{display:none!important}.print-only{display:block!im
   .ri-step6{left:22px;bottom:28px}
   .ri-step7{left:0;top:250px}
 }
+
+.workflow-strip{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:8px auto 14px;max-width:720px}
+.workflow-step{border:1px solid var(--border,#d8dee3);background:#fff;border-radius:999px;padding:7px 10px;font-weight:800;font-size:11px;display:flex;align-items:center;gap:6px}
+.workflow-step .num{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:#101820;color:#fff}
+.workflow-step.current{border-color:#ff6b00}
+.workflow-step.done{border-color:#159b60}.workflow-step.done .num{background:#159b60}
+.workflow-step.locked{opacity:.45}
 </style>
 
 <link rel="manifest" href="manifest.webmanifest?v=11">
@@ -276,6 +283,16 @@ body{background:#fff}.screen{display:none!important}.print-only{display:block!im
 
 <div id="printReport" class="print-only"></div>
 
+
+<div class="workflow-strip" id="workflowStrip">
+<button type="button" class="workflow-step current" data-step="1"><span class="num">1</span>Auftrag</button>
+<button type="button" class="workflow-step locked" data-step="2"><span class="num">2</span>Gerechtigt?</button>
+<button type="button" class="workflow-step locked" data-step="3"><span class="num">3</span>Fotos</button>
+<button type="button" class="workflow-step locked" data-step="4"><span class="num">4</span>Instandsetzung</button>
+<button type="button" class="workflow-step locked" data-step="5"><span class="num">5</span>Zeit</button>
+<button type="button" class="workflow-step locked" data-step="6"><span class="num">6</span>Einblasprotokoll</button>
+<button type="button" class="workflow-step locked" data-step="7"><span class="num">7</span>PDF</button>
+</div>
 <nav class="bottom no-print">
   <button id="nav-home" class="active" onclick="show('home')"><span>⌂</span>Start</button>
   <button id="nav-new" onclick="newOrder()"><span>＋</span>Auftrag</button>
@@ -285,6 +302,31 @@ body{background:#fff}.screen{display:none!important}.print-only{display:block!im
 </main>
 
 <script>
+
+const WORKFLOW_KEY='thaden_doku_v17_workflow';
+let workflowState=JSON.parse(localStorage.getItem(WORKFLOW_KEY)||'{"done":[]}');
+function renderWorkflow(){
+ document.querySelectorAll('.workflow-step').forEach(b=>{
+  const n=+b.dataset.step, done=workflowState.done.includes(n), unlocked=n===1||workflowState.done.includes(n-1);
+  b.classList.toggle('done',done); b.classList.toggle('locked',!unlocked); b.classList.toggle('current',!done&&unlocked);
+  const num=b.querySelector('.num'); if(num) num.textContent=done?'✓':n;
+ });
+}
+function completeStep(n){
+ n=+n;
+ if(!workflowState.done.includes(n)) workflowState.done.push(n);
+ workflowState.done.sort((a,b)=>a-b);
+ localStorage.setItem(WORKFLOW_KEY,JSON.stringify(workflowState));
+ renderWorkflow();
+}
+function workflowOpen(n){
+ n=+n; if(n>1&&!workflowState.done.includes(n-1)){alert('Bitte zuerst Schritt '+(n-1)+' abschließen.');return;}
+ if(n===1||n===2||n===4||n===5) show('new');
+ else if(n===3){show('new');setTimeout(()=>document.getElementById('photoInput')?.click(),150);}
+ else if(n===6){show('new');setTimeout(()=>document.getElementById('protocolInput')?.click(),150);}
+ else if(n===7){printCurrent();}
+}
+
 const KEY='thaden_doku_v1_orders';
 let orders=JSON.parse(localStorage.getItem(KEY)||'[]');
 let photos=[], timerSeconds=0, timerStart=null, timerInterval=null, editingId=null, protocolFile=null;
@@ -306,6 +348,12 @@ function toggleRadialMenu(force){
  toggle.setAttribute('aria-expanded',String(!collapsed));
  toggle.setAttribute('aria-label',collapsed?'Menü einblenden':'Menü ausblenden');
 }
+
+
+document.addEventListener('DOMContentLoaded',()=>{
+ renderWorkflow();
+ document.querySelectorAll('.workflow-step').forEach(b=>b.addEventListener('click',()=>workflowOpen(b.dataset.step)));
+});
 
 const today=()=>new Date().toISOString().slice(0,10);
 

@@ -21,3 +21,7 @@ Es gibt keine Verbindungslinien zwischen den Punkten.
 3. Fotos
 
 Die App bleibt vollständig getrennt von THADEN MATERIAL.
+
+
+### V17 – Arbeitsablauf
+7 nummerierte Schritte führen durch den Auftrag: Auftrag → Gerechtfertigt → Fotos → Instandsetzung → Zeit → Einblasprotokoll → PDF. Der nächste Schritt wird nach Abschluss freigegeben.
