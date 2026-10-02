@@ -1,27 +1,13 @@
-# THADEN DOKUMENTATION V1.6
+# THADEN DOKUMENTATION V18 – 7-Schritte-Ring
 
-Standalone mobile Web-App zur Auftrags- und Fotodokumentation.
-
-## Arbeitsablauf im Startmenü
-Das TD-Logo in der Mitte klappt die sieben Arbeitsschritte ein und aus. Die Schritte sind rund um das Logo als Zahlenreihe angeordnet:
+Die Startseite zeigt die 7 Arbeitsschritte als nummerierte Punkte rund um das TD-Zentrum:
 
 1. Auftrag
-2. Gerechtfertigt?
+2. Gerechtigt?
 3. Fotos
 4. Instandsetzung
 5. Datum / Uhrzeit
 6. Einblasprotokoll
 7. Abschluss / PDF
 
-Es gibt keine Verbindungslinien zwischen den Punkten.
-
-## PDF-Reihenfolge
-1. Kopfdaten des Auftrags
-2. Einblasprotokoll
-3. Fotos
-
-Die App bleibt vollständig getrennt von THADEN MATERIAL.
-
-
-### V17 – Arbeitsablauf
-7 nummerierte Schritte führen durch den Auftrag: Auftrag → Gerechtfertigt → Fotos → Instandsetzung → Zeit → Einblasprotokoll → PDF. Der nächste Schritt wird nach Abschluss freigegeben.
+Die Verbindungslinien sind entfernt. Der aktuelle Schritt wird orange hervorgehoben, gesperrte Schritte werden abgedunkelt und erledigte Schritte grün markiert.
