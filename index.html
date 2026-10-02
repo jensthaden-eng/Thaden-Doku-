@@ -73,7 +73,7 @@ body.home-mode .bottom{background:#071018;border:1px solid #1a2a36;box-shadow:0 
   transform:translate(-50%,-50%) scale(.12);
   opacity:0;pointer-events:none;
 }
-.radial.collapsed .radial-core{transform:scale(1.03)}
+.radial.collapsed .radial-core{transform:translate(-50%,-50%) scale(1.03)}
 .radial:not(.collapsed) .radial-core{box-shadow:0 0 0 1px #182733 inset,0 0 0 4px #0b151e}
 @media(prefers-reduced-motion:reduce){
   .radial-core,.radial-line,.radial-item{transition:none!important}
@@ -284,6 +284,12 @@ body.home-mode header{display:none}
 .radial{height:700px;max-width:680px;width:100%;margin:0 auto;position:relative}
 .radial-core{width:250px;height:250px;border:3px solid #ff7a00;background:#071018;box-shadow:0 0 0 2px #17232d inset,0 12px 35px #0008;z-index:5}
 .radial-core img{width:185px;height:auto;max-height:115px;object-fit:contain}
+.radial-core{cursor:pointer;position:absolute;transition:transform .18s ease,box-shadow .22s ease}
+.radial-core::after{content:"";position:absolute;inset:10px;border-radius:50%;border:2px solid rgba(255,122,0,.0);pointer-events:none}
+.radial-core.is-pressed{transform:translate(-50%,-50%) scale(.96)!important;box-shadow:0 0 0 3px #ff7a00,0 0 0 10px rgba(255,122,0,.14),0 14px 38px #000b!important}
+.radial-core.is-pressed::after{animation:corePulse .5s ease-out}
+@keyframes corePulse{0%{inset:12px;border-color:rgba(255,122,0,.8);opacity:1}100%{inset:-10px;border-color:rgba(255,122,0,0);opacity:0}}
+@media(prefers-reduced-motion:reduce){.radial-core,.radial-core::after{transition:none!important;animation:none!important}}
 .radial-item{width:158px;height:158px;background:#071018;border-width:3px;box-shadow:0 8px 25px #0007;z-index:6}
 .radial-item button{padding:12px}
 .radial-item .ri-icon{font-size:40px;margin-bottom:7px}
@@ -608,7 +614,13 @@ document.addEventListener('DOMContentLoaded',()=>{
  const toggle=$('radialToggle');
  if(radial && toggle){
    radial.classList.add('collapsed');
-   toggle.addEventListener('click',()=>toggleRadialMenu());
+   toggle.addEventListener('click',()=>{
+     toggle.classList.remove('is-pressed');
+     void toggle.offsetWidth;
+     toggle.classList.add('is-pressed');
+     setTimeout(()=>toggle.classList.remove('is-pressed'),520);
+     toggleRadialMenu();
+   });
  }
 });
 
