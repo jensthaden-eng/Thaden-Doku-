@@ -1,3 +1,4 @@
-THADEN DOKUMENTATION V22
+THADEN DOKUMENTATION V23
 
-Der TD-Mittelbutton ist sauber zentriert. Beim Drücken gibt es einen kurzen orangefarbenen Druck-/Pulseffekt. Alle bestehenden Funktionen aus V21 bleiben erhalten.
+V23 ergänzt eine sichtbare Bestätigungs-Popup-Animation beim „Speichern & weiter“: grüner Haken, „Gespeichert!“ und anschließender automatischer Wechsel zum nächsten Schritt.
+Alle Funktionen und das V22-Design bleiben erhalten.

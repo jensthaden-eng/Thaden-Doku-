@@ -257,6 +257,18 @@ body{background:#fff}.screen{display:none!important}.print-only{display:block!im
   .ri-step7{transform:translate(-50%,-50%) translate(-112px,-89px)!important}
 }
 
+
+/* V23: sichtbare Bestätigung beim Zwischenspeichern */
+.save-popup{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;pointer-events:none;opacity:0;visibility:hidden}
+.save-popup.show{animation:savePopupIn .95s ease both}
+.save-popup-card{min-width:250px;max-width:82vw;padding:22px 26px;border:2px solid #159b60;border-radius:24px;background:#101820;box-shadow:0 18px 55px rgba(0,0,0,.42),0 0 0 8px rgba(21,155,96,.10);text-align:center;color:#fff;transform:scale(.72)}
+.save-popup.show .save-popup-card{animation:saveCardPop .95s cubic-bezier(.2,.85,.25,1.2) both}
+.save-popup-check{width:58px;height:58px;margin:0 auto 10px;border-radius:50%;display:grid;place-items:center;background:#159b60;color:#fff;font-size:34px;font-weight:900;box-shadow:0 0 0 0 rgba(21,155,96,.45);animation:savePulse .95s ease both}
+.save-popup-title{font-size:24px;font-weight:900;line-height:1.05}
+.save-popup-sub{margin-top:6px;color:#cbd5dd;font-size:15px;font-weight:700}
+@keyframes savePopupIn{0%{opacity:0;visibility:hidden}12%{opacity:1;visibility:visible}78%{opacity:1;visibility:visible}100%{opacity:0;visibility:hidden}}
+@keyframes saveCardPop{0%{transform:scale(.72)}22%{transform:scale(1.06)}38%{transform:scale(.98)}55%{transform:scale(1)}100%{transform:scale(1)}}
+@keyframes savePulse{0%{transform:scale(.5);box-shadow:0 0 0 0 rgba(21,155,96,.45)}25%{transform:scale(1.12);box-shadow:0 0 0 14px rgba(21,155,96,0)}100%{transform:scale(1);box-shadow:0 0 0 0 rgba(21,155,96,0)}}
 </style>
 
 <link rel="manifest" href="manifest.webmanifest?v=11">
@@ -483,6 +495,14 @@ body.home-mode header{display:none}
 <div id="printReport" class="print-only"></div>
 
 
+
+<div id="savePopup" class="save-popup" aria-live="polite" aria-atomic="true">
+  <div class="save-popup-card">
+    <div class="save-popup-check">✓</div>
+    <div class="save-popup-title">Gespeichert!</div>
+    <div class="save-popup-sub" id="savePopupSub">Zwischenspeicherung erfolgreich</div>
+  </div>
+</div>
 <div class="workflow-strip" id="workflowStrip">
 <button type="button" class="workflow-step current" data-step="1"><span class="num">1</span>Auftrag</button>
 <button type="button" class="workflow-step locked" data-step="2"><span class="num">2</span>Gerechtigt?</button>
@@ -561,12 +581,19 @@ function validateStep(n){
  if(n===6){if(!protocolFile&&!draftMeta?.protocolMeta){$('protocolStatus').innerHTML='<div class="notice warn">Bitte das Einblasprotokoll hochladen.</div>';scrollToStep(6);return false;}}
  return true;
 }
+function showSavePopup(n,next){
+ const pop=$('savePopup'); if(!pop)return;
+ const sub=$('savePopupSub');
+ if(sub)sub.textContent=next?`Schritt ${n} gespeichert · weiter zu Schritt ${n+1}`:`Schritt ${n} gespeichert`;
+ pop.classList.remove('show'); void pop.offsetWidth; pop.classList.add('show');
+ setTimeout(()=>pop.classList.remove('show'),1000);
+}
 async function saveStepAndNext(n){
  n=+n;
  if(n<=6&&!validateStep(n))return;
  if(n===6&&protocolFile){try{const id=`protocol-${editingId||Date.now()}`;await saveAttachment(id,protocolFile);draftMeta={...(draftMeta||{}),protocolMeta:{id,name:protocolFile.name,type:protocolFile.type,size:protocolFile.size}};}catch(e){alert('Einblasprotokoll konnte nicht zwischengespeichert werden.');return;}}
- persistDraft(); completeStep(n);
- if(n<7){setTimeout(()=>scrollToStep(n+1),160);}
+ persistDraft(); completeStep(n); showSavePopup(n,n<7);
+ if(n<7){setTimeout(()=>scrollToStep(n+1),650);}
  else{await saveOrder(true);}
 }
 async function restoreDraft(){
