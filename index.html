@@ -173,7 +173,8 @@ body{background:#fff}.screen{display:none!important}.print-only{display:block!im
 .ri-step7{left:0;top:43%;right:auto;bottom:auto;transform:none;color:#d000ff}
 .radial-item.is-locked{filter:grayscale(.75);opacity:.42}
 .radial-item.is-current{box-shadow:0 0 0 3px #ff8a00,0 12px 30px #0008}
-.radial-item.is-done{border-color:#159b60!important;box-shadow:0 0 0 3px #159b60,0 12px 30px #0008}
+.radial-item.is-done{border-color:#159b60!important;box-shadow:0 0 0 3px #159b60,0 12px 30px #0008;animation:stepSavedGlow .55s ease}
+@keyframes stepSavedGlow{0%{filter:brightness(1)}45%{filter:brightness(1.28)}100%{filter:brightness(1)}}
 .radial-item.is-done .step-number{background:#159b60!important;color:#fff}
 .radial-item.is-locked button{cursor:not-allowed}
 @media(max-width:700px){
@@ -606,11 +607,19 @@ function showSavePopup(n,next){
 }
 async function saveStepAndNext(n){
  n=+n;
+ // A step becomes green ONLY after all required fields are valid and the data was actually persisted.
  if(n<=6&&!validateStep(n))return;
  if(n===6&&protocolFile){try{const id=`protocol-${editingId||Date.now()}`;await saveAttachment(id,protocolFile);draftMeta={...(draftMeta||{}),protocolMeta:{id,name:protocolFile.name,type:protocolFile.type,size:protocolFile.size}};}catch(e){alert('Einblasprotokoll konnte nicht zwischengespeichert werden.');return;}}
- persistDraft(); completeStep(n); showSavePopup(n,n<7);
- if(n<7){setTimeout(()=>scrollToStep(n+1),650);}
- else{await saveOrder(true);}
+ if(n<7){
+   persistDraft();
+   completeStep(n);
+   showSavePopup(n,true);
+   setTimeout(()=>scrollToStep(n+1),650);
+ } else {
+   // Final step: save the complete order first. Only on success is step 7 completed/green.
+   const ok=await saveOrder(true);
+   if(ok){completeStep(7);showSavePopup(7,false);setTimeout(()=>scrollToStep(7),650);}
+ }
 }
 async function restoreDraft(){
  if(!draftMeta)return false;
@@ -733,7 +742,7 @@ async function addPhotos(ev){
  const files=[...(ev.target.files||[])];ev.target.value='';if(!files.length)return;
  $('photoStatus').innerHTML='<div class="notice">Fotos werden verarbeitet…</div>';
  for(const file of files){try{const src=await compressImage(file);const photo={id:Date.now()+Math.random(),src,time:new Date().toISOString(),lat:null,lon:null};photos.push(photo);renderPhotos();if(navigator.geolocation){navigator.geolocation.getCurrentPosition(pos=>{photo.lat=pos.coords.latitude;photo.lon=pos.coords.longitude;renderPhotos();},()=>{}, {enableHighAccuracy:true,timeout:8000,maximumAge:0});}}catch(e){}}
- $('photoStatus').innerHTML=`<div class="notice ok">✓ ${photos.length} Foto(s) gespeichert.</div>`; if(photos.length) completeStep(3);
+ $('photoStatus').innerHTML=`<div class="notice ok">✓ ${photos.length} Foto(s) bereit – bitte Schritt 3 speichern.</div>`;
 }
 function renderPhotos(){
  $('photoGrid').innerHTML=photos.map((p,i)=>`<div class="photo-card"><img src="${p.src}" alt="Foto ${i+1}"><div class="photo-info"><b>Foto ${i+1}</b>${new Date(p.time).toLocaleString('de-DE')}<br>${p.lat!==null?`GPS: ${p.lat.toFixed(6)}, ${p.lon.toFixed(6)}`:'GPS: wird erfasst / nicht verfügbar'}<div class="photo-actions"><button class="danger" onclick="removePhoto(${p.id})">Löschen</button></div></div></div>`).join('');
@@ -741,7 +750,7 @@ function renderPhotos(){
 function removePhoto(id){photos=photos.filter(p=>p.id!==id);renderPhotos()}
 async function handleProtocol(ev){
  const file=ev.target.files?.[0];if(!file)return;
- protocolFile=file; completeStep(6); $('protocolStatus').innerHTML='<div class="notice">Einblasprotokoll wird vorbereitet…</div>';
+ protocolFile=file; $('protocolStatus').innerHTML='<div class="notice">Einblasprotokoll wird vorbereitet…</div>';
  $('protocolStatus').innerHTML=`<div class="notice ok">✓ ${esc(file.name)} (${Math.round(file.size/1024)} KB) ausgewählt.</div>`;
 }
 function formData(){return {
@@ -750,12 +759,12 @@ function formData(){return {
 };}
 async function saveOrder(fromWorkflow=false){
  const d=formData();
- if(!d.jobNo||!d.city||!d.zip||!d.address){$('saveNotice').innerHTML='<div class="notice warn">Bitte Auftragsnummer, Ort, PLZ und Adresse ausfüllen.</div>';return}
- if(!d.justified){$('saveNotice').innerHTML='<div class="notice warn">Bitte bei „Gerechtfertigt?“ Ja oder Nein auswählen.</div>';return}
- if(d.justified==='ja'&&!d.faultArea){$('saveNotice').innerHTML='<div class="notice warn">Bitte angeben, ob der Fehler öffentlich oder privat ist.</div>';return}
- if(!d.finding||!d.workDone){$('saveNotice').innerHTML='<div class="notice warn">Bitte Fehler und die erforderlichen Arbeiten nach der Instandsetzung eintragen.</div>';return}
+ if(!d.jobNo||!d.city||!d.zip||!d.address){$('saveNotice').innerHTML='<div class="notice warn">Bitte Auftragsnummer, Ort, PLZ und Adresse ausfüllen.</div>';return false}
+ if(!d.justified){$('saveNotice').innerHTML='<div class="notice warn">Bitte bei „Gerechtfertigt?“ Ja oder Nein auswählen.</div>';return false}
+ if(d.justified==='ja'&&!d.faultArea){$('saveNotice').innerHTML='<div class="notice warn">Bitte angeben, ob der Fehler öffentlich oder privat ist.</div>';return false}
+ if(!d.finding||!d.workDone){$('saveNotice').innerHTML='<div class="notice warn">Bitte Fehler und die erforderlichen Arbeiten nach der Instandsetzung eintragen.</div>';return false}
  const item={id:editingId||Date.now(),...d,protocolMeta:protocolFile?{id:`protocol-${editingId||Date.now()}`,name:protocolFile.name,type:protocolFile.type,size:protocolFile.size}:null,updatedAt:new Date().toISOString()};
- try{if(protocolFile)await saveAttachment(item.protocolMeta.id,protocolFile);const idx=orders.findIndex(x=>x.id===item.id);if(idx>=0){if(!protocolFile)item.protocolMeta=orders[idx].protocolMeta||null;orders[idx]=item}else orders.unshift(item);localStorage.setItem(KEY,JSON.stringify(orders));editingId=item.id;if(fromWorkflow){completeStep(7);localStorage.removeItem(DRAFT_KEY);draftMeta=null;}$('saveNotice').innerHTML='<div class="notice ok">✓ Auftrag gespeichert.</div>';renderHome();renderOrders();updateCount();}catch(e){$('saveNotice').innerHTML='<div class="notice warn">Speichern fehlgeschlagen. Bitte bei großen Dateien das Einblasprotokoll erneut auswählen.</div>';}
+ try{if(protocolFile)await saveAttachment(item.protocolMeta.id,protocolFile);const idx=orders.findIndex(x=>x.id===item.id);if(idx>=0){if(!protocolFile)item.protocolMeta=orders[idx].protocolMeta||null;orders[idx]=item}else orders.unshift(item);localStorage.setItem(KEY,JSON.stringify(orders));editingId=item.id;if(fromWorkflow){completeStep(7);localStorage.removeItem(DRAFT_KEY);draftMeta=null;}$('saveNotice').innerHTML='<div class="notice ok">✓ Auftrag gespeichert.</div>';renderHome();renderOrders();updateCount();return true;}catch(e){$('saveNotice').innerHTML='<div class="notice warn">Speichern fehlgeschlagen. Bitte bei großen Dateien das Einblasprotokoll erneut auswählen.</div>';return false;}
 }
 async function createCurrentPdf(){if(workflowState.done.filter(n=>n<7).length<6){alert('Bitte zuerst alle sechs Arbeitsschritte speichern und abschließen. Danach kann das PDF erstellt werden.');return;}const d=formData();await createPdf({...d,id:editingId||Date.now(),protocolMeta:protocolFile?{name:protocolFile.name,type:protocolFile.type}:null});}
 async function createPdf(o){
