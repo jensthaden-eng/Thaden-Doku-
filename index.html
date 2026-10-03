@@ -722,7 +722,7 @@ body.home-mode .home-latest{position:absolute;left:50%;bottom:16px;transform:tra
 </style>
 
 <style id="v36-logo-camera-clearance">
-/* V36: Logo auf Tablets etwas nach unten, damit die iPad-Kamera nichts verdeckt. */
+/* V37: Logo auf Tablets etwas nach unten, damit die iPad-Kamera nichts verdeckt. */
 @media (min-width:701px) {
   body.home-mode .home-top .td-logo{
     transform:translateY(28px);
@@ -732,6 +732,38 @@ body.home-mode .home-latest{position:absolute;left:50%;bottom:16px;transform:tra
   body.home-mode .home-top .td-logo{
     transform:translateY(12px);
   }
+}
+</style>
+
+
+<style id="v37-pin-keypad-slide">
+/* V37: PIN-Bedienfeld gleitet nach dem Druck auf das Schloss von unten in die Mitte. */
+.pin-panel .pin-title,
+.pin-panel .pin-hint,
+.pin-panel .pin-dots,
+.pin-panel .pin-keypad,
+.pin-panel .pin-status,
+.pin-panel .pin-change{
+  will-change:transform,opacity;
+}
+.pin-panel .pin-keypad{
+  transform:translateY(75vh);
+  opacity:0;
+  transition:transform .62s cubic-bezier(.22,.8,.24,1), opacity .38s ease;
+}
+.pin-panel.pin-open .pin-keypad{
+  transform:translateY(0);
+  opacity:1;
+  transition-delay:.06s;
+}
+.pin-panel .pin-title,.pin-panel .pin-hint,.pin-panel .pin-dots{
+  transition:opacity .3s ease, transform .42s cubic-bezier(.22,.8,.24,1);
+}
+.pin-panel.pin-open .pin-title,.pin-panel.pin-open .pin-hint,.pin-panel.pin-open .pin-dots{
+  transition-delay:.16s;
+}
+@media (prefers-reduced-motion:reduce){
+  .pin-panel .pin-keypad,.pin-panel .pin-title,.pin-panel .pin-hint,.pin-panel .pin-dots{transition:none!important;transform:none!important;}
 }
 </style>
 

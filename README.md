@@ -1,3 +1,3 @@
-THADEN DOKUMENTATION V36 – Tablet
+THADEN DOKUMENTATION V37
 
-Logo auf Tablets 28px nach unten verschoben, damit die Frontkamera nichts vom Logo verdeckt. Alle bisherigen Funktionen bleiben erhalten.
+Tablet-Version. PIN-Tastatur gleitet nach Antippen des Schloss-Buttons von unten in die Mitte. Bestehende Funktionen bleiben erhalten.
