@@ -1326,5 +1326,16 @@ document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('.wo
 })();
 </script>
 
+
+<style id="v40-logo-higher">
+/* V40: Das große Kopf-Logo auf Tablets etwas höher setzen. Die Arbeitspunkte bleiben unverändert. */
+body.home-mode .home-top .td-logo{transform:translateY(-38px);}
+@media (min-width:701px) and (orientation:portrait){
+  body.home-mode .home-top .td-logo{transform:translateY(-34px);}
+}
+@media (max-width:700px){
+  body.home-mode .home-top .td-logo{transform:translateY(-24px);}
+}
+</style>
 </body>
 </html>

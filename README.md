@@ -1,2 +1,3 @@
-THADEN DOKUMENTATION V39 – Logo höher mit mehr Abstand zu den Arbeitspunkten.
-Bestehende Funktionen bleiben erhalten.
+# THADEN DOKUMENTATION V40
+
+Tablet-Startseite: Das große THADEN-DOKUMENTATION-Logo wurde etwas weiter nach oben gesetzt. Die 7 Arbeitspunkte und der Mittelbutton bleiben an ihrer bisherigen Position, wodurch zwischen Logo und Punkten mehr Abstand entsteht.
