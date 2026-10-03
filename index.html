@@ -767,6 +767,41 @@ body.home-mode .home-latest{position:absolute;left:50%;bottom:16px;transform:tra
 }
 </style>
 
+
+<style id="v38-pin-panel-center">
+/* V38: Nach dem Antippen gleitet das PIN-Bedienfeld bis in die Bildschirmmitte. */
+@media (min-width:701px) and (orientation:landscape){
+  .pin-panel.pin-open{
+    animation:pinPanelCenter .72s cubic-bezier(.22,.8,.24,1) forwards;
+  }
+  @keyframes pinPanelCenter{
+    0%{transform:translateY(0);}
+    100%{transform:translateY(-18vh);}
+  }
+  .pin-panel.pin-open .pin-ring{
+    position:absolute;
+    left:50%;
+    top:0;
+    transform:translateX(-50%) scale(.72);
+  }
+}
+@media (min-width:701px) and (orientation:portrait){
+  .pin-panel.pin-open{
+    animation:pinPanelCenterPortrait .72s cubic-bezier(.22,.8,.24,1) forwards;
+  }
+  @keyframes pinPanelCenterPortrait{
+    0%{transform:translateY(0);}
+    100%{transform:translateY(-10vh);}
+  }
+  .pin-panel.pin-open .pin-ring{
+    position:absolute;
+    left:50%;
+    top:0;
+    transform:translateX(-50%) scale(.72);
+  }
+}
+</style>
+
 </head>
 <body class="home-mode pin-locked">
 

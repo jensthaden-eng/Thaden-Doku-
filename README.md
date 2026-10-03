@@ -1,3 +1,1 @@
-THADEN DOKUMENTATION V37
-
-Tablet-Version. PIN-Tastatur gleitet nach Antippen des Schloss-Buttons von unten in die Mitte. Bestehende Funktionen bleiben erhalten.
+THADEN DOKUMENTATION V38 – PIN-Bedienfeld gleitet nach dem Antippen bis in die Bildschirmmitte.
