@@ -1,1 +1,3 @@
-V35: Tablet-Startseite – Logo und 7 Arbeitspunkte als mittige Gruppe, Letzte Aufträge unten.
+THADEN DOKUMENTATION V36 – Tablet
+
+Logo auf Tablets 28px nach unten verschoben, damit die Frontkamera nichts vom Logo verdeckt. Alle bisherigen Funktionen bleiben erhalten.

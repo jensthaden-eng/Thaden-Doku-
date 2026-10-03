@@ -720,6 +720,21 @@ body.home-mode .home-latest{position:absolute;left:50%;bottom:16px;transform:tra
   body.home-mode .home-latest{bottom:12px;width:calc(100% - 20px);padding:13px 14px;}
 }
 </style>
+
+<style id="v36-logo-camera-clearance">
+/* V36: Logo auf Tablets etwas nach unten, damit die iPad-Kamera nichts verdeckt. */
+@media (min-width:701px) {
+  body.home-mode .home-top .td-logo{
+    transform:translateY(28px);
+  }
+}
+@media (max-width:700px) {
+  body.home-mode .home-top .td-logo{
+    transform:translateY(12px);
+  }
+}
+</style>
+
 </head>
 <body class="home-mode pin-locked">
 
