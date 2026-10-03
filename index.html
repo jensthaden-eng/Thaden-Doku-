@@ -618,6 +618,28 @@ body.pin-locked { overflow:hidden !important; }
   .home-top .td-logo{width:min(680px,88vw);max-height:125px;}
 }
 </style>
+
+<style id="v33-pin-logo-button">
+/* V33: Logo transparent + größerer Lock-Button. Nach Antippen verschwindet der Button hinter der PIN-Oberfläche. */
+.pin-brand img{background:transparent!important;}
+.pin-ring{transition:transform .28s ease,opacity .28s ease,box-shadow .25s ease,border-color .25s ease;}
+.pin-panel.pin-open .pin-ring{opacity:0;transform:scale(.82);pointer-events:none;visibility:hidden;}
+@media (min-width:701px) and (orientation:landscape){
+  .pin-panel{margin-top:clamp(18px,3vh,34px);}
+  .pin-ring{width:210px;height:210px;}
+  .pin-panel.pin-open .pin-ring{transform:scale(.72) translateY(-8px);}
+  .pin-keypad{width:340px;}
+  .pin-key{height:58px;font-size:25px;}
+}
+@media (min-width:701px) and (orientation:portrait){
+  .pin-ring{width:200px;height:200px;}
+  .pin-panel.pin-open .pin-ring{transform:scale(.72);}
+}
+@media (max-width:700px){
+  .pin-ring{width:190px;height:190px;}
+  .pin-panel.pin-open .pin-ring{transform:scale(.72);}
+}
+</style>
 </head>
 <body class="home-mode pin-locked">
 
@@ -643,7 +665,7 @@ body.pin-locked { overflow:hidden !important; }
     <div class="pin-status" id="pinStatus"></div>
     <button class="pin-change" id="pinChange" type="button">PIN ändern</button>
   </div>
-  <div class="pin-version">THADEN DOKUMENTATION · V31</div>
+  <div class="pin-version">THADEN DOKUMENTATION · V33</div>
 </section>
 
 <header class="td-header-v24 td-header-logo-v27">
