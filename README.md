@@ -1,1 +1,2 @@
-THADEN DOKUMENTATION V38 – PIN-Bedienfeld gleitet nach dem Antippen bis in die Bildschirmmitte.
+THADEN DOKUMENTATION V39 – Logo höher mit mehr Abstand zu den Arbeitspunkten.
+Bestehende Funktionen bleiben erhalten.
