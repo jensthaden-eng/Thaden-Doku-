@@ -440,8 +440,66 @@ body.home-mode .bottom button.active{background:#2b1d10;color:#ff8a00}
 }
 </style>
 
+
+<style>
+/* V28 – geschützte PIN-Startseite im THADEN-Stil */
+body.pin-locked{overflow:hidden!important}
+.pin-lock{position:fixed;inset:0;z-index:9999;background:#071018;color:#eef4f8;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:calc(22px + env(safe-area-inset-top)) 18px calc(24px + env(safe-area-inset-bottom));box-sizing:border-box;overflow:auto}
+.pin-lock[hidden]{display:none!important}
+.pin-brand{width:min(610px,94vw);text-align:center;margin-top:2px}
+.pin-brand img{width:min(560px,92vw);max-height:128px;object-fit:contain;display:block;margin:0 auto}
+.pin-sub{margin-top:8px;color:#a7b9c8;font-size:14px;letter-spacing:.3px}
+.pin-panel{width:min(410px,94vw);margin:36px auto 0;display:flex;flex-direction:column;align-items:center}
+.pin-ring{width:188px;height:188px;border:3px solid #ff7a00;border-radius:50%;background:#09141d;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 2px #17232d inset,0 14px 36px #0008;transition:transform .18s ease,box-shadow .25s ease,border-color .25s ease}
+.pin-lock.unlocked .pin-ring{animation:pinUnlock .65s ease forwards}
+.pin-lock.error .pin-ring{animation:pinShake .38s ease;border-color:#ff4b4b}
+.pin-icon{font-size:58px;line-height:1}
+.pin-title{font-size:25px;font-weight:900;margin-top:20px;text-align:center}
+.pin-hint{font-size:13px;color:#a7b9c8;margin-top:6px;text-align:center}
+.pin-dots{display:flex;gap:13px;margin:22px 0 20px}
+.pin-dot{width:15px;height:15px;border-radius:50%;border:2px solid #8da1b1;background:transparent;box-sizing:border-box;transition:background .15s ease,border-color .15s ease,transform .15s ease}
+.pin-dot.filled{background:#ff7a00;border-color:#ff7a00;transform:scale(1.08)}
+.pin-keypad{width:min(300px,82vw);display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+.pin-key{height:58px;border:1px solid #1d3443;border-radius:18px;background:#0b1822;color:#fff;font-size:23px;font-weight:800;box-shadow:0 5px 14px #0005;transition:transform .1s ease,background .15s ease,border-color .15s ease}
+.pin-key:active{transform:scale(.93);background:#2b1d10;border-color:#ff7a00;color:#ff8a00}
+.pin-key.back{font-size:20px;color:#b8c7d4}.pin-key.ok{background:#2b1d10;color:#ff8a00;border-color:#4a2c10}
+.pin-status{min-height:22px;margin-top:13px;font-size:13px;font-weight:800;text-align:center;color:#a7b9c8}.pin-status.ok{color:#42d889}.pin-status.err{color:#ff6969}
+.pin-change{margin-top:20px;border:0;background:transparent;color:#91a8bb;text-decoration:underline;font-size:13px;padding:8px 12px}
+.pin-change:active{color:#ff8a00}
+.pin-version{margin-top:auto;padding-top:24px;color:#506575;font-size:11px;letter-spacing:1px}
+@keyframes pinShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-9px)}50%{transform:translateX(9px)}75%{transform:translateX(-5px)}}
+@keyframes pinUnlock{0%{transform:scale(1)}45%{transform:scale(1.08);box-shadow:0 0 0 4px #159b60,0 0 0 13px rgba(21,155,96,.16),0 18px 42px #0009;border-color:#159b60}100%{transform:scale(1.02);box-shadow:0 0 0 3px #159b60,0 0 0 9px rgba(21,155,96,.08),0 18px 42px #0009;border-color:#159b60}}
+@media(max-width:430px){.pin-lock{padding-top:calc(14px + env(safe-area-inset-top))}.pin-brand img{max-height:105px}.pin-sub{font-size:12px}.pin-panel{margin-top:28px}.pin-ring{width:164px;height:164px}.pin-icon{font-size:50px}.pin-title{font-size:22px;margin-top:16px}.pin-dots{margin:18px 0}.pin-keypad{gap:9px}.pin-key{height:54px;border-radius:16px;font-size:21px}}
+</style>
+
 </head>
-<body class="home-mode">
+<body class="home-mode pin-locked">
+
+<!-- V28 PIN-Sperrseite -->
+<section id="pinLock" class="pin-lock" aria-label="THADEN DOKUMENTATION PIN-Sperre">
+  <div class="pin-brand">
+    <img src="thaden-header-logo.png" alt="THADEN DOKUMENTATION – Einfach. Digital. Dokumentiert.">
+    <div class="pin-sub">Geschützte Dokumentation</div>
+  </div>
+  <div class="pin-panel">
+    <div class="pin-ring" id="pinRing"><div class="pin-icon" aria-hidden="true">🔒</div></div>
+    <div class="pin-title">PIN eingeben</div>
+    <div class="pin-hint">Zum Öffnen der Dokumentation</div>
+    <div class="pin-dots" id="pinDots" aria-label="PIN-Eingabe">
+      <span class="pin-dot"></span><span class="pin-dot"></span><span class="pin-dot"></span><span class="pin-dot"></span>
+    </div>
+    <div class="pin-keypad" id="pinKeypad">
+      <button class="pin-key" data-key="1">1</button><button class="pin-key" data-key="2">2</button><button class="pin-key" data-key="3">3</button>
+      <button class="pin-key" data-key="4">4</button><button class="pin-key" data-key="5">5</button><button class="pin-key" data-key="6">6</button>
+      <button class="pin-key" data-key="7">7</button><button class="pin-key" data-key="8">8</button><button class="pin-key" data-key="9">9</button>
+      <button class="pin-key back" data-key="back" aria-label="Letzte Zahl löschen">⌫</button><button class="pin-key" data-key="0">0</button><button class="pin-key ok" data-key="ok" aria-label="PIN prüfen">✓</button>
+    </div>
+    <div class="pin-status" id="pinStatus"></div>
+    <button class="pin-change" id="pinChange" type="button">PIN ändern</button>
+  </div>
+  <div class="pin-version">THADEN DOKUMENTATION · V28</div>
+</section>
+
 <header class="td-header-v24 td-header-logo-v27">
   <img class="td-header-logo-v27" src="thaden-header-logo.png" alt="THADEN DOKUMENTATION – Einfach. Digital. Dokumentiert.">
 </header>
@@ -865,5 +923,50 @@ async function printOrder(id){const o=orders.find(x=>x.id===id);if(o)await creat
 // V21: Klick auf Kreise öffnet exakt den zugehörigen Abschnitt.
 document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('.workflow-step').forEach(b=>b.addEventListener('click',()=>workflowOpen(b.dataset.step)));document.querySelectorAll('.radial-item').forEach(item=>item.addEventListener('click',()=>workflowOpen(item.dataset.step)));renderWorkflow();});
 </script>
+
+<script>
+/* V28 – PIN-Sperre. Standard-PIN beim ersten Start: 1234. Änderung über „PIN ändern“. */
+(function(){
+ const PIN_KEY='thaden_doku_pin_v28';
+ const LOCK_KEY='thaden_doku_pin_session_v28';
+ const DEFAULT_PIN='1234';
+ let pin='';
+ const $p=id=>document.getElementById(id);
+ const lock=$p('pinLock'), dots=[...document.querySelectorAll('#pinDots .pin-dot')], status=$p('pinStatus');
+ function storedPin(){return localStorage.getItem(PIN_KEY)||DEFAULT_PIN}
+ function render(){dots.forEach((d,i)=>d.classList.toggle('filled',i<pin.length));}
+ function message(t,kind=''){status.textContent=t;status.className='pin-status'+(kind?' '+kind:'');}
+ function clear(){pin='';render();}
+ function unlock(){
+   if(pin.length!==4){message('Bitte 4-stellige PIN eingeben.','err');return}
+   if(pin!==storedPin()){
+     lock.classList.remove('error');void lock.offsetWidth;lock.classList.add('error');
+     message('PIN falsch – bitte erneut versuchen.','err');setTimeout(()=>{lock.classList.remove('error');clear();},500);return;
+   }
+   lock.classList.add('unlocked');message('✓ Entsperrt','ok');sessionStorage.setItem(LOCK_KEY,'1');
+   setTimeout(()=>{lock.hidden=true;document.body.classList.remove('pin-locked');},650);
+ }
+ function add(k){
+   if(k==='back'){pin=pin.slice(0,-1);message('');render();return}
+   if(k==='ok'){unlock();return}
+   if(!/^\d$/.test(k)||pin.length>=4)return;
+   pin+=k;render();message('');
+   if(pin.length===4)setTimeout(unlock,100);
+ }
+ document.querySelectorAll('#pinKeypad .pin-key').forEach(b=>b.addEventListener('click',()=>add(b.dataset.key)));
+ document.addEventListener('keydown',e=>{if(lock.hidden)return;if(/^\d$/.test(e.key))add(e.key);else if(e.key==='Backspace')add('back');else if(e.key==='Enter')add('ok')});
+ $p('pinChange').addEventListener('click',()=>{
+   const current=prompt('Aktuelle PIN eingeben:'); if(current===null)return;
+   if(current!==storedPin()){message('Aktuelle PIN ist falsch.','err');return}
+   const next=prompt('Neue 4-stellige PIN eingeben:'); if(next===null)return;
+   if(!/^\d{4}$/.test(next)){message('Die neue PIN muss genau 4 Ziffern haben.','err');return}
+   const confirmPin=prompt('Neue PIN wiederholen:'); if(confirmPin!==next){message('PIN stimmt nicht überein.','err');return}
+   localStorage.setItem(PIN_KEY,next);message('✓ PIN wurde geändert.','ok');clear();
+ });
+ if(sessionStorage.getItem(LOCK_KEY)==='1'){lock.hidden=true;document.body.classList.remove('pin-locked');}
+ else {lock.hidden=false;setTimeout(()=>{const b=document.querySelector('#pinKeypad .pin-key');b?.focus();},80)}
+})();
+</script>
+
 </body>
 </html>
