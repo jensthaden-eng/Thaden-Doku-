@@ -492,6 +492,58 @@ body.pin-locked{overflow:hidden!important}
 
 </style>
 
+
+<style id="v30-pin-fit">
+/* V30: PIN-Sperrseite kompakt und ohne Scrollen auf iPhone */
+html, body { height:100%; }
+body.pin-locked { overflow:hidden !important; }
+.pin-lock {
+  height:100dvh;
+  min-height:100dvh;
+  overflow:hidden !important;
+  justify-content:flex-start;
+  padding:calc(8px + env(safe-area-inset-top)) 0 calc(8px + env(safe-area-inset-bottom));
+}
+.pin-brand { width:100%; margin:0; flex:0 0 auto; }
+.pin-brand img {
+  width:100%;
+  max-width:none;
+  height:clamp(92px, 21dvh, 155px);
+  max-height:none;
+  object-fit:contain;
+  object-position:center;
+}
+.pin-sub { font-size:clamp(13px, 2.1dvh, 17px); margin-top:4px; }
+.pin-panel {
+  width:min(410px, 92vw);
+  margin:clamp(14px, 3dvh, 24px) auto 0;
+  flex:1 1 auto;
+  min-height:0;
+  justify-content:flex-start;
+}
+.pin-ring { width:clamp(132px, 19dvh, 164px); height:clamp(132px, 19dvh, 164px); flex:0 0 auto; }
+.pin-icon { font-size:clamp(42px, 6dvh, 52px); }
+.pin-title { font-size:clamp(21px, 3.2dvh, 25px); margin-top:clamp(8px, 1.6dvh, 14px); }
+.pin-hint { font-size:clamp(11px, 1.8dvh, 14px); margin-top:3px; }
+.pin-dots { gap:11px; margin:clamp(10px, 2dvh, 16px) 0 clamp(8px, 1.5dvh, 12px); }
+.pin-dot { width:14px; height:14px; }
+.pin-keypad { width:min(300px, 82vw); gap:clamp(6px, 1.2dvh, 9px); }
+.pin-key { height:clamp(43px, 6.2dvh, 52px); border-radius:15px; font-size:clamp(20px, 3dvh, 23px); }
+.pin-status { min-height:18px; margin-top:5px; font-size:12px; }
+.pin-change { margin-top:2px; padding:5px 10px; font-size:12px; }
+.pin-version { display:none; }
+@media (max-height:760px) {
+  .pin-brand img { height:88px; }
+  .pin-sub { font-size:12px; }
+  .pin-panel { margin-top:10px; }
+  .pin-ring { width:122px; height:122px; }
+  .pin-title { font-size:20px; margin-top:7px; }
+  .pin-dots { margin:8px 0; }
+  .pin-key { height:40px; }
+  .pin-status { display:none; }
+  .pin-change { display:none; }
+}
+</style>
 </head>
 <body class="home-mode pin-locked">
 
