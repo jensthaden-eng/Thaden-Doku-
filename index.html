@@ -544,6 +544,61 @@ body.pin-locked { overflow:hidden !important; }
   .pin-change { display:none; }
 }
 </style>
+
+
+<style id="v31-tablet-pin">
+/* V31: PIN-Startseite für iPad/Tablet-Landschaft optimiert */
+@media (min-width:701px) and (orientation:landscape) {
+  .pin-lock{
+    padding:clamp(10px,2vh,22px) 24px clamp(10px,2vh,22px);
+    justify-content:flex-start;
+  }
+  .pin-brand{
+    width:min(760px,88vw);
+    margin:0 auto;
+  }
+  .pin-brand img{
+    width:min(680px,78vw);
+    height:auto;
+    max-height:none;
+    margin:0 auto;
+  }
+  .pin-sub{
+    font-size:16px;
+    margin-top:6px;
+  }
+  .pin-panel{
+    width:min(430px,44vw);
+    margin:clamp(12px,2.2vh,24px) auto 0;
+    flex:0 0 auto;
+  }
+  .pin-ring{
+    width:clamp(150px,20vh,184px);
+    height:clamp(150px,20vh,184px);
+  }
+  .pin-icon{font-size:clamp(48px,6.5vh,60px)}
+  .pin-title{font-size:25px;margin-top:12px}
+  .pin-hint{font-size:14px;margin-top:4px}
+  .pin-dots{gap:12px;margin:12px 0 10px}
+  .pin-dot{width:15px;height:15px}
+  .pin-keypad{width:min(320px,34vw);gap:9px}
+  .pin-key{height:52px;border-radius:15px;font-size:23px}
+  .pin-status{min-height:18px;margin-top:5px;font-size:12px}
+  .pin-change{margin-top:2px;padding:5px 10px;font-size:12px}
+  .pin-version{display:none}
+}
+
+/* Tablets im Hochformat: ebenfalls großzügiger, aber kompakt */
+@media (min-width:701px) and (orientation:portrait) {
+  .pin-brand{width:min(700px,88vw)}
+  .pin-brand img{width:min(620px,82vw);height:auto;max-height:none}
+  .pin-panel{margin-top:24px}
+  .pin-ring{width:170px;height:170px}
+  .pin-keypad{width:310px}
+  .pin-key{height:54px}
+}
+</style>
+
 </head>
 <body class="home-mode pin-locked">
 
@@ -569,7 +624,7 @@ body.pin-locked { overflow:hidden !important; }
     <div class="pin-status" id="pinStatus"></div>
     <button class="pin-change" id="pinChange" type="button">PIN ändern</button>
   </div>
-  <div class="pin-version">THADEN DOKUMENTATION · V29</div>
+  <div class="pin-version">THADEN DOKUMENTATION · V31</div>
 </section>
 
 <header class="td-header-v24 td-header-logo-v27">
