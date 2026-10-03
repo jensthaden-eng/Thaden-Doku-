@@ -8,3 +8,5 @@ V31 passt die geschützte PIN-Startseite für Tablets/iPad an, insbesondere im Q
 - vorhandene Funktionen und der bestehende Arbeitsablauf bleiben erhalten
 
 Standard-PIN beim ersten Start: 1234
+
+V32: Tablet-Startseite mit sichtbarem vollständigem THADEN DOKUMENTATION Logo und sichtbarem TD-Zentrallogo.
