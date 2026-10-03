@@ -905,7 +905,7 @@ body.home-mode .home-latest{position:absolute;left:50%;bottom:16px;transform:tra
   <div class="home-visual">
   <div class="home-top"><img class="td-logo" src="thaden-header-logo.png" alt="THADEN Dokumentation Logo"><div class="home-title"><b>THADEN DOKUMENTATION</b><span>V1.0</span></div></div>
   <p class="home-subtitle">Störungen · Glasfaser · Aufträge · Zeiten · Fotodokumentation</p>
-  <div class="radial">
+  <div class="radial collapsed">
     <div class="radial-item ri-step1" data-step="1"><button onclick="workflowOpen(1)"><span class="step-number">1</span><span class="ri-icon">📄</span><b>Auftrag</b><small>Nr. · Ort · PLZ · Adresse</small><span class="step-flow">Start</span></button></div>
     <div class="radial-item ri-step2" data-step="2"><button onclick="workflowOpen(2)"><span class="step-number">2</span><span class="ri-icon">✓?</span><b>Gerechtfertigt?</b><small>Ja / Nein · öffentlich / privat</small><span class="step-flow">Prüfen</span></button></div>
     <div class="radial-item ri-step3" data-step="3"><button onclick="workflowOpen(3)"><span class="step-number">3</span><span class="ri-icon">📷</span><b>Fotos</b><small>Fotos aufnehmen</small><span class="step-flow">Dokumentieren</span></button></div>
@@ -1186,13 +1186,22 @@ document.addEventListener('DOMContentLoaded',()=>{
  const radial=document.querySelector('.radial');
  const toggle=$('radialToggle');
  if(radial && toggle){
-   radial.classList.remove('collapsed');
+   // V42: Startseite zunächst kompakt/eingeklappt; erst der TD-Mittelbutton fährt die 7 Punkte aus.
+   radial.classList.add('collapsed');
+   toggle.setAttribute('aria-expanded','false');
    toggle.addEventListener('click',()=>{
      toggle.classList.remove('is-pressed');
      void toggle.offsetWidth;
      toggle.classList.add('is-pressed');
      setTimeout(()=>toggle.classList.remove('is-pressed'),520);
+     const opening = radial.classList.contains('collapsed');
      toggleRadialMenu();
+     if(opening){
+       radial.classList.remove('v42-opening');
+       void radial.offsetWidth;
+       radial.classList.add('v42-opening');
+       setTimeout(()=>radial.classList.remove('v42-opening'),700);
+     }
    });
  }
 });
@@ -1409,3 +1418,34 @@ body.home-mode .home-top .td-logo{transform:translateY(-38px);}
 </style>
 </body>
 </html>
+
+<style id="v42-start-collapsed-logo-wave">
+/* V42: Startseite – Logo 0,5 cm weiter nach oben, Punkte beim Start eingeklappt, deutlich sichtbare Welle. */
+@media (min-width:701px){
+  body.home-mode .home-top .td-logo{transform:translateY(-57px)!important;}
+}
+@media (max-width:700px){
+  body.home-mode .home-top .td-logo{transform:translateY(-39px)!important;}
+}
+
+/* Beim Öffnen: kräftigere, größere orange Wellen vom TD-Mittelbutton. */
+.pin-panel.reveal-wave::before,.pin-panel.reveal-wave::after{
+  width:210px;height:210px;
+  border:5px solid rgba(255,122,0,.98);
+  box-shadow:0 0 18px rgba(255,122,0,.55),0 0 38px rgba(255,122,0,.22);
+  top:94px;
+}
+.pin-panel.reveal-wave::before{animation:pinWaveV42 1.05s cubic-bezier(.16,.75,.24,1) forwards}
+.pin-panel.reveal-wave::after{animation:pinWaveV42 1.05s .20s cubic-bezier(.16,.75,.24,1) forwards}
+@keyframes pinWaveV42{
+  0%{transform:translate(-50%,-50%) scale(.72);opacity:1;filter:brightness(1.25)}
+  55%{opacity:.72}
+  100%{transform:translate(-50%,-50%) scale(1.72);opacity:0;filter:brightness(1)}
+}
+
+/* V42: Auch das Ausfahren des Startmenüs bekommt einen kurzen, gut sichtbaren Impuls. */
+.radial.collapsed .radial-core{box-shadow:0 0 0 2px #182733 inset,0 0 0 5px #ff7a00,0 0 28px rgba(255,122,0,.32)}
+.radial:not(.collapsed) .radial-core{box-shadow:0 0 0 1px #182733 inset,0 0 0 4px #0b151e}
+.radial.v42-opening .radial-core{animation:v42CorePulse .62s ease}
+@keyframes v42CorePulse{0%{transform:translate(-50%,-50%) scale(1)}45%{transform:translate(-50%,-50%) scale(1.08);box-shadow:0 0 0 5px #ff7a00,0 0 0 18px rgba(255,122,0,.20),0 0 42px rgba(255,122,0,.35)}100%{transform:translate(-50%,-50%) scale(1);box-shadow:0 0 0 1px #182733 inset,0 0 0 4px #0b151e}}
+</style>
