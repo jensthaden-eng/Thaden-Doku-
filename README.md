@@ -1,3 +1,9 @@
-# THADEN DOKUMENTATION V40
+# THADEN DOKUMENTATION V41 – Seitenansicht
 
-Tablet-Startseite: Das große THADEN-DOKUMENTATION-Logo wurde etwas weiter nach oben gesetzt. Die 7 Arbeitspunkte und der Mittelbutton bleiben an ihrer bisherigen Position, wodurch zwischen Logo und Punkten mehr Abstand entsteht.
+V41 baut auf V40 auf.
+
+- Aktuell bearbeiteter Schritt: weiß/hell und vollständig sichtbar.
+- Bereits gespeicherte Schritte: anthrazit.
+- Noch nicht freigegebene Schritte: anthrazit.
+- Beim Wechsel zum nächsten Schritt wird dieser automatisch weiß und der vorherige anthrazit.
+- Bestehende Funktionen, PIN-Sperre, PDF, Fotos, Protokoll und Workflow bleiben erhalten.

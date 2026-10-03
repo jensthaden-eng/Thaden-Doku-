@@ -817,6 +817,57 @@ body.home-mode .home-latest{position:absolute;left:50%;bottom:16px;transform:tra
 }
 </style>
 
+
+<style id="v41-step-page-focus">
+/* V41: Nur der aktuell bearbeitete Arbeitsschritt wird hell/weiß dargestellt.
+   Bereits erledigte und noch nicht freigegebene Schritte bleiben anthrazit. */
+.step-card{
+  transition:background .32s ease,color .32s ease,box-shadow .32s ease,opacity .32s ease,filter .32s ease,border-color .32s ease;
+}
+.step-card.is-active{
+  background:#fff!important;
+  color:#16232d!important;
+  box-shadow:0 8px 28px #18324b18;
+  border:1px solid #eef1f3;
+  opacity:1;
+  filter:none;
+}
+.step-card.is-inactive{
+  background:#101820!important;
+  color:#e7eef3!important;
+  border:1px solid #263642;
+  box-shadow:0 5px 18px #0005;
+  opacity:1;
+}
+.step-card.is-inactive h2,
+.step-card.is-inactive h3,
+.step-card.is-inactive label{color:#e7eef3!important;}
+.step-card.is-inactive .muted{color:#91a2af!important;}
+.step-card.is-inactive input,
+.step-card.is-inactive select,
+.step-card.is-inactive textarea{
+  background:#18232d!important;
+  color:#dce5eb!important;
+  border-color:#334653!important;
+}
+.step-card.is-inactive input::placeholder,
+.step-card.is-inactive textarea::placeholder{color:#71818d!important;}
+.step-card.is-inactive .step-next .primary{background:#263642!important;color:#aebdc8!important;}
+.step-card.is-inactive .actions button{filter:brightness(.82);}
+.step-card.is-active .step-next .primary{background:var(--orange)!important;color:#fff!important;}
+.step-card.is-done{background:#101820!important;color:#e7eef3!important;border-color:#159b60!important;}
+.step-card.is-done h2,.step-card.is-done h3,.step-card.is-done label{color:#e7eef3!important;}
+.step-card.is-done .muted{color:#91a2af!important;}
+.step-card.is-done input,.step-card.is-done select,.step-card.is-done textarea{background:#18232d!important;color:#dce5eb!important;border-color:#334653!important;}
+.step-card.is-locked{background:#101820!important;}
+.step-card.is-active .step-next{opacity:1;}
+
+@media(max-width:700px){
+  .step-card.is-active{box-shadow:0 8px 24px #18324b20;}
+}
+@media(prefers-reduced-motion:reduce){.step-card{transition:none!important;}}
+</style>
+
 </head>
 <body class="home-mode pin-locked">
 
@@ -998,6 +1049,7 @@ body.home-mode .home-latest{position:absolute;left:50%;bottom:16px;transform:tra
 const WORKFLOW_KEY='thaden_doku_v21_workflow';
 const DRAFT_KEY='thaden_doku_v21_draft';
 let workflowState=JSON.parse(localStorage.getItem(WORKFLOW_KEY)||'{"done":[]}');
+window.__thadenActiveStep=workflowState.done.length?Math.min(7,Math.max(...workflowState.done)+1):1;
 let draftMeta=JSON.parse(localStorage.getItem(DRAFT_KEY)||'null');
 function renderWorkflow(){
  document.querySelectorAll('.workflow-step').forEach(b=>{
@@ -1013,6 +1065,17 @@ function renderWorkflow(){
  });
  const next=workflowState.done.length?Math.min(7,Math.max(...workflowState.done)+1):1;
  if($('draftStepStatus'))$('draftStepStatus').textContent=next<=7?`Schritt ${next}`:'Fertig';
+ // In der Bearbeitungsansicht: genau der aktuelle Schritt ist weiß, alle anderen anthrazit.
+ const active = window.__thadenActiveStep || next;
+ document.querySelectorAll('.step-card').forEach(card=>{
+   const n=Number((card.id||'').replace('step-card-',''));
+   if(!n)return;
+   const done=workflowState.done.includes(n);
+   card.classList.toggle('is-active',n===active);
+   card.classList.toggle('is-inactive',n!==active);
+   card.classList.toggle('is-done',done && n!==active);
+   card.classList.toggle('is-locked',n>1 && !workflowState.done.includes(n-1));
+ });
 }
 function resetWorkflow(){workflowState={done:[]};localStorage.setItem(WORKFLOW_KEY,JSON.stringify(workflowState));renderWorkflow();}
 function completeStep(n){n=+n;if(!workflowState.done.includes(n))workflowState.done.push(n);workflowState.done.sort((a,b)=>a-b);localStorage.setItem(WORKFLOW_KEY,JSON.stringify(workflowState));renderWorkflow();}
@@ -1025,6 +1088,8 @@ function workflowOpen(n){
 }
 function scrollToStep(n){
  const el=$('step-card-'+n); if(!el)return;
+ window.__thadenActiveStep=Number(n);
+ renderWorkflow();
  document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('step-active'));
  el.classList.add('step-active');el.scrollIntoView({behavior:'smooth',block:'center'});
  if($('draftStepStatus'))$('draftStepStatus').textContent=`Schritt ${n}`;
@@ -1145,6 +1210,11 @@ function show(id){
  if(map[id])$(map[id]).classList.add('active');
  if(id==='home')renderHome();
  if(id==='orders')renderOrders();
+ if(id==='new'){
+   const next=workflowState.done.length?Math.min(7,Math.max(...workflowState.done)+1):1;
+   window.__thadenActiveStep=next;
+   renderWorkflow();
+ }
  window.scrollTo({top:0,behavior:'smooth'});
 }
 function getLocation(){
