@@ -1,7 +1,8 @@
-# THADEN DOKUMENTATION – V33 Tablet
+# THADEN DOKUMENTATION V34 – Tablet Startseite
 
-- Header-/PIN-Logo ohne dunklen Bildhintergrund (transparente PNG-Datei)
-- Größerer Schloss-Button auf Tablets
-- Beim Antippen öffnet sich das PIN-Bedienfeld; der Schloss-Button blendet sich dahinter aus
-- Bestehende PIN-Funktion und Dokumentationsfunktionen bleiben erhalten
-- Standard-PIN beim ersten Start: 1234
+Änderungen gegenüber V33:
+- Untere Navigationsleiste auf der Startseite entfernt.
+- „Letzte Aufträge“ übernimmt den unteren Bereich der Startseite.
+- Untertitel „Störungen · Glasfaser · Aufträge · Zeiten · Fotodokumentation“ entfernt.
+- Logo, TD-Mittelbutton und 7-Schritte-Ablauf bleiben erhalten.
+- Dokumentationsfunktionen und PIN-Schutz bleiben erhalten.
