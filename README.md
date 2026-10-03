@@ -1,8 +1,9 @@
-# THADEN DOKUMENTATION V28
+# THADEN DOKUMENTATION V29 – PIN-Startseite
 
-PIN-Startseite im THADEN-Design.
-
-- Standard-PIN beim ersten Start: 1234
-- PIN kann über „PIN ändern“ geändert werden.
-- Die PIN-Sperre gilt pro App-Sitzung (Session Storage).
-- Bestehende Dokumentationsfunktionen aus V27 bleiben enthalten.
+- Kopf-Logo über die gesamte Seitenbreite.
+- Beim Start wird im PIN-Bereich zunächst nur das Schloss angezeigt.
+- Tippen auf das Schloss startet eine mittelstarke orange Wellenanimation.
+- Danach werden PIN-Felder und Tastatur eingeblendet.
+- Falsche PIN: kurzer Shake + roter Glow.
+- Richtige PIN: grüner Entsperr-Effekt und Öffnen der Dokumentation.
+- Bestehende Dokumentationsfunktionen bleiben enthalten.
