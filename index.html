@@ -972,6 +972,31 @@ body.home-mode .home-latest{position:absolute;left:50%;bottom:16px;transform:tra
   .vnf-bar{width:calc(100% - 28px)!important;min-height:64px!important;font-size:16px!important;padding:10px 12px!important}
 }
 </style>
+
+<style id="v58-vnf-workflow-page">
+/* V58: Die 7 Arbeitsschritte liegen auf einer eigenen Seite. Der gewählte VNF steht im TD-Zentrum. */
+.vnf-workflow-page{min-height:calc(100vh - 24px);background:#071018;color:#eef4f8;padding:18px 12px 28px;box-sizing:border-box;}
+.vnf-workflow-head{max-width:520px;margin:0 auto 8px;text-align:center;}
+.vnf-workflow-head h1{margin:0;color:#fff;font-size:26px;line-height:1.12;font-weight:900;}
+.vnf-workflow-head p{margin:6px 0 12px;color:#9fb2c2;font-size:13px;font-weight:800;}
+.vnf-workflow-back{display:block;margin:0 auto 10px;border:1px solid #28404f;background:#101c25;color:#eef4f8;border-radius:14px;padding:10px 16px;font-size:14px;font-weight:900;cursor:pointer;}
+.vnf-workflow-page .work-radial-wrap{border:0;background:transparent;margin:0 auto;padding:0;max-width:520px;}
+.vnf-workflow-page .work-radial{height:420px;width:min(430px,100%);}
+.vnf-workflow-page .work-radial-core{width:178px;height:178px;background:#071018;border-color:#ff7a00;}
+.vnf-workflow-page .work-radial-core img{width:82px;height:82px;border-radius:16px;position:absolute;top:31px;left:50%;transform:translateX(-50%);}
+.vnf-center-vnf{position:absolute;left:50%;bottom:25px;transform:translateX(-50%);width:150px;text-align:center;color:#fff;font-size:11px;font-weight:900;line-height:1.15;overflow-wrap:anywhere;}
+.vnf-center-vnf strong{display:block;color:#ff8a00;font-size:12px;margin-top:3px;}
+@media(max-width:380px){
+ .vnf-workflow-page{padding-left:8px;padding-right:8px;}
+ .vnf-workflow-head h1{font-size:23px;}
+ .vnf-workflow-page .work-radial{height:350px;}
+ .vnf-workflow-page .work-radial-core{width:150px;height:150px;}
+ .vnf-workflow-page .work-radial-core img{width:66px;height:66px;top:24px;}
+ .vnf-center-vnf{bottom:18px;font-size:9px;width:125px;}
+ .vnf-center-vnf strong{font-size:10px;}
+}
+</style>
+
 </head>
 <body class="home-mode pin-locked">
 <div id="vnfScreenFlash" class="vnf-screen-flash" aria-hidden="true"></div>
@@ -998,7 +1023,7 @@ body.home-mode .home-latest{position:absolute;left:50%;bottom:16px;transform:tra
     <div class="pin-status" id="pinStatus"></div>
     <button class="pin-change" id="pinChange" type="button">PIN ändern</button>
   </div>
-  <div class="pin-version">THADEN DOKUMENTATION · V57</div>
+  <div class="pin-version">THADEN DOKUMENTATION · V58</div>
 </section>
 
 <header class="td-header-v24 td-header-logo-v27">
@@ -1028,20 +1053,33 @@ body.home-mode .home-latest{position:absolute;left:50%;bottom:16px;transform:tra
   <div class="home-latest"><div class="home-latest-head"><h2>Letzte Aufträge</h2><button onclick="show('orders');renderOrders()">Alle anzeigen ›</button></div><div id="homeList"></div></div>
 </section>
 
-<section id="new" class="screen">
-  <div class="work-radial-wrap no-print">
-    <div class="work-radial-title" id="workVnfTitle">Arbeitsschritte</div>
-    <div class="work-radial" id="workRadial">
-      <div class="work-radial-item wr1" data-step="1"><button type="button" onclick="workflowOpen(1)"><span class="wr-num">1</span><span>📄</span><b>Auftrag</b><small>Auftragsdaten</small><span class="wr-flow">Start</span></button></div>
-      <div class="work-radial-item wr2" data-step="2"><button type="button" onclick="workflowOpen(2)"><span class="wr-num">2</span><span>✓?</span><b>Gerechtfertigt?</b><small>Prüfen</small><span class="wr-flow">Prüfen</span></button></div>
-      <div class="work-radial-item wr3" data-step="3"><button type="button" onclick="workflowOpen(3)"><span class="wr-num">3</span><span>📷</span><b>Fotos</b><small>Aufnehmen</small><span class="wr-flow">Dokumentieren</span></button></div>
-      <div class="work-radial-item wr4" data-step="4"><button type="button" onclick="workflowOpen(4)"><span class="wr-num">4</span><span>🛠</span><b>Instandsetzung</b><small>Fehler · erledigt</small><span class="wr-flow">Bearbeiten</span></button></div>
-      <div class="work-radial-item wr5" data-step="5"><button type="button" onclick="workflowOpen(5)"><span class="wr-num">5</span><span>🕐</span><b>Datum / Zeit</b><small>Erfassen</small><span class="wr-flow">Erfassen</span></button></div>
-      <div class="work-radial-item wr6" data-step="6"><button type="button" onclick="workflowOpen(6)"><span class="wr-num">6</span><span>📑</span><b>Einblasprotokoll</b><small>Hochladen</small><span class="wr-flow">Dokumentieren</span></button></div>
-      <div class="work-radial-item wr7" data-step="7"><button type="button" onclick="workflowOpen(7)"><span class="wr-num">7</span><span>PDF</span><b>Abschluss</b><small>Gesamt-PDF</small><span class="wr-flow">PDF erstellen</span></button></div>
-      <button type="button" class="work-radial-core" onclick="show('home')" aria-label="Zur Startseite"><img src="apple-touch-icon.png" alt="TD"></button>
+
+<section id="vnfWorkflow" class="screen">
+  <div class="vnf-workflow-page">
+    <div class="vnf-workflow-head">
+      <h1>7 Arbeitsschritte</h1>
+      <p>VNF auswählen · anschließend den gewünschten Arbeitsschritt öffnen</p>
+    </div>
+    <button type="button" class="vnf-workflow-back" onclick="show('home')">← Zur VNF-Auswahl</button>
+    <div class="work-radial-wrap no-print">
+      <div class="work-radial" id="vnfWorkflowRadial">
+        <div class="work-radial-item wr1" data-step="1"><button type="button" onclick="workflowOpen(1)"><span class="wr-num">1</span><span>📄</span><b>Auftrag</b><small>Auftragsdaten</small><span class="wr-flow">Start</span></button></div>
+        <div class="work-radial-item wr2" data-step="2"><button type="button" onclick="workflowOpen(2)"><span class="wr-num">2</span><span>✓?</span><b>Gerechtfertigt?</b><small>Prüfen</small><span class="wr-flow">Prüfen</span></button></div>
+        <div class="work-radial-item wr3" data-step="3"><button type="button" onclick="workflowOpen(3)"><span class="wr-num">3</span><span>📷</span><b>Fotos</b><small>Aufnehmen</small><span class="wr-flow">Dokumentieren</span></button></div>
+        <div class="work-radial-item wr4" data-step="4"><button type="button" onclick="workflowOpen(4)"><span class="wr-num">4</span><span>🛠</span><b>Instandsetzung</b><small>Fehler · erledigt</small><span class="wr-flow">Bearbeiten</span></button></div>
+        <div class="work-radial-item wr5" data-step="5"><button type="button" onclick="workflowOpen(5)"><span class="wr-num">5</span><span>🕐</span><b>Datum / Zeit</b><small>Erfassen</small><span class="wr-flow">Erfassen</span></button></div>
+        <div class="work-radial-item wr6" data-step="6"><button type="button" onclick="workflowOpen(6)"><span class="wr-num">6</span><span>📑</span><b>Einblasprotokoll</b><small>Hochladen</small><span class="wr-flow">Dokumentieren</span></button></div>
+        <div class="work-radial-item wr7" data-step="7"><button type="button" onclick="workflowOpen(7)"><span class="wr-num">7</span><span>PDF</span><b>Abschluss</b><small>Gesamt-PDF</small><span class="wr-flow">PDF erstellen</span></button></div>
+        <div class="work-radial-core" aria-label="Ausgewählte VNF">
+          <img src="apple-touch-icon.png" alt="TD Logo">
+          <div class="vnf-center-vnf" id="vnfCenterLabel">Ausgewählte VNF</div>
+        </div>
+      </div>
     </div>
   </div>
+</section>
+
+<section id="new" class="screen">
   <div class="draft-bar"><span>Zwischenspeicherung: <b class="draft-step" id="draftStepStatus">Schritt 1</b></span><span class="draft-status" id="draftSaveStatus">Bereit</span></div>
   <div class="card step-card" id="step-card-1">
     <div class="step1-head">
@@ -1375,9 +1413,8 @@ document.addEventListener('DOMContentLoaded',()=>{
      document.querySelectorAll('.vnf-bar').forEach(b=>b.disabled=false);
      window.__thadenActiveStep=1;
      renderWorkflow();
-     show('new');
+     show('vnfWorkflow');
      window.scrollTo({top:0,behavior:'smooth'});
-     setTimeout(()=>scrollToStep(1),180);
    },520);
  };
 
@@ -1400,6 +1437,17 @@ function show(id){
  if(map[id])$(map[id]).classList.add('active');
  if(id==='home')renderHome();
  if(id==='orders')renderOrders();
+ if(id==='vnfWorkflow'){
+   const next=workflowState.done.length?Math.min(7,Math.max(...workflowState.done)+1):1;
+   window.__thadenActiveStep=next;
+   renderWorkflow();
+   const vnf=localStorage.getItem('thaden_doku_vnf')||'Ausgewählte VNF';
+   const label=$('vnfCenterLabel');
+   if(label){
+     const clean=vnf.replace(/^VNF\s*/,'');
+     label.innerHTML='<span>VNF</span><strong>'+esc(clean)+'</strong>';
+   }
+ }
  if(id==='new'){
    const next=workflowState.done.length?Math.min(7,Math.max(...workflowState.done)+1):1;
    window.__thadenActiveStep=next;
