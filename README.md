@@ -1,13 +1,6 @@
-# THADEN DOKUMENTATION V53
+# THADEN DOKUMENTATION V54
 
-Ausgangspunkt: V42.
-
-Änderung auf Seite 1 – Auftrag:
-- Titel „1. Auftrag“ direkt neben „← Zur Startseite“
-- Uhrzeit / Datum
-- Auftragsnummer / NVT-Bereich
-- Ort / PLZ
-- Straße / Hausnummer
-- Mitarbeiter
-- Speichern & weiter am Ende
-- responsive Eingabefelder ohne Überlappungen auf kleinen Bildschirmen
+Ausgangspunkt V42/V53. Auftrag-Seite angepasst:
+- Uhrzeit und Datum jetzt getrennt untereinander
+- Uhr-Symbol im Uhrzeit-Feld
+- übrige Funktionen und Reihenfolge unverändert
