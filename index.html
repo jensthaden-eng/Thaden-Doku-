@@ -936,8 +936,24 @@ body.home-mode .home-latest{position:absolute;left:50%;bottom:16px;transform:tra
 @media(prefers-reduced-motion:reduce){.vnf-choice,.vnf-bar{transition:none!important}.vnf-bar.vnf-white{animation:none!important}}
 </style>
 
+
+<style id="v55-vnf-fix">
+/* V55 FIX: VNF-Auswahl sicher anklickbar und sichtbar */
+.radial.vnf-chooser .radial-core{z-index:8!important}
+.vnf-choice{z-index:20!important;pointer-events:none!important}
+.vnf-choice.show{pointer-events:auto!important}
+.vnf-bar{z-index:21!important;cursor:pointer!important;pointer-events:auto!important}
+.vnf-choice .vnf-bar{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.vnf-screen-flash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:9998}
+.vnf-screen-flash.active{animation:vnfScreenFlash .42s ease-out}
+@keyframes vnfScreenFlash{0%{opacity:0}25%{opacity:.9}100%{opacity:0}}
+@media(max-width:700px){
+  .vnf-bar{width:calc(100% - 28px)!important;min-height:64px!important;font-size:16px!important;padding:10px 12px!important}
+}
+</style>
 </head>
 <body class="home-mode pin-locked">
+<div id="vnfScreenFlash" class="vnf-screen-flash" aria-hidden="true"></div>
 
 <!-- V29 PIN-Sperrseite -->
 <section id="pinLock" class="pin-lock" aria-label="THADEN DOKUMENTATION PIN-Sperre">
@@ -1266,46 +1282,63 @@ document.addEventListener('DOMContentLoaded',()=>{
  const radial=document.querySelector('.radial');
  const toggle=$('radialToggle');
  const chooser=$('vnfChoice');
- if(radial && toggle){
-   // V55: Beim ersten Druck nicht mehr die 7 Arbeitspunkte ausfahren, sondern die VNF-Auswahl zeigen.
+ if(!radial || !toggle || !chooser)return;
+
+ // VNF-Auswahl startet immer eingeklappt.
+ radial.classList.add('collapsed');
+ radial.classList.remove('vnf-chooser');
+ chooser.classList.remove('show');
+ chooser.setAttribute('aria-hidden','true');
+ toggle.setAttribute('aria-expanded','false');
+
+ const openChooser=()=>{
+   radial.classList.remove('collapsed');
+   radial.classList.add('vnf-chooser');
+   chooser.classList.add('show');
+   chooser.setAttribute('aria-hidden','false');
+   toggle.setAttribute('aria-expanded','true');
+   toggle.setAttribute('aria-label','VNF-Auswahl schließen');
+ };
+ const closeChooser=()=>{
+   chooser.classList.remove('show');
+   chooser.setAttribute('aria-hidden','true');
+   radial.classList.remove('vnf-chooser');
    radial.classList.add('collapsed');
    toggle.setAttribute('aria-expanded','false');
-   toggle.addEventListener('click',()=>{
-     toggle.classList.remove('is-pressed');
-     void toggle.offsetWidth;
-     toggle.classList.add('is-pressed');
-     setTimeout(()=>toggle.classList.remove('is-pressed'),520);
-     const opening = !radial.classList.contains('vnf-chooser');
-     if(opening){
-       radial.classList.add('vnf-chooser');
-       radial.classList.remove('collapsed');
-       toggle.setAttribute('aria-expanded','true');
-       toggle.setAttribute('aria-label','VNF-Auswahl schließen');
-       chooser?.classList.add('show');
-       chooser?.setAttribute('aria-hidden','false');
-     }else{
-       radial.classList.remove('vnf-chooser');
-       radial.classList.add('collapsed');
-       toggle.setAttribute('aria-expanded','false');
-       toggle.setAttribute('aria-label','VNF-Auswahl öffnen');
-       chooser?.classList.remove('show');
-       chooser?.setAttribute('aria-hidden','true');
-     }
-   });
- }
- document.querySelectorAll('.vnf-bar').forEach(btn=>btn.addEventListener('click',()=>{
+   toggle.setAttribute('aria-label','VNF-Auswahl öffnen');
+ };
+
+ // Sicherer Klick/Touch auf den TD-Kreis.
+ ['click','touchend'].forEach(type=>toggle.addEventListener(type,(e)=>{
+   if(type==='touchend')e.preventDefault();
+   toggle.classList.remove('is-pressed');
+   void toggle.offsetWidth;
+   toggle.classList.add('is-pressed');
+   setTimeout(()=>toggle.classList.remove('is-pressed'),520);
+   if(chooser.classList.contains('show')) closeChooser(); else openChooser();
+ },{passive:false}));
+
+ const chooseVnf=(btn)=>{
+   if(btn.disabled)return;
    const vnf=btn.dataset.vnf||'';
    localStorage.setItem('thaden_doku_vnf',vnf);
+   document.querySelectorAll('.vnf-bar').forEach(b=>b.disabled=true);
    btn.classList.remove('vnf-white');
    void btn.offsetWidth;
    btn.classList.add('vnf-white');
-   document.querySelectorAll('.vnf-bar').forEach(b=>{if(b!==btn)b.disabled=true;});
+   const flash=$('vnfScreenFlash');
+   if(flash){flash.classList.remove('active');void flash.offsetWidth;flash.classList.add('active');}
    setTimeout(()=>{
-     if(chooser){chooser.classList.remove('show');chooser.setAttribute('aria-hidden','true');}
-     show('new');
-     setTimeout(()=>scrollToStep(1),180);
+     closeChooser();
      document.querySelectorAll('.vnf-bar').forEach(b=>b.disabled=false);
-   },560);
+     show('new');
+     setTimeout(()=>scrollToStep(1),120);
+   },520);
+ };
+
+ document.querySelectorAll('.vnf-bar').forEach(btn=>{
+   btn.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();chooseVnf(btn);});
+   btn.addEventListener('touchend',e=>{e.preventDefault();e.stopPropagation();chooseVnf(btn);},{passive:false});
  });
 });
 
