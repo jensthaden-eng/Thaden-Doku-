@@ -949,8 +949,8 @@ body.home-mode .home-top .td-logo{
 <main class="wrap">
 <section id="home" class="screen active">
   <div class="home-visual">
-  <div class="home-top"><img class="td-logo" src="thaden-header-logo.png" alt="THADEN Dokumentation Logo"><div class="home-title"><b>THADEN DOKUMENTATION</b><span>V1.0</span></div></div>
-  <p class="home-subtitle">Störungen · Glasfaser · Aufträge · Zeiten · Fotodokumentation</p>
+  <div class="home-login-logo"><img src="thaden-header-logo.png" alt="THADEN DOKUMENTATION – Einfach. Digital. Dokumentiert."></div>
+  <div class="home-page-title"><div>Dokumentation</div><span>Verteilnetzfehler Glasfaser Nordwest</span></div>
   <div class="radial collapsed">
     <div class="radial-item ri-step1" data-step="1"><button onclick="workflowOpen(1)"><span class="step-number">1</span><span class="ri-icon">📄</span><b>Auftrag</b><small>Nr. · Ort · PLZ · Adresse</small><span class="step-flow">Start</span></button></div>
     <div class="radial-item ri-step2" data-step="2"><button onclick="workflowOpen(2)"><span class="step-number">2</span><span class="ri-icon">✓?</span><b>Gerechtfertigt?</b><small>Ja / Nein · öffentlich / privat</small><span class="step-flow">Prüfen</span></button></div>
@@ -966,6 +966,10 @@ body.home-mode .home-top .td-logo{
 </section>
 
 <section id="new" class="screen">
+  <div class="edit-page-heading">
+    <div>Dokumentation</div>
+    <span>Verteilnetzfehler Glasfaser Nordwest</span>
+  </div>
   <div class="draft-bar"><span>Zwischenspeicherung: <b class="draft-step" id="draftStepStatus">Schritt 1</b></span><span class="draft-status" id="draftSaveStatus">Bereit</span></div>
   <div class="card step-card" id="step-card-1">
     <div class="step1-head">
@@ -1613,6 +1617,48 @@ body.home-mode .home-top .td-logo{transform:translateY(-38px);}
   .page-header-title span{font-size:17px;}
 }
 </style>
+<style id="v50-readable-page-headers">
+/* V50: Kompakte, gut lesbare Kopfteile für Start- und Bearbeitungsseite. */
+body.home-mode .home-login-logo{
+  width:100%; display:flex; justify-content:center; align-items:center;
+  margin:4px auto 12px; padding-top:env(safe-area-inset-top);
+}
+body.home-mode .home-login-logo img{
+  display:block; width:min(760px,92vw); height:auto; max-height:125px; object-fit:contain;
+}
+body.home-mode .home-page-title{
+  text-align:center; line-height:1.08; margin:0 auto 14px; padding:0 12px; font-weight:800;
+}
+body.home-mode .home-page-title div{
+  color:#fff; font-size:clamp(25px,5vw,38px); letter-spacing:.2px;
+}
+body.home-mode .home-page-title span{
+  display:block; color:#ff6b00; font-size:clamp(17px,3.3vw,25px); margin-top:5px;
+}
+/* Keine alten Doppel-Kopfteile auf der Bearbeitungsseite. */
+body.no-page-header > header.page-header-logo{display:none!important;}
+.edit-page-heading{
+  background:#101820; color:#fff; text-align:center; line-height:1.08;
+  margin:0 -14px 14px; padding:18px 14px 16px;
+  border-bottom:2px solid #ff6b00;
+}
+.edit-page-heading div{font-size:clamp(24px,5vw,36px);font-weight:850;letter-spacing:.2px;}
+.edit-page-heading span{display:block;color:#ff6b00;font-size:clamp(17px,3.5vw,25px);font-weight:800;margin-top:5px;white-space:normal;}
+@media(max-width:700px){
+  body.home-mode .home-login-logo{margin:2px auto 10px;}
+  body.home-mode .home-login-logo img{width:92vw;max-height:115px;}
+  body.home-mode .home-page-title{margin-bottom:10px;}
+  body.home-mode .home-page-title div{font-size:28px;}
+  body.home-mode .home-page-title span{font-size:18px;line-height:1.15;}
+  .edit-page-heading{margin:0 -14px 12px;padding:15px 12px 14px;}
+  .edit-page-heading div{font-size:27px;}
+  .edit-page-heading span{font-size:18px;line-height:1.15;}
+}
+@media(min-width:701px){
+  .edit-page-heading{margin-left:-14px;margin-right:-14px;}
+}
+</style>
+
 
 <script>
 /* V46: eindeutige Klasse für den Seiten-Kopf, damit das Logo nicht mit alten V27-Regeln kollidiert. */
