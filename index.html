@@ -896,6 +896,27 @@ body.home-mode .home-latest{position:absolute;left:50%;bottom:16px;transform:tra
 </style>
 
 
+<style id="v57-workflow-overview">
+/* V57: Arbeitsschritt-Übersicht nach der VNF-Auswahl – zeigt jederzeit den aktuellen Stand. */
+.work-radial-wrap{background:#071018;padding:12px 8px 6px;margin:0 0 12px;border-bottom:1px solid #182b38}
+.work-radial-title{text-align:center;color:#9fb2c2;font-size:12px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;margin:0 0 2px}
+.work-radial{position:relative;width:min(390px,100%);height:340px;margin:0 auto}
+.work-radial-core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:148px;height:148px;border-radius:50%;border:3px solid #ff7a00;background:#071018;box-shadow:0 0 0 2px #17232d inset,0 10px 28px #0008;display:grid;place-items:center;z-index:5;padding:0;cursor:pointer}
+.work-radial-core img{width:112px;height:112px;object-fit:contain;border-radius:22px}
+.work-radial-item{position:absolute;width:92px;height:92px;border-radius:50%;background:#071018;border:3px solid #344552;display:flex;align-items:center;justify-content:center;text-align:center;z-index:6;box-shadow:0 6px 16px #0007;transition:all .25s ease}
+.work-radial-item button{width:100%;height:100%;border:0;background:transparent;color:#fff;border-radius:50%;padding:5px;font-weight:900;font-size:9px;line-height:1.05;cursor:pointer}
+.work-radial-item .wr-num{position:absolute;top:-9px;left:50%;transform:translateX(-50%);width:25px;height:25px;border-radius:50%;display:grid;place-items:center;background:#101820;color:#c4d0da;border:2px solid #071018;font-size:12px;z-index:8}
+.work-radial-item b{display:block;font-size:10px;line-height:1.1}.work-radial-item small{display:block;color:#93a8b8;font-size:7px;margin-top:3px}.work-radial-item .wr-flow{display:block;color:#ff9a24;font-size:6px;letter-spacing:.7px;margin-top:3px;text-transform:uppercase}
+.work-radial-item.is-current{border-color:#ff8a00;box-shadow:0 0 0 2px #ff8a00,0 8px 20px #0009;transform:scale(1.04)}
+.work-radial-item.is-done{border-color:#159b60;box-shadow:0 0 0 2px #159b60,0 8px 20px #0009}.work-radial-item.is-done .wr-num{background:#159b60;color:#fff}
+.work-radial-item.is-locked{opacity:.38;filter:grayscale(.8)}
+.work-radial-item.is-current .wr-num{background:#ff8a00;color:#101820}
+.wr1{left:50%;top:0;transform:translateX(-50%)}.wr2{right:6px;top:46px}.wr3{right:0;top:155px}.wr4{right:34px;bottom:4px}.wr5{left:50%;bottom:0;transform:translateX(-50%)}.wr6{left:34px;bottom:4px}.wr7{left:0;top:155px}
+.work-radial-item.wr1.is-current,.work-radial-item.wr5.is-current{transform:translateX(-50%) scale(1.04)}
+@media(max-width:380px){.work-radial{height:320px}.work-radial-core{width:136px;height:136px}.work-radial-core img{width:102px;height:102px}.work-radial-item{width:84px;height:84px}.wr2{right:3px}.wr3{right:-1px}.wr4{right:27px}.wr6{left:27px}.wr7{left:-1px}.work-radial-item b{font-size:9px}.work-radial-item small{font-size:6.5px}}
+@media(prefers-reduced-motion:reduce){.work-radial-item,.work-radial-core{transition:none!important}}
+</style>
+
 <style id="v55-vnf-choice">
 /* V55: Nach dem ersten Druck auf den TD-Kreis erscheinen zwei auswählbare VNF-Balken oberhalb und unterhalb des Kreises. */
 .vnf-choice{
@@ -977,7 +998,7 @@ body.home-mode .home-latest{position:absolute;left:50%;bottom:16px;transform:tra
     <div class="pin-status" id="pinStatus"></div>
     <button class="pin-change" id="pinChange" type="button">PIN ändern</button>
   </div>
-  <div class="pin-version">THADEN DOKUMENTATION · V55</div>
+  <div class="pin-version">THADEN DOKUMENTATION · V57</div>
 </section>
 
 <header class="td-header-v24 td-header-logo-v27">
@@ -1008,6 +1029,19 @@ body.home-mode .home-latest{position:absolute;left:50%;bottom:16px;transform:tra
 </section>
 
 <section id="new" class="screen">
+  <div class="work-radial-wrap no-print">
+    <div class="work-radial-title" id="workVnfTitle">Arbeitsschritte</div>
+    <div class="work-radial" id="workRadial">
+      <div class="work-radial-item wr1" data-step="1"><button type="button" onclick="workflowOpen(1)"><span class="wr-num">1</span><span>📄</span><b>Auftrag</b><small>Auftragsdaten</small><span class="wr-flow">Start</span></button></div>
+      <div class="work-radial-item wr2" data-step="2"><button type="button" onclick="workflowOpen(2)"><span class="wr-num">2</span><span>✓?</span><b>Gerechtfertigt?</b><small>Prüfen</small><span class="wr-flow">Prüfen</span></button></div>
+      <div class="work-radial-item wr3" data-step="3"><button type="button" onclick="workflowOpen(3)"><span class="wr-num">3</span><span>📷</span><b>Fotos</b><small>Aufnehmen</small><span class="wr-flow">Dokumentieren</span></button></div>
+      <div class="work-radial-item wr4" data-step="4"><button type="button" onclick="workflowOpen(4)"><span class="wr-num">4</span><span>🛠</span><b>Instandsetzung</b><small>Fehler · erledigt</small><span class="wr-flow">Bearbeiten</span></button></div>
+      <div class="work-radial-item wr5" data-step="5"><button type="button" onclick="workflowOpen(5)"><span class="wr-num">5</span><span>🕐</span><b>Datum / Zeit</b><small>Erfassen</small><span class="wr-flow">Erfassen</span></button></div>
+      <div class="work-radial-item wr6" data-step="6"><button type="button" onclick="workflowOpen(6)"><span class="wr-num">6</span><span>📑</span><b>Einblasprotokoll</b><small>Hochladen</small><span class="wr-flow">Dokumentieren</span></button></div>
+      <div class="work-radial-item wr7" data-step="7"><button type="button" onclick="workflowOpen(7)"><span class="wr-num">7</span><span>PDF</span><b>Abschluss</b><small>Gesamt-PDF</small><span class="wr-flow">PDF erstellen</span></button></div>
+      <button type="button" class="work-radial-core" onclick="show('home')" aria-label="Zur Startseite"><img src="apple-touch-icon.png" alt="TD"></button>
+    </div>
+  </div>
   <div class="draft-bar"><span>Zwischenspeicherung: <b class="draft-step" id="draftStepStatus">Schritt 1</b></span><span class="draft-status" id="draftSaveStatus">Bereit</span></div>
   <div class="card step-card" id="step-card-1">
     <div class="step1-head">
@@ -1158,6 +1192,14 @@ function renderWorkflow(){
   item.classList.toggle('is-done',done); item.classList.toggle('is-current',!done&&unlocked); item.classList.toggle('is-locked',!unlocked);
   if(btn) btn.textContent=done?'✓':String(n);
  });
+ document.querySelectorAll('.work-radial-item').forEach(item=>{
+  const btn=item.querySelector('.wr-num'); const n=Number(item.dataset.step||0);
+  const done=workflowState.done.includes(n), unlocked=n===1||workflowState.done.includes(n-1);
+  item.classList.toggle('is-done',done); item.classList.toggle('is-current',!done&&unlocked); item.classList.toggle('is-locked',!unlocked);
+  if(btn) btn.textContent=done?'✓':String(n);
+ });
+ const vnf=localStorage.getItem('thaden_doku_vnf')||'';
+ const vtitle=$('workVnfTitle'); if(vtitle) vtitle.textContent=vnf?`${vnf} · Arbeitsschritte`:'Arbeitsschritte';
  const next=workflowState.done.length?Math.min(7,Math.max(...workflowState.done)+1):1;
  if($('draftStepStatus'))$('draftStepStatus').textContent=next<=7?`Schritt ${next}`:'Fertig';
  // In der Bearbeitungsansicht: genau der aktuelle Schritt ist weiß, alle anderen anthrazit.
@@ -1331,8 +1373,11 @@ document.addEventListener('DOMContentLoaded',()=>{
    setTimeout(()=>{
      closeChooser();
      document.querySelectorAll('.vnf-bar').forEach(b=>b.disabled=false);
+     window.__thadenActiveStep=1;
+     renderWorkflow();
      show('new');
-     setTimeout(()=>scrollToStep(1),120);
+     window.scrollTo({top:0,behavior:'smooth'});
+     setTimeout(()=>scrollToStep(1),180);
    },520);
  };
 
