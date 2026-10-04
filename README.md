@@ -1,4 +1,5 @@
-# THADEN DOKUMENTATION V48 – Welle stärker
+# THADEN DOKUMENTATION V49
 
-Startseite: Der orange Impuls/Wellen-Effekt des mittleren TD-Buttons wurde deutlich verstärkt und länger sichtbar gemacht.
-Alle übrigen Funktionen und Layouts bleiben wie in V47.
+- Seite 2 (Startseite): zusätzlicher Kopfbereich entfernt; Logo optisch wie auf der PIN-Loginseite.
+- Seite 3 (Auftrag): zusätzlicher Kopfbereich entfernt.
+- Bestehende Funktionen, PIN, Ablauf, Speicherung und Wellenanimation bleiben erhalten.

@@ -889,6 +889,27 @@ body.home-mode .home-latest{position:absolute;left:50%;bottom:16px;transform:tra
 }
 </style>
 
+<style id="v49-page-header-logo-layout">
+/* V49: Auf Seite 2 (Startseite) und Seite 3 (Auftrag) keine zusätzlichen Kopfteile.
+   Das Logo der Startseite entspricht optisch dem Logo der PIN-Loginseite. */
+body.no-page-header > header.page-header-logo{display:none!important;}
+body.home-mode .home-top{width:100vw;margin:0 auto 8px;}
+body.home-mode .home-top .td-logo{
+  display:block;
+  width:100vw;
+  max-width:none;
+  height:clamp(92px,21dvh,155px);
+  max-height:none;
+  object-fit:contain;
+  object-position:center;
+  transform:none;
+}
+@media (max-width:700px){
+  body.home-mode .home-top{width:100vw;margin:0 auto 8px;}
+  body.home-mode .home-top .td-logo{width:100vw;height:clamp(92px,21dvh,155px);max-height:none;}
+}
+</style>
+
 </head>
 <body class="home-mode pin-locked">
 
@@ -1255,6 +1276,7 @@ function show(id){
  document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));
  $(id).classList.add('active');
  document.body.classList.toggle('home-mode',id==='home');
+ document.body.classList.toggle('no-page-header',id==='home'||id==='new');
  document.querySelectorAll('.bottom button').forEach(x=>x.classList.remove('active'));
  const map={home:'nav-home',new:'nav-new',orders:'nav-orders'};
  if(map[id])$(map[id]).classList.add('active');
