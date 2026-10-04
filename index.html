@@ -1079,9 +1079,17 @@ function renderWorkflow(){
 }
 function resetWorkflow(){workflowState={done:[]};localStorage.setItem(WORKFLOW_KEY,JSON.stringify(workflowState));renderWorkflow();}
 function completeStep(n){n=+n;if(!workflowState.done.includes(n))workflowState.done.push(n);workflowState.done.sort((a,b)=>a-b);localStorage.setItem(WORKFLOW_KEY,JSON.stringify(workflowState));renderWorkflow();}
+function pulseActiveStep(n){
+ const card=document.getElementById('step-card-'+n);
+ if(!card)return;
+ card.classList.remove('v43-page-pulse');
+ void card.offsetWidth;
+ card.classList.add('v43-page-pulse');
+ setTimeout(()=>card.classList.remove('v43-page-pulse'),900);
+}
 function workflowOpen(n){
  n=+n; if(n>1&&!workflowState.done.includes(n-1)){alert('Bitte zuerst Schritt '+(n-1)+' speichern und abschließen.');return;}
- show('new');setTimeout(()=>scrollToStep(n),120);
+ show('new');setTimeout(()=>{scrollToStep(n);pulseActiveStep(n);},120);
  if(n===3)setTimeout(()=>document.getElementById('camera')?.click(),450);
  if(n===6)setTimeout(()=>document.getElementById('protocolFile')?.click(),450);
  if(n===7)setTimeout(()=>createCurrentPdf(),250);
@@ -1223,6 +1231,7 @@ function show(id){
    const next=workflowState.done.length?Math.min(7,Math.max(...workflowState.done)+1):1;
    window.__thadenActiveStep=next;
    renderWorkflow();
+   setTimeout(()=>pulseActiveStep(next),90);
  }
  window.scrollTo({top:0,behavior:'smooth'});
 }
@@ -1416,6 +1425,33 @@ body.home-mode .home-top .td-logo{transform:translateY(-38px);}
   body.home-mode .home-top .td-logo{transform:translateY(-24px);}
 }
 </style>
+
+<style id="v43-step2-impuls">
+/* V43: Beim Wechsel auf die nächste Bearbeitungsseite erhält der aktive Schritt
+   denselben kurzen, deutlich sichtbaren Impuls wie der TD-Button auf der Startseite. */
+.step-card.v43-page-pulse{
+  animation:v43PagePulse .72s cubic-bezier(.16,.75,.24,1);
+}
+.step-card.v43-page-pulse::after{
+  content:"";position:absolute;inset:-3px;border-radius:inherit;
+  border:3px solid rgba(255,122,0,.95);pointer-events:none;
+  animation:v43PageRing .82s ease-out forwards;
+}
+@keyframes v43PagePulse{
+  0%{transform:scale(1);box-shadow:0 10px 28px rgba(0,0,0,.10)}
+  35%{transform:scale(1.012);box-shadow:0 0 0 7px rgba(255,122,0,.18),0 16px 42px rgba(255,122,0,.22)}
+  100%{transform:scale(1);box-shadow:0 10px 28px rgba(0,0,0,.10)}
+}
+@keyframes v43PageRing{
+  0%{opacity:1;transform:scale(.985)}
+  55%{opacity:.65;transform:scale(1.008);box-shadow:0 0 28px rgba(255,122,0,.38)}
+  100%{opacity:0;transform:scale(1.025);box-shadow:0 0 42px rgba(255,122,0,0)}
+}
+@media(prefers-reduced-motion:reduce){
+ .step-card.v43-page-pulse,.step-card.v43-page-pulse::after{animation:none}
+}
+</style>
+
 </body>
 </html>
 

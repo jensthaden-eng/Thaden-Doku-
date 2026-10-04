@@ -1,7 +1,3 @@
-# THADEN DOKUMENTATION V42
+# THADEN DOKUMENTATION V43 – Seite 2 Impuls
 
-- Startseite: 7 Punkte beim Start eingeklappt
-- TD-Mittelbutton fährt die 7 Punkte aus
-- Logo auf Tablets 0,5 cm weiter nach oben
-- deutlich sichtbare orange Wellen-/Pulsanimation beim Öffnen
-- bestehende Funktionen aus V41 beibehalten
+V43 basiert auf V42. Beim Wechsel in die nächste Bearbeitungsseite erhält die aktuell aktive Seite einen kurzen, deutlich sichtbaren orangefarbenen Impuls/Ring – analog zum sichtbaren Impuls des TD-Mittelbuttons auf der Startseite. Die bisherigen Funktionen bleiben erhalten.
