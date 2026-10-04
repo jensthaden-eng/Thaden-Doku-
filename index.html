@@ -283,9 +283,9 @@ body{background:#fff}.screen{display:none!important}.print-only{display:block!im
 @media(max-width:430px){.td-header-v24{padding:9px 14px;min-height:66px}.brand-v24{gap:10px}.td-logo-v24{width:48px;height:48px;flex-basis:48px}.header-divider-v24{height:38px}.thaden-v24{font-size:18px}.doku-v24{font-size:13px;margin-top:3px}.version-v24{font-size:11px}}
 
 /* V27: Original THADEN DOKUMENTATION Logo als Kopfzeile */
-.td-header-logo-v27{padding:calc(10px + env(safe-area-inset-top)) 18px 10px;min-height:72px;justify-content:center;background:var(--navy);box-sizing:border-box}
+.td-header-logo-v27{padding:10px 18px;min-height:72px;justify-content:center;background:var(--navy);box-sizing:border-box}
 .td-header-logo-v27 .td-header-logo-v27{display:block;width:min(560px,100%);height:auto;max-height:72px;object-fit:contain}
-@media(max-width:430px){.td-header-logo-v27{padding:calc(8px + env(safe-area-inset-top)) 14px 8px;min-height:62px}.td-header-logo-v27 .td-header-logo-v27{width:100%;max-height:58px}}
+@media(max-width:430px){.td-header-logo-v27{padding:8px 14px;min-height:62px}.td-header-logo-v27 .td-header-logo-v27{width:100%;max-height:58px}}
 </style>
 
 <link rel="manifest" href="manifest.webmanifest?v=11">
@@ -315,11 +315,9 @@ body.home-mode header{display:none}
 .radial-core img{width:185px;height:auto;max-height:115px;object-fit:contain}
 .radial-core{cursor:pointer;position:absolute;transition:transform .18s ease,box-shadow .22s ease}
 .radial-core::after{content:"";position:absolute;inset:10px;border-radius:50%;border:2px solid rgba(255,122,0,.0);pointer-events:none}
-.radial-core.is-pressed{transform:translate(-50%,-50%) scale(.96)!important;box-shadow:0 0 0 4px #ff7a00,0 0 0 14px rgba(255,122,0,.24),0 0 35px rgba(255,122,0,.45),0 14px 38px #000b!important}
-.radial-core.is-pressed::after{animation:corePulseStrong .85s cubic-bezier(.15,.7,.2,1) ease-out}
-.radial-core.is-pressed::before{content:"";position:absolute;inset:6px;border-radius:50%;border:4px solid rgba(255,122,0,.75);pointer-events:none;animation:corePulseStrong2 1s cubic-bezier(.15,.7,.2,1) .08s forwards}
-@keyframes corePulseStrong{0%{inset:8px;border-width:4px;border-color:rgba(255,122,0,.95);opacity:1}55%{opacity:.7}100%{inset:-38px;border-width:2px;border-color:rgba(255,122,0,0);opacity:0}}
-@keyframes corePulseStrong2{0%{inset:6px;border-width:4px;border-color:rgba(255,122,0,.8);opacity:1}60%{opacity:.55}100%{inset:-28px;border-width:2px;border-color:rgba(255,122,0,0);opacity:0}}
+.radial-core.is-pressed{transform:translate(-50%,-50%) scale(.96)!important;box-shadow:0 0 0 3px #ff7a00,0 0 0 10px rgba(255,122,0,.14),0 14px 38px #000b!important}
+.radial-core.is-pressed::after{animation:corePulse .5s ease-out}
+@keyframes corePulse{0%{inset:12px;border-color:rgba(255,122,0,.8);opacity:1}100%{inset:-10px;border-color:rgba(255,122,0,0);opacity:0}}
 @media(prefers-reduced-motion:reduce){.radial-core,.radial-core::after{transition:none!important;animation:none!important}}
 .radial-item{width:158px;height:158px;background:#071018;border-width:3px;box-shadow:0 8px 25px #0007;z-index:6}
 .radial-item button{padding:12px}
@@ -870,46 +868,6 @@ body.home-mode .home-latest{position:absolute;left:50%;bottom:16px;transform:tra
 @media(prefers-reduced-motion:reduce){.step-card{transition:none!important;}}
 </style>
 
-
-<style id="v45-step1-layout">
-/* V45: Kopf und Felder von Schritt 1 kompakt und klar angeordnet. */
-.step1-head{display:flex;align-items:center;gap:18px;margin:14px 0 20px;flex-wrap:wrap}
-.step1-head h2{margin:0!important;line-height:1.1}
-.step1-head .ghost{margin:0;flex:0 0 auto}
-.step1-head h2{font-size:clamp(28px,4vw,40px)}
-.step1-address-row{display:grid;grid-template-columns:minmax(0,2fr) minmax(150px,1fr);gap:12px}
-@media(max-width:700px){.step1-head{gap:12px}.step1-head h2{font-size:30px}.step1-address-row{grid-template-columns:1fr 140px}}
-@media(min-width:701px){
-  .td-header-logo-v27{min-height:96px;padding:calc(16px + env(safe-area-inset-top)) 22px 14px}
-  .td-header-logo-v27 .td-header-logo-v27{width:min(720px,100%);max-height:88px}
-}
-@media(max-width:700px){
-  .td-header-logo-v27{min-height:82px;padding:calc(12px + env(safe-area-inset-top)) 16px 10px}
-  .td-header-logo-v27 .td-header-logo-v27{width:100%;max-height:70px}
-}
-</style>
-
-<style id="v49-page-header-logo-layout">
-/* V49: Auf Seite 2 (Startseite) und Seite 3 (Auftrag) keine zusätzlichen Kopfteile.
-   Das Logo der Startseite entspricht optisch dem Logo der PIN-Loginseite. */
-body.no-page-header > header.page-header-logo{display:none!important;}
-body.home-mode .home-top{width:100vw;margin:0 auto 8px;}
-body.home-mode .home-top .td-logo{
-  display:block;
-  width:100vw;
-  max-width:none;
-  height:clamp(92px,21dvh,155px);
-  max-height:none;
-  object-fit:contain;
-  object-position:center;
-  transform:none;
-}
-@media (max-width:700px){
-  body.home-mode .home-top{width:100vw;margin:0 auto 8px;}
-  body.home-mode .home-top .td-logo{width:100vw;height:clamp(92px,21dvh,155px);max-height:none;}
-}
-</style>
-
 </head>
 <body class="home-mode pin-locked">
 
@@ -935,22 +893,18 @@ body.home-mode .home-top .td-logo{
     <div class="pin-status" id="pinStatus"></div>
     <button class="pin-change" id="pinChange" type="button">PIN ändern</button>
   </div>
-  <div class="pin-version">THADEN DOKUMENTATION · V47</div>
+  <div class="pin-version">THADEN DOKUMENTATION · V33</div>
 </section>
 
-<header class="td-header-v24 td-header-logo-v27 page-header-logo">
+<header class="td-header-v24 td-header-logo-v27">
   <img class="td-header-logo-v27" src="thaden-header-logo.png" alt="THADEN DOKUMENTATION – Einfach. Digital. Dokumentiert.">
-  <div class="page-header-title">
-    <div>Dokumentation</div>
-    <span>Verteilnetzfehler Glasfaser Nordwest</span>
-  </div>
 </header>
 
 <main class="wrap">
 <section id="home" class="screen active">
   <div class="home-visual">
-  <div class="home-login-logo"><img src="thaden-header-logo.png" alt="THADEN DOKUMENTATION – Einfach. Digital. Dokumentiert."></div>
-  <div class="home-page-title"><div>Dokumentation</div><span>Verteilnetzfehler Glasfaser Nordwest</span></div>
+  <div class="home-top"><img class="td-logo" src="thaden-header-logo.png" alt="THADEN Dokumentation Logo"><div class="home-title"><b>THADEN DOKUMENTATION</b><span>V1.0</span></div></div>
+  <p class="home-subtitle">Störungen · Glasfaser · Aufträge · Zeiten · Fotodokumentation</p>
   <div class="radial collapsed">
     <div class="radial-item ri-step1" data-step="1"><button onclick="workflowOpen(1)"><span class="step-number">1</span><span class="ri-icon">📄</span><b>Auftrag</b><small>Nr. · Ort · PLZ · Adresse</small><span class="step-flow">Start</span></button></div>
     <div class="radial-item ri-step2" data-step="2"><button onclick="workflowOpen(2)"><span class="step-number">2</span><span class="ri-icon">✓?</span><b>Gerechtfertigt?</b><small>Ja / Nein · öffentlich / privat</small><span class="step-flow">Prüfen</span></button></div>
@@ -966,16 +920,10 @@ body.home-mode .home-top .td-logo{
 </section>
 
 <section id="new" class="screen">
-  <div class="edit-page-heading">
-    <div>Dokumentation</div>
-    <span>Verteilnetzfehler Glasfaser Nordwest</span>
-  </div>
   <div class="draft-bar"><span>Zwischenspeicherung: <b class="draft-step" id="draftStepStatus">Schritt 1</b></span><span class="draft-status" id="draftSaveStatus">Bereit</span></div>
   <div class="card step-card" id="step-card-1">
-    <div class="step1-head">
-      <button class="ghost no-print" onclick="show('home')">← Zur Startseite</button>
-      <h2>1. Auftrag</h2>
-    </div>
+    <button class="ghost no-print" onclick="show('home')">← Zur Startseite</button>
+    <h2 style="margin-top:14px">1. Auftrag</h2>
     <div class="row">
       <div><label>Auftragsnummer *</label><input id="jobNo" placeholder="z. B. 2026-00125"></div>
       <div><label>Datum *</label><input id="jobDate" type="date"></div>
@@ -984,19 +932,13 @@ body.home-mode .home-top .td-logo{
       <div><label>Ort *</label><input id="jobCity" placeholder="Ort"></div>
       <div><label>PLZ *</label><input id="jobZip" inputmode="numeric" placeholder="PLZ"></div>
     </div>
-    <div class="step1-address-row">
-      <div><label>Straße *</label><input id="jobStreet" placeholder="Straße"></div>
-      <div><label>Hausnummer *</label><input id="jobHouse" placeholder="Nr."></div>
-    </div>
-    <div class="row">
-      <div><label>Kunde</label><input id="customer" placeholder="Kunde"></div>
-      <div><label>NVT-Bereich</label><input id="nvtArea" placeholder="NVT-Bereich"></div>
-    </div>
+    <label>Adresse *</label><input id="jobAddress" placeholder="Straße und Hausnummer">
+    <label>Kunde / Objekt</label><input id="customer" placeholder="Kunde oder Objekt">
     <div class="row">
       <div><label>Uhrzeit *</label><input id="jobTime" type="time"></div>
       <div><label>Mitarbeiter</label><input id="worker" placeholder="Name"></div>
     </div>
-    <div class="step-next"><button class="primary" onclick="saveStepAndNext(1)">✓ Schritt 1 speichern &amp; weiter →</button></div>
+  <div class="step-next"><button class="primary" onclick="saveStepAndNext(1)">✓ Schritt 1 speichern &amp; weiter →</button></div>
   </div>
 
   <div class="card step-card" id="step-card-2">
@@ -1137,17 +1079,9 @@ function renderWorkflow(){
 }
 function resetWorkflow(){workflowState={done:[]};localStorage.setItem(WORKFLOW_KEY,JSON.stringify(workflowState));renderWorkflow();}
 function completeStep(n){n=+n;if(!workflowState.done.includes(n))workflowState.done.push(n);workflowState.done.sort((a,b)=>a-b);localStorage.setItem(WORKFLOW_KEY,JSON.stringify(workflowState));renderWorkflow();}
-function pulseActiveStep(n){
- const card=document.getElementById('step-card-'+n);
- if(!card)return;
- card.classList.remove('v43-page-pulse');
- void card.offsetWidth;
- card.classList.add('v43-page-pulse');
- setTimeout(()=>card.classList.remove('v43-page-pulse'),900);
-}
 function workflowOpen(n){
  n=+n; if(n>1&&!workflowState.done.includes(n-1)){alert('Bitte zuerst Schritt '+(n-1)+' speichern und abschließen.');return;}
- show('new');setTimeout(()=>{scrollToStep(n);pulseActiveStep(n);},120);
+ show('new');setTimeout(()=>scrollToStep(n),120);
  if(n===3)setTimeout(()=>document.getElementById('camera')?.click(),450);
  if(n===6)setTimeout(()=>document.getElementById('protocolFile')?.click(),450);
  if(n===7)setTimeout(()=>createCurrentPdf(),250);
@@ -1177,7 +1111,7 @@ function persistDraft(){
 }
 function validateStep(n){
  const d=formData();
- if(n===1){if(!d.jobNo||!d.date||!d.city||!d.zip||!d.street||!d.house||!d.time){$('saveNotice').innerHTML='<div class="notice warn">Bitte Auftragsnummer, Datum, Uhrzeit, Ort, PLZ, Straße und Hausnummer ausfüllen.</div>';scrollToStep(1);return false;}}
+ if(n===1){if(!d.jobNo||!d.date||!d.city||!d.zip||!d.address||!d.time){$('saveNotice').innerHTML='<div class="notice warn">Bitte Auftragsnummer, Datum, Uhrzeit, Ort, PLZ und Adresse ausfüllen.</div>';scrollToStep(1);return false;}}
  if(n===2){if(!d.justified){$('saveNotice').innerHTML='<div class="notice warn">Bitte bei „Gerechtfertigt?“ Ja oder Nein auswählen.</div>';scrollToStep(2);return false;}if(d.justified==='ja'&&!d.faultArea){$('saveNotice').innerHTML='<div class="notice warn">Bitte bei Ja „Öffentlich“ oder „Privat“ auswählen.</div>';scrollToStep(2);return false;}}
  if(n===3){if(!photos.length){$('photoStatus').innerHTML='<div class="notice warn">Bitte mindestens ein Foto aufnehmen oder auswählen.</div>';scrollToStep(3);return false;}}
  if(n===4){if(!d.finding||!d.workDone){$('saveNotice').innerHTML='<div class="notice warn">Bitte Fehler und durchgeführte Arbeiten eintragen.</div>';scrollToStep(4);return false;}}
@@ -1212,8 +1146,8 @@ async function restoreDraft(){
  if(!draftMeta)return false;
  const d=draftMeta;
  editingId=d.id||null;
- ['jobNo','jobCity','jobZip','jobAddress','jobStreet','jobHouse','customer','nvtArea','worker','finding','workDone','notes'].forEach(id=>{if($(id))$(id).value=d[id]||''});
- if($('jobDate'))$('jobDate').value=d.date||today();if($('jobStreet'))$('jobStreet').value=d.street||d.address||'';if($('jobHouse'))$('jobHouse').value=d.house||'';if($('jobTime'))$('jobTime').value=d.time||nowTime();if($('docDate'))$('docDate').value=d.docDate||d.date||today();if($('docTime'))$('docTime').value=d.docTime||d.time||nowTime();
+ ['jobNo','jobCity','jobZip','jobAddress','customer','worker','finding','workDone','notes'].forEach(id=>{if($(id))$(id).value=d[id]||''});
+ if($('jobDate'))$('jobDate').value=d.date||today();if($('jobTime'))$('jobTime').value=d.time||nowTime();if($('docDate'))$('docDate').value=d.docDate||d.date||today();if($('docTime'))$('docTime').value=d.docTime||d.time||nowTime();
  if($('justified'))$('justified').value=d.justified||'';if($('faultArea'))$('faultArea').value=d.faultArea||'';toggleJustifiedType();
  photos=Array.isArray(d.photos)?d.photos:[];renderPhotos();
  return true;
@@ -1280,7 +1214,6 @@ function show(id){
  document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));
  $(id).classList.add('active');
  document.body.classList.toggle('home-mode',id==='home');
- document.body.classList.toggle('no-page-header',id==='home'||id==='new');
  document.querySelectorAll('.bottom button').forEach(x=>x.classList.remove('active'));
  const map={home:'nav-home',new:'nav-new',orders:'nav-orders'};
  if(map[id])$(map[id]).classList.add('active');
@@ -1290,7 +1223,6 @@ function show(id){
    const next=workflowState.done.length?Math.min(7,Math.max(...workflowState.done)+1):1;
    window.__thadenActiveStep=next;
    renderWorkflow();
-   setTimeout(()=>pulseActiveStep(next),90);
  }
  window.scrollTo({top:0,behavior:'smooth'});
 }
@@ -1357,7 +1289,7 @@ async function handleProtocol(ev){
  $('protocolStatus').innerHTML=`<div class="notice ok">✓ ${esc(file.name)} (${Math.round(file.size/1024)} KB) ausgewählt.</div>`;
 }
 function formData(){return {
- jobNo:$('jobNo').value.trim(),date:$('jobDate').value||today(),time:$('jobTime').value,city:$('jobCity').value.trim(),zip:$('jobZip').value.trim(),street:$('jobStreet')?.value.trim()||'',house:$('jobHouse')?.value.trim()||'',address:(($('jobStreet')?.value.trim()||'')+' '+($('jobHouse')?.value.trim()||'')).trim(),customer:$('customer').value.trim(),nvtArea:$('nvtArea')?.value.trim()||'',worker:$('worker').value.trim(),
+ jobNo:$('jobNo').value.trim(),date:$('jobDate').value||today(),time:$('jobTime').value,city:$('jobCity').value.trim(),zip:$('jobZip').value.trim(),address:$('jobAddress').value.trim(),customer:$('customer').value.trim(),worker:$('worker').value.trim(),
  justified:$('justified').value,faultArea:$('faultArea').value,docDate:$('docDate').value||today(),docTime:$('docTime').value,finding:$('finding').value.trim(),workDone:$('workDone').value.trim(),notes:$('notes').value.trim(),seconds:timerSeconds,photos:[...photos]
 };}
 async function saveOrder(fromWorkflow=false){
@@ -1377,7 +1309,7 @@ async function createPdf(o){
  if(!window.PDFLib){alert('PDF-Modul konnte nicht geladen werden. Bitte Internetverbindung prüfen.');return}
  const {PDFDocument,rgb,StandardFonts}=PDFLib;const pdf=await PDFDocument.create();const font=await pdf.embedFont(StandardFonts.Helvetica);const bold=await pdf.embedFont(StandardFonts.HelveticaBold);const W=595,H=842;
  let page=pdf.addPage([W,H]);page.drawRectangle({x:0,y:H-95,width:W,height:95,color:rgb(.04,.06,.09)});page.drawText('THADEN DOKUMENTATION',{x:36,y:H-52,size:25,font:bold,color:rgb(1,1,1)});page.drawText('Auftragsdokumentation',{x:36,y:H-76,size:12,font,color:rgb(.62,.72,.80)});
- const rows=[['Auftragsnummer',o.jobNo],['Datum / Uhrzeit',`${fmtDate(o.date)} ${o.time||''}`],['Ort / PLZ',`${o.city||''} ${o.zip||''}`],['Adresse',o.address],['Kunde',o.customer||'—'],['NVT-Bereich',o.nvtArea||'—'],['Mitarbeiter',o.worker||'—'],['Gerechtfertigt',o.justified==='ja'?`Ja – ${o.faultArea||'—'}`:o.justified==='nein'?'Nein':'—'],['Dokumentation',`${fmtDate(o.docDate||o.date)} ${o.docTime||''}`]];
+ const rows=[['Auftragsnummer',o.jobNo],['Datum / Uhrzeit',`${fmtDate(o.date)} ${o.time||''}`],['Ort / PLZ',`${o.city||''} ${o.zip||''}`],['Adresse',o.address],['Kunde / Objekt',o.customer||'—'],['Mitarbeiter',o.worker||'—'],['Gerechtfertigt',o.justified==='ja'?`Ja – ${o.faultArea||'—'}`:o.justified==='nein'?'Nein':'—'],['Dokumentation',`${fmtDate(o.docDate||o.date)} ${o.docTime||''}`]];
  let y=H-135;for(const [k,v] of rows){page.drawText(k,{x:36,y,size:11,font:bold,color:rgb(.25,.30,.34)});page.drawText(String(v||'—'),{x:180,y,size:11,font,color:rgb(.08,.12,.15)});y-=28;}
  y-=8;page.drawText('Fehler',{x:36,y,size:13,font:bold,color:rgb(1,.42,0)});y-=20;for(const line of wrapText(o.finding||'—',78)){page.drawText(line,{x:36,y,size:11,font});y-=16;}y-=10;page.drawText('Nach Instandsetzung erledigt',{x:36,y,size:13,font:bold,color:rgb(1,.42,0)});y-=20;for(const line of wrapText(o.workDone||'—',78)){page.drawText(line,{x:36,y,size:11,font});y-=16;}if(o.notes){y-=10;page.drawText('Material / Besonderheiten',{x:36,y,size:13,font:bold,color:rgb(1,.42,0)});y-=20;for(const line of wrapText(o.notes,78)){page.drawText(line,{x:36,y,size:11,font});y-=16;}}
  page.drawText('1. Kopfdaten des Auftrags',{x:36,y:35,size:9,font,color:rgb(.45,.52,.58)});
@@ -1484,33 +1416,6 @@ body.home-mode .home-top .td-logo{transform:translateY(-38px);}
   body.home-mode .home-top .td-logo{transform:translateY(-24px);}
 }
 </style>
-
-<style id="v43-step2-impuls">
-/* V43: Beim Wechsel auf die nächste Bearbeitungsseite erhält der aktive Schritt
-   denselben kurzen, deutlich sichtbaren Impuls wie der TD-Button auf der Startseite. */
-.step-card.v43-page-pulse{
-  animation:v43PagePulse .72s cubic-bezier(.16,.75,.24,1);
-}
-.step-card.v43-page-pulse::after{
-  content:"";position:absolute;inset:-3px;border-radius:inherit;
-  border:3px solid rgba(255,122,0,.95);pointer-events:none;
-  animation:v43PageRing .82s ease-out forwards;
-}
-@keyframes v43PagePulse{
-  0%{transform:scale(1);box-shadow:0 10px 28px rgba(0,0,0,.10)}
-  35%{transform:scale(1.012);box-shadow:0 0 0 7px rgba(255,122,0,.18),0 16px 42px rgba(255,122,0,.22)}
-  100%{transform:scale(1);box-shadow:0 10px 28px rgba(0,0,0,.10)}
-}
-@keyframes v43PageRing{
-  0%{opacity:1;transform:scale(.985)}
-  55%{opacity:.65;transform:scale(1.008);box-shadow:0 0 28px rgba(255,122,0,.38)}
-  100%{opacity:0;transform:scale(1.025);box-shadow:0 0 42px rgba(255,122,0,0)}
-}
-@media(prefers-reduced-motion:reduce){
- .step-card.v43-page-pulse,.step-card.v43-page-pulse::after{animation:none}
-}
-</style>
-
 </body>
 </html>
 
@@ -1543,141 +1448,4 @@ body.home-mode .home-top .td-logo{transform:translateY(-38px);}
 .radial:not(.collapsed) .radial-core{box-shadow:0 0 0 1px #182733 inset,0 0 0 4px #0b151e}
 .radial.v42-opening .radial-core{animation:v42CorePulse .62s ease}
 @keyframes v42CorePulse{0%{transform:translate(-50%,-50%) scale(1)}45%{transform:translate(-50%,-50%) scale(1.08);box-shadow:0 0 0 5px #ff7a00,0 0 0 18px rgba(255,122,0,.20),0 0 42px rgba(255,122,0,.35)}100%{transform:translate(-50%,-50%) scale(1);box-shadow:0 0 0 1px #182733 inset,0 0 0 4px #0b151e}}
-</style>
-
-<style id="v46-fix-header-and-fields">
-/* V46: Kopf-Logo sauber sichtbar + Schritt-1-Felder ohne Überlappung. */
-.td-header-logo-v27.page-header-logo{
-  width:100%;
-  min-height:92px;
-  height:auto;
-  padding:calc(8px + env(safe-area-inset-top)) 18px 8px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#101820;
-  overflow:hidden;
-}
-.td-header-logo-v27.page-header-logo > img{
-  display:block;
-  width:min(720px,100%);
-  height:auto;
-  max-height:76px;
-  object-fit:contain;
-  flex:0 1 auto;
-}
-.step-card{overflow:hidden;}
-.step1-head{display:grid!important;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:16px;margin:8px 0 18px!important;}
-.step1-head h2{min-width:0;white-space:nowrap;font-size:clamp(28px,4vw,40px)!important;}
-.step1-head .ghost{white-space:nowrap;}
-.step-card .row,
-.step1-address-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;}
-.step-card .row > div,
-.step1-address-row > div{min-width:0;}
-.step-card input,.step-card select,.step-card textarea{min-width:0;max-width:100%;}
-.step1-address-row{gap:12px!important;}
-.step-next{margin-top:18px;}
-.step-next .primary{width:min(100%,580px);margin-left:auto;}
-@media(max-width:700px){
- .td-header-logo-v27.page-header-logo{min-height:78px;padding:calc(7px + env(safe-area-inset-top)) 12px 7px;}
- .td-header-logo-v27.page-header-logo > img{width:100%;max-height:64px;}
- .step1-head{grid-template-columns:1fr!important;gap:10px!important;}
- .step1-head h2{font-size:30px!important;}
- .step-card .row,.step1-address-row{grid-template-columns:minmax(0,1fr)!important;}
-}
-@media(min-width:701px) and (max-width:900px){
- .td-header-logo-v27.page-header-logo > img{width:min(680px,96%);max-height:72px;}
- .step1-head{gap:14px!important;}
- .step-card{padding:16px!important;}
- .step-card label{margin-top:9px;}
- .step-card input,.step-card select{padding:11px 12px;}
-}
-</style>
-<style id="v47-doku-header">
-.page-header-logo{
-  background:#101820!important;
-  min-height:148px!important;
-  height:auto!important;
-  padding:calc(10px + env(safe-area-inset-top)) 18px 12px!important;
-  flex-direction:column!important;
-  gap:5px!important;
-}
-.page-header-logo > img{
-  width:min(620px,92vw)!important;
-  max-height:76px!important;
-  object-fit:contain!important;
-}
-.page-header-title{text-align:center;line-height:1.05;font-weight:800;}
-.page-header-title div{color:#fff;font-size:clamp(22px,4vw,32px);letter-spacing:.2px;}
-.page-header-title span{display:block;color:#ff6b00;font-size:clamp(16px,3vw,23px);margin-top:4px;}
-@media(max-width:700px){
-  .page-header-logo{min-height:140px!important;padding:calc(8px + env(safe-area-inset-top)) 12px 10px!important;}
-  .page-header-logo > img{width:100%!important;max-height:66px!important;}
-  .page-header-title div{font-size:22px;}
-  .page-header-title span{font-size:17px;}
-}
-</style>
-<style id="v50-readable-page-headers">
-/* V50: Kompakte, gut lesbare Kopfteile für Start- und Bearbeitungsseite. */
-body.home-mode .home-login-logo{
-  width:100%; display:flex; justify-content:center; align-items:center;
-  margin:4px auto 12px; padding-top:env(safe-area-inset-top);
-}
-body.home-mode .home-login-logo img{
-  display:block; width:min(760px,92vw); height:auto; max-height:125px; object-fit:contain;
-}
-body.home-mode .home-page-title{
-  text-align:center; line-height:1.08; margin:0 auto 14px; padding:0 12px; font-weight:800;
-}
-body.home-mode .home-page-title div{
-  color:#fff; font-size:clamp(25px,5vw,38px); letter-spacing:.2px;
-}
-body.home-mode .home-page-title span{
-  display:block; color:#ff6b00; font-size:clamp(17px,3.3vw,25px); margin-top:5px;
-}
-/* Keine alten Doppel-Kopfteile auf der Bearbeitungsseite. */
-body.no-page-header > header.page-header-logo{display:none!important;}
-.edit-page-heading{
-  background:#101820; color:#fff; text-align:center; line-height:1.08;
-  margin:0 -14px 14px; padding:18px 14px 16px;
-  border-bottom:2px solid #ff6b00;
-}
-.edit-page-heading div{font-size:clamp(24px,5vw,36px);font-weight:850;letter-spacing:.2px;}
-.edit-page-heading span{display:block;color:#ff6b00;font-size:clamp(17px,3.5vw,25px);font-weight:800;margin-top:5px;white-space:normal;}
-@media(max-width:700px){
-  body.home-mode .home-login-logo{margin:2px auto 10px;}
-  body.home-mode .home-login-logo img{width:92vw;max-height:115px;}
-  body.home-mode .home-page-title{margin-bottom:10px;}
-  body.home-mode .home-page-title div{font-size:28px;}
-  body.home-mode .home-page-title span{font-size:18px;line-height:1.15;}
-  .edit-page-heading{margin:0 -14px 12px;padding:15px 12px 14px;}
-  .edit-page-heading div{font-size:27px;}
-  .edit-page-heading span{font-size:18px;line-height:1.15;}
-}
-@media(min-width:701px){
-  .edit-page-heading{margin-left:-14px;margin-right:-14px;}
-}
-</style>
-
-
-<script>
-/* V46: eindeutige Klasse für den Seiten-Kopf, damit das Logo nicht mit alten V27-Regeln kollidiert. */
-(function(){
-  const h=document.querySelector('header.td-header-logo-v27');
-  if(h) h.classList.add('page-header-logo');
-})();
-</script>
-
-<style id="v51-home-only-button-and-bar">
-/* V51: Startansicht bewusst reduziert – nur TD-Mittelbutton und "Letzte Aufträge" bleiben sichtbar. */
-body.home-mode .home-login-logo,
-body.home-mode .home-page-title{display:none!important;}
-body.home-mode .radial-item{display:none!important;}
-body.home-mode .home-visual{top:50%!important;transform:translate(-50%,-50%)!important;}
-body.home-mode .radial{height:220px!important;min-height:220px!important;display:flex!important;align-items:center!important;justify-content:center!important;}
-body.home-mode .radial-core{position:relative!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;transform:none!important;margin:0!important;}
-body.home-mode .home-latest{display:block!important;}
-@media(max-width:700px){
-  body.home-mode .radial{height:220px!important;}
-}
 </style>
