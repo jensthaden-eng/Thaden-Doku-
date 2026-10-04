@@ -1725,6 +1725,67 @@ body.home-mode .home-top .td-logo{transform:translateY(-38px);}
 }
 </style>
 </body>
+
+<style id="v62-workflow-circles-toggle">
+/* V62: Größere Arbeitsschritt-Kreise + alte Ein-/Ausklappfunktion wieder aktiv. */
+#vnfWorkflow.active .work-radial-item{width:96px;height:96px;transition:transform .38s cubic-bezier(.22,.8,.24,1),opacity .28s ease,box-shadow .25s ease}
+#vnfWorkflow.active .work-radial-item button{padding:6px;font-size:10px;line-height:1.08}
+#vnfWorkflow.active .work-radial-item b{font-size:11px;line-height:1.08}
+#vnfWorkflow.active .work-radial-item small{font-size:8px;margin-top:3px}
+#vnfWorkflow.active .work-radial-item .wr-flow{font-size:7px;margin-top:3px;letter-spacing:.65px}
+#vnfWorkflow.active .work-radial-item .wr-num{width:28px;height:28px;top:-10px;font-size:13px}
+#vnfWorkflow.active .work-radial-core{cursor:pointer;touch-action:manipulation;transition:transform .28s ease,box-shadow .28s ease}
+#vnfWorkflow.active .work-radial-core:active{transform:translate(-50%,-50%) scale(.96)}
+#vnfWorkflow.active .work-radial.is-collapsed .work-radial-item{opacity:0!important;pointer-events:none!important;transform:translate(-50%,-50%) translate(0,0) scale(.12)!important}
+#vnfWorkflow.active .work-radial.is-collapsed .work-radial-core{box-shadow:0 0 0 2px #182733 inset,0 0 0 5px #ff7a00,0 0 34px rgba(255,122,0,.38)}
+#vnfWorkflow.active .work-radial:not(.is-collapsed) .work-radial-core{box-shadow:0 0 0 2px #182733 inset,0 0 0 4px #ff7a00,0 0 20px rgba(255,122,0,.20)}
+@media(max-width:599px){
+  #vnfWorkflow.active .work-radial{width:min(390px,100vw - 20px);height:370px}
+  #vnfWorkflow.active .work-radial-core{width:150px;height:150px}
+  #vnfWorkflow.active .work-radial-core img{width:70px;height:70px;top:22px}
+  #vnfWorkflow.active .work-radial-item{width:96px;height:96px}
+  #vnfWorkflow.active .wr1{--x:0px;--y:-135px}
+  #vnfWorkflow.active .wr2{--x:116px;--y:-69px}
+  #vnfWorkflow.active .wr3{--x:135px;--y:36px}
+  #vnfWorkflow.active .wr4{--x:84px;--y:112px}
+  #vnfWorkflow.active .wr5{--x:-84px;--y:112px}
+  #vnfWorkflow.active .wr6{--x:-135px;--y:36px}
+  #vnfWorkflow.active .wr7{--x:-116px;--y:-69px}
+}
+@media(min-width:600px){
+  #vnfWorkflow.active .work-radial{width:430px;height:440px}
+  #vnfWorkflow.active .work-radial-core{width:170px;height:170px}
+  #vnfWorkflow.active .work-radial-item{width:104px;height:104px}
+  #vnfWorkflow.active .work-radial-item button{font-size:11px}
+  #vnfWorkflow.active .work-radial-item b{font-size:12px}
+  #vnfWorkflow.active .work-radial-item small{font-size:8px}
+  #vnfWorkflow.active .wr1{--x:0px;--y:-165px}
+  #vnfWorkflow.active .wr2{--x:145px;--y:-91px}
+  #vnfWorkflow.active .wr3{--x:160px;--y:42px}
+  #vnfWorkflow.active .wr4{--x:90px;--y:145px}
+  #vnfWorkflow.active .wr5{--x:-90px;--y:145px}
+  #vnfWorkflow.active .wr6{--x:-160px;--y:42px}
+  #vnfWorkflow.active .wr7{--x:-145px;--y:-91px}
+}
+</style>
+<script id="v62-workflow-toggle-script">
+document.addEventListener('DOMContentLoaded',()=>{
+  const radial=document.getElementById('vnfWorkflowRadial');
+  const core=radial?.querySelector('.work-radial-core');
+  if(!radial||!core)return;
+  radial.classList.remove('is-collapsed');
+  core.setAttribute('role','button');
+  core.setAttribute('tabindex','0');
+  core.setAttribute('aria-expanded','true');
+  core.setAttribute('aria-label','Arbeitsschritte ein- oder ausklappen');
+  const toggle=()=>{
+    const collapsed=radial.classList.toggle('is-collapsed');
+    core.setAttribute('aria-expanded',String(!collapsed));
+  };
+  core.addEventListener('click',toggle);
+  core.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}});
+});
+</script>
 </html>
 
 <style id="v42-start-collapsed-logo-wave">
