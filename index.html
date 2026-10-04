@@ -1031,6 +1031,49 @@ body.home-mode .home-latest{position:absolute;left:50%;bottom:16px;transform:tra
 }
 </style>
 
+
+<style id="v60-workflow-layout">
+/* V60: Vollflächig Anthrazit + 7 Arbeitsschritte sauber ringförmig um den Mittelpunkt. */
+html:has(#vnfWorkflow.active), body:has(#vnfWorkflow.active){background:#071018!important;}
+body:has(#vnfWorkflow.active) .wrap{max-width:none!important;padding:0!important;background:#071018!important;}
+body:has(#vnfWorkflow.active) .td-header-v24{background:#071018!important;}
+#vnfWorkflow.active{background:#071018!important;min-height:100vh;width:100%;}
+#vnfWorkflow.active .vnf-workflow-page{min-height:100vh;background:#071018!important;padding:22px 10px 40px;overflow:hidden;}
+#vnfWorkflow.active .vnf-workflow-head{max-width:620px;margin:0 auto 8px;}
+#vnfWorkflow.active .vnf-workflow-head h1{font-size:27px;color:#ff7a00;}
+#vnfWorkflow.active .vnf-workflow-head p{font-size:13px;color:#a7b9c8;margin:5px 0 10px;}
+#vnfWorkflow.active .vnf-workflow-back{margin-bottom:8px;}
+#vnfWorkflow.active .work-radial-wrap{background:transparent!important;padding:0!important;border:0!important;max-width:none!important;}
+#vnfWorkflow.active .work-radial{width:min(390px,100vw - 20px);height:350px;margin:0 auto;position:relative;}
+#vnfWorkflow.active .work-radial-core{width:150px;height:150px;left:50%;top:50%;transform:translate(-50%,-50%);background:#071018;border-color:#ff7a00;z-index:5;}
+#vnfWorkflow.active .work-radial-core img{width:70px;height:70px;top:22px;}
+#vnfWorkflow.active .vnf-center-vnf{bottom:18px;width:126px;font-size:9px;}
+#vnfWorkflow.active .vnf-center-vnf strong{font-size:10px;}
+#vnfWorkflow.active .work-radial-item{width:82px;height:82px;left:50%!important;right:auto!important;top:50%!important;bottom:auto!important;transform:translate(-50%,-50%) translate(var(--x),var(--y));}
+#vnfWorkflow.active .wr1{--x:0px;--y:-126px;}
+#vnfWorkflow.active .wr2{--x:99px;--y:-78px;}
+#vnfWorkflow.active .wr3{--x:123px;--y:28px;}
+#vnfWorkflow.active .wr4{--x:77px;--y:100px;}
+#vnfWorkflow.active .wr5{--x:-77px;--y:100px;}
+#vnfWorkflow.active .wr6{--x:-123px;--y:28px;}
+#vnfWorkflow.active .wr7{--x:-99px;--y:-78px;}
+#vnfWorkflow.active .work-radial-item.wr1.is-current,#vnfWorkflow.active .work-radial-item.wr2.is-current,#vnfWorkflow.active .work-radial-item.wr3.is-current,#vnfWorkflow.active .work-radial-item.wr4.is-current,#vnfWorkflow.active .work-radial-item.wr5.is-current,#vnfWorkflow.active .work-radial-item.wr6.is-current,#vnfWorkflow.active .work-radial-item.wr7.is-current{transform:translate(-50%,-50%) translate(var(--x),var(--y)) scale(1.04);}
+@media(min-width:600px){
+ #vnfWorkflow.active .work-radial{width:430px;height:430px;}
+ #vnfWorkflow.active .work-radial-core{width:170px;height:170px;}
+ #vnfWorkflow.active .work-radial-core img{width:78px;height:78px;top:25px;}
+ #vnfWorkflow.active .vnf-center-vnf{bottom:20px;width:145px;font-size:11px;}
+ #vnfWorkflow.active .vnf-center-vnf strong{font-size:12px;}
+ #vnfWorkflow.active .work-radial-item{width:92px;height:92px;}
+ #vnfWorkflow.active .wr1{--x:0px;--y:-164px;}
+ #vnfWorkflow.active .wr2{--x:129px;--y:-103px;}
+ #vnfWorkflow.active .wr3{--x:160px;--y:46px;}
+ #vnfWorkflow.active .wr4{--x:72px;--y:147px;}
+ #vnfWorkflow.active .wr5{--x:-72px;--y:147px;}
+ #vnfWorkflow.active .wr6{--x:-160px;--y:46px;}
+ #vnfWorkflow.active .wr7{--x:-129px;--y:-103px;}
+}
+</style>
 </head>
 <body class="home-mode pin-locked">
 <div id="vnfScreenFlash" class="vnf-screen-flash" aria-hidden="true"></div>
@@ -1092,7 +1135,6 @@ body.home-mode .home-latest{position:absolute;left:50%;bottom:16px;transform:tra
   <div class="vnf-workflow-page">
     <div class="vnf-workflow-head">
       <h1 id="vnfWorkflowTitle">VNF</h1>
-      <div class="vnf-workflow-steps-title">7 Arbeitsschritte</div>
       <p>Gewünschten Arbeitsschritt öffnen</p>
     </div>
     <button type="button" class="vnf-workflow-back" onclick="show('home')">← Zur VNF-Auswahl</button>
