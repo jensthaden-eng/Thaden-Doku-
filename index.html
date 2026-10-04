@@ -862,6 +862,28 @@ body.home-mode .home-latest{position:absolute;left:50%;bottom:16px;transform:tra
 .step-card.is-locked{background:#101820!important;}
 .step-card.is-active .step-next{opacity:1;}
 
+.step1-head{display:flex;align-items:center;gap:16px;margin-bottom:18px;min-width:0;}
+.step1-head h2{margin:0!important;white-space:nowrap;}
+.compact-row{gap:12px;margin-top:12px;}
+.compact-row>div{min-width:0;}
+.compact-row input,.single-field input{width:100%;box-sizing:border-box;min-width:0;}
+.single-field{margin-top:12px;}
+@media(max-width:520px){
+  .step1-head{gap:10px;}
+  .step1-head .ghost{font-size:14px;padding:10px 12px;white-space:nowrap;}
+  .step1-head h2{font-size:25px!important;}
+  .compact-row{grid-template-columns:1fr 1fr;gap:8px;}
+  .compact-row label,.single-field label{font-size:14px;}
+  .compact-row input,.single-field input{font-size:15px;padding:11px 10px;}
+  .step-card{padding:18px!important;}
+  .step-next .primary{width:100%;font-size:14px!important;padding:12px 10px!important;}
+}
+@media(max-width:380px){
+  .step1-head h2{font-size:22px!important;}
+  .step1-head .ghost{font-size:13px;padding:9px 10px;}
+  .compact-row input,.single-field input{font-size:14px;}
+}
+
 @media(max-width:700px){
   .step-card.is-active{box-shadow:0 8px 24px #18324b20;}
 }
@@ -922,23 +944,30 @@ body.home-mode .home-latest{position:absolute;left:50%;bottom:16px;transform:tra
 <section id="new" class="screen">
   <div class="draft-bar"><span>Zwischenspeicherung: <b class="draft-step" id="draftStepStatus">Schritt 1</b></span><span class="draft-status" id="draftSaveStatus">Bereit</span></div>
   <div class="card step-card" id="step-card-1">
-    <button class="ghost no-print" onclick="show('home')">← Zur Startseite</button>
-    <h2 style="margin-top:14px">1. Auftrag</h2>
-    <div class="row">
-      <div><label>Auftragsnummer *</label><input id="jobNo" placeholder="z. B. 2026-00125"></div>
-      <div><label>Datum *</label><input id="jobDate" type="date"></div>
+    <div class="step1-head">
+      <button class="ghost no-print" onclick="show('home')">← Zur Startseite</button>
+      <h2>1. Auftrag</h2>
     </div>
-    <div class="row">
+    <div class="row compact-row">
+      <div><label>Uhrzeit *</label><input id="jobTime" type="time" aria-label="Uhrzeit"></div>
+      <div><label>Datum *</label><input id="jobDate" type="date" aria-label="Datum"></div>
+    </div>
+    <div class="row compact-row">
+      <div><label>Auftragsnummer *</label><input id="jobNo" placeholder="z. B. 2026-00125"></div>
+      <div><label>NVT-Bereich</label><input id="nvtArea" placeholder="NVT-Bereich"></div>
+    </div>
+    <div class="row compact-row">
       <div><label>Ort *</label><input id="jobCity" placeholder="Ort"></div>
       <div><label>PLZ *</label><input id="jobZip" inputmode="numeric" placeholder="PLZ"></div>
     </div>
-    <label>Adresse *</label><input id="jobAddress" placeholder="Straße und Hausnummer">
-    <label>Kunde / Objekt</label><input id="customer" placeholder="Kunde oder Objekt">
-    <div class="row">
-      <div><label>Uhrzeit *</label><input id="jobTime" type="time"></div>
-      <div><label>Mitarbeiter</label><input id="worker" placeholder="Name"></div>
+    <div class="row compact-row">
+      <div><label>Straße *</label><input id="jobStreet" placeholder="Straße"></div>
+      <div><label>Hausnummer *</label><input id="jobHouse" placeholder="Nr."></div>
     </div>
-  <div class="step-next"><button class="primary" onclick="saveStepAndNext(1)">✓ Schritt 1 speichern &amp; weiter →</button></div>
+    <div class="single-field">
+      <label>Mitarbeiter</label><input id="worker" placeholder="Name">
+    </div>
+    <div class="step-next"><button class="primary" onclick="saveStepAndNext(1)">✓ Schritt 1 speichern &amp; weiter →</button></div>
   </div>
 
   <div class="card step-card" id="step-card-2">
@@ -1146,7 +1175,8 @@ async function restoreDraft(){
  if(!draftMeta)return false;
  const d=draftMeta;
  editingId=d.id||null;
- ['jobNo','jobCity','jobZip','jobAddress','customer','worker','finding','workDone','notes'].forEach(id=>{if($(id))$(id).value=d[id]||''});
+ ['jobNo','nvtArea','jobCity','jobZip','jobStreet','jobHouse','jobAddress','customer','worker','finding','workDone','notes'].forEach(id=>{if($(id))$(id).value=d[id]||''});
+ if($('jobStreet')&&$('jobHouse')){$('jobStreet').value=d.street||'';$('jobHouse').value=d.house||'';} if($('jobAddress')&&!$('jobAddress').value)$('jobAddress').value=d.address||[d.street,d.house].filter(Boolean).join(' ');
  if($('jobDate'))$('jobDate').value=d.date||today();if($('jobTime'))$('jobTime').value=d.time||nowTime();if($('docDate'))$('docDate').value=d.docDate||d.date||today();if($('docTime'))$('docTime').value=d.docTime||d.time||nowTime();
  if($('justified'))$('justified').value=d.justified||'';if($('faultArea'))$('faultArea').value=d.faultArea||'';toggleJustifiedType();
  photos=Array.isArray(d.photos)?d.photos:[];renderPhotos();
@@ -1245,7 +1275,7 @@ function toggleJustifiedType(){ $('justifiedTypeWrap').style.display=$('justifie
 function resetProtocolUI(){protocolFile=null;$('protocolFile').value='';$('protocolStatus').innerHTML='';}
 function newOrder(){
  editingId=null; photos=[]; protocolFile=null; resetWorkflow(); draftMeta=null; localStorage.removeItem(DRAFT_KEY); stopTimer(); resetTimer(false);
- ['jobNo','jobCity','jobZip','jobAddress','customer','worker','finding','workDone','notes'].forEach(id=>$(id).value='');
+ ['jobNo','nvtArea','jobCity','jobZip','jobStreet','jobHouse','jobAddress','customer','worker','finding','workDone','notes'].forEach(id=>$(id).value='');
  $('jobDate').value=today();$('jobTime').value=nowTime();$('docDate').value=today();$('docTime').value=nowTime();
  $('justified').value='';$('faultArea').value='';toggleJustifiedType();$('photoGrid').innerHTML='';$('photoStatus').innerHTML='';$('saveNotice').innerHTML='';resetProtocolUI();
  show('new');
@@ -1289,7 +1319,7 @@ async function handleProtocol(ev){
  $('protocolStatus').innerHTML=`<div class="notice ok">✓ ${esc(file.name)} (${Math.round(file.size/1024)} KB) ausgewählt.</div>`;
 }
 function formData(){return {
- jobNo:$('jobNo').value.trim(),date:$('jobDate').value||today(),time:$('jobTime').value,city:$('jobCity').value.trim(),zip:$('jobZip').value.trim(),address:$('jobAddress').value.trim(),customer:$('customer').value.trim(),worker:$('worker').value.trim(),
+ jobNo:$('jobNo').value.trim(),nvtArea:$('nvtArea')?.value.trim()||'',date:$('jobDate').value||today(),time:$('jobTime').value,city:$('jobCity').value.trim(),zip:$('jobZip').value.trim(),street:$('jobStreet')?.value.trim()||'',house:$('jobHouse')?.value.trim()||'',address:((($('jobStreet')?.value||'').trim()+' '+(($('jobHouse')?.value||'').trim())).trim()||$('jobAddress').value.trim()),customer:$('customer').value.trim(),worker:$('worker').value.trim(),
  justified:$('justified').value,faultArea:$('faultArea').value,docDate:$('docDate').value||today(),docTime:$('docTime').value,finding:$('finding').value.trim(),workDone:$('workDone').value.trim(),notes:$('notes').value.trim(),seconds:timerSeconds,photos:[...photos]
 };}
 async function saveOrder(fromWorkflow=false){

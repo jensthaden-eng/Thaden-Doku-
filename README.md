@@ -1,7 +1,13 @@
-# THADEN DOKUMENTATION V42
+# THADEN DOKUMENTATION V53
 
-- Startseite: 7 Punkte beim Start eingeklappt
-- TD-Mittelbutton fährt die 7 Punkte aus
-- Logo auf Tablets 0,5 cm weiter nach oben
-- deutlich sichtbare orange Wellen-/Pulsanimation beim Öffnen
-- bestehende Funktionen aus V41 beibehalten
+Ausgangspunkt: V42.
+
+Änderung auf Seite 1 – Auftrag:
+- Titel „1. Auftrag“ direkt neben „← Zur Startseite“
+- Uhrzeit / Datum
+- Auftragsnummer / NVT-Bereich
+- Ort / PLZ
+- Straße / Hausnummer
+- Mitarbeiter
+- Speichern & weiter am Ende
+- responsive Eingabefelder ohne Überlappungen auf kleinen Bildschirmen
