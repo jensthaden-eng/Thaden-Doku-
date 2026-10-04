@@ -1667,3 +1667,17 @@ body.no-page-header > header.page-header-logo{display:none!important;}
   if(h) h.classList.add('page-header-logo');
 })();
 </script>
+
+<style id="v51-home-only-button-and-bar">
+/* V51: Startansicht bewusst reduziert – nur TD-Mittelbutton und "Letzte Aufträge" bleiben sichtbar. */
+body.home-mode .home-login-logo,
+body.home-mode .home-page-title{display:none!important;}
+body.home-mode .radial-item{display:none!important;}
+body.home-mode .home-visual{top:50%!important;transform:translate(-50%,-50%)!important;}
+body.home-mode .radial{height:220px!important;min-height:220px!important;display:flex!important;align-items:center!important;justify-content:center!important;}
+body.home-mode .radial-core{position:relative!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;transform:none!important;margin:0!important;}
+body.home-mode .home-latest{display:block!important;}
+@media(max-width:700px){
+  body.home-mode .radial{height:220px!important;}
+}
+</style>
