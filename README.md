@@ -1,8 +1,4 @@
-# THADEN DOKUMENTATION V47
+# THADEN DOKUMENTATION V48 – Welle stärker
 
-Neue Kopfzeile für die Dokumentationsseiten:
-- Anthrazit als Hintergrund
-- THADEN-DOKUMENTATION-Logo passend skaliert
-- „Dokumentation“ in Weiß, größer gesetzt
-- „Verteilnetzfehler Glasfaser Nordwest“ darunter in Orange
-- bestehende Funktionen und Formularabläufe bleiben erhalten
+Startseite: Der orange Impuls/Wellen-Effekt des mittleren TD-Buttons wurde deutlich verstärkt und länger sichtbar gemacht.
+Alle übrigen Funktionen und Layouts bleiben wie in V47.
