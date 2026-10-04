@@ -1,7 +1,8 @@
-# THADEN DOKUMENTATION V55 – VNF-Auswahl
+# THADEN DOKUMENTATION V59
 
-V54 als Basis. Neu: Nach dem ersten Druck auf den TD-Mittelbutton erscheinen zwei auswählbare Balken:
-- Dokumentation VNF Glasfaser NordWest
-- VNF Telekom
+VNF-Auswahl mit eigener 7-Arbeitsschritte-Seite.
 
-Beim Antippen wird der gewählte Balken weiß hervorgehoben und anschließend die Arbeitsschritt-Seite geöffnet.
+- Ausgewählte VNF steht als Überschrift oben.
+- 7 Arbeitsschritte sind gleichmäßig mit kleinem Abstand um den TD-Mittelkreis angeordnet.
+- Die VNF bleibt zusätzlich im inneren Kreis sichtbar.
+- Statusfarben für aktuell, erledigt und gesperrt bleiben erhalten.

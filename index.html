@@ -974,7 +974,7 @@ body.home-mode .home-latest{position:absolute;left:50%;bottom:16px;transform:tra
 </style>
 
 <style id="v58-vnf-workflow-page">
-/* V58: Die 7 Arbeitsschritte liegen auf einer eigenen Seite. Der gewählte VNF steht im TD-Zentrum. */
+/* V59: Die 7 Arbeitsschritte liegen auf einer eigenen Seite. Der gewählte VNF steht im TD-Zentrum. */
 .vnf-workflow-page{min-height:calc(100vh - 24px);background:#071018;color:#eef4f8;padding:18px 12px 28px;box-sizing:border-box;}
 .vnf-workflow-head{max-width:520px;margin:0 auto 8px;text-align:center;}
 .vnf-workflow-head h1{margin:0;color:#fff;font-size:26px;line-height:1.12;font-weight:900;}
@@ -994,6 +994,40 @@ body.home-mode .home-latest{position:absolute;left:50%;bottom:16px;transform:tra
  .vnf-workflow-page .work-radial-core img{width:66px;height:66px;top:24px;}
  .vnf-center-vnf{bottom:18px;font-size:9px;width:125px;}
  .vnf-center-vnf strong{font-size:10px;}
+}
+
+/* V59: VNF als Überschrift + 7 Kreise gleichmäßig und mit kleinem Abstand um den Mittelpunkt. */
+.vnf-workflow-head h1{color:#ff7a00;font-size:27px;line-height:1.1;margin:0;font-weight:900;overflow-wrap:anywhere;}
+.vnf-workflow-steps-title{color:#fff;font-size:24px;font-weight:900;line-height:1.1;margin-top:4px;}
+.vnf-workflow-head p{margin-top:5px;}
+.vnf-workflow-page .work-radial{height:400px;width:min(430px,100%);}
+.vnf-workflow-page .work-radial-core{width:170px;height:170px;}
+.vnf-workflow-page .work-radial-core img{width:78px;height:78px;top:25px;}
+.vnf-workflow-page .vnf-center-vnf{bottom:20px;width:145px;}
+.vnf-workflow-page .work-radial-item{width:92px;height:92px;}
+.vnf-workflow-page .wr1{left:50%;top:0;right:auto;bottom:auto;transform:translateX(-50%);}
+.vnf-workflow-page .wr2{left:auto;right:74px;top:34px;bottom:auto;transform:none;}
+.vnf-workflow-page .wr3{left:auto;right:0;top:154px;bottom:auto;transform:none;}
+.vnf-workflow-page .wr4{left:auto;right:74px;top:274px;bottom:auto;transform:none;}
+.vnf-workflow-page .wr5{left:50%;top:308px;right:auto;bottom:auto;transform:translateX(-50%);}
+.vnf-workflow-page .wr6{left:74px;top:274px;right:auto;bottom:auto;transform:none;}
+.vnf-workflow-page .wr7{left:0;top:154px;right:auto;bottom:auto;transform:none;}
+.vnf-workflow-page .work-radial-item.wr1.is-current,.vnf-workflow-page .work-radial-item.wr5.is-current{transform:translateX(-50%) scale(1.04);}
+.vnf-workflow-page .work-radial-item.wr2.is-current,.vnf-workflow-page .work-radial-item.wr3.is-current,.vnf-workflow-page .work-radial-item.wr4.is-current,.vnf-workflow-page .work-radial-item.wr6.is-current,.vnf-workflow-page .work-radial-item.wr7.is-current{transform:scale(1.04);}
+@media(max-width:380px){
+ .vnf-workflow-page .work-radial{height:350px;}
+ .vnf-workflow-page .work-radial-core{width:146px;height:146px;}
+ .vnf-workflow-page .work-radial-core img{width:64px;height:64px;top:22px;}
+ .vnf-workflow-page .work-radial-item{width:82px;height:82px;}
+ .vnf-workflow-page .wr1{left:50%;top:0;}
+ .vnf-workflow-page .wr2{right:43px;top:31px;}
+ .vnf-workflow-page .wr3{right:0;top:134px;}
+ .vnf-workflow-page .wr4{right:43px;top:237px;}
+ .vnf-workflow-page .wr5{left:50%;top:268px;}
+ .vnf-workflow-page .wr6{left:43px;top:237px;}
+ .vnf-workflow-page .wr7{left:0;top:134px;}
+ .vnf-workflow-page .vnf-center-vnf{bottom:16px;width:120px;font-size:9px;}
+ .vnf-workflow-steps-title{font-size:21px;}
 }
 </style>
 
@@ -1023,7 +1057,7 @@ body.home-mode .home-latest{position:absolute;left:50%;bottom:16px;transform:tra
     <div class="pin-status" id="pinStatus"></div>
     <button class="pin-change" id="pinChange" type="button">PIN ändern</button>
   </div>
-  <div class="pin-version">THADEN DOKUMENTATION · V58</div>
+  <div class="pin-version">THADEN DOKUMENTATION · V59</div>
 </section>
 
 <header class="td-header-v24 td-header-logo-v27">
@@ -1057,8 +1091,9 @@ body.home-mode .home-latest{position:absolute;left:50%;bottom:16px;transform:tra
 <section id="vnfWorkflow" class="screen">
   <div class="vnf-workflow-page">
     <div class="vnf-workflow-head">
-      <h1>7 Arbeitsschritte</h1>
-      <p>VNF auswählen · anschließend den gewünschten Arbeitsschritt öffnen</p>
+      <h1 id="vnfWorkflowTitle">VNF</h1>
+      <div class="vnf-workflow-steps-title">7 Arbeitsschritte</div>
+      <p>Gewünschten Arbeitsschritt öffnen</p>
     </div>
     <button type="button" class="vnf-workflow-back" onclick="show('home')">← Zur VNF-Auswahl</button>
     <div class="work-radial-wrap no-print">
@@ -1443,6 +1478,8 @@ function show(id){
    renderWorkflow();
    const vnf=localStorage.getItem('thaden_doku_vnf')||'Ausgewählte VNF';
    const label=$('vnfCenterLabel');
+   const title=$('vnfWorkflowTitle');
+   if(title) title.textContent=vnf || 'VNF';
    if(label){
      const clean=vnf.replace(/^VNF\s*/,'');
      label.innerHTML='<span>VNF</span><strong>'+esc(clean)+'</strong>';
