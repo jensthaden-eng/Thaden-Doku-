@@ -868,6 +868,25 @@ body.home-mode .home-latest{position:absolute;left:50%;bottom:16px;transform:tra
 @media(prefers-reduced-motion:reduce){.step-card{transition:none!important;}}
 </style>
 
+
+<style id="v45-step1-layout">
+/* V45: Kopf und Felder von Schritt 1 kompakt und klar angeordnet. */
+.step1-head{display:flex;align-items:center;gap:18px;margin:14px 0 20px;flex-wrap:wrap}
+.step1-head h2{margin:0!important;line-height:1.1}
+.step1-head .ghost{margin:0;flex:0 0 auto}
+.step1-head h2{font-size:clamp(28px,4vw,40px)}
+.step1-address-row{display:grid;grid-template-columns:minmax(0,2fr) minmax(150px,1fr);gap:12px}
+@media(max-width:700px){.step1-head{gap:12px}.step1-head h2{font-size:30px}.step1-address-row{grid-template-columns:1fr 140px}}
+@media(min-width:701px){
+  .td-header-logo-v27{min-height:96px;padding:calc(16px + env(safe-area-inset-top)) 22px 14px}
+  .td-header-logo-v27 .td-header-logo-v27{width:min(720px,100%);max-height:88px}
+}
+@media(max-width:700px){
+  .td-header-logo-v27{min-height:82px;padding:calc(12px + env(safe-area-inset-top)) 16px 10px}
+  .td-header-logo-v27 .td-header-logo-v27{width:100%;max-height:70px}
+}
+</style>
+
 </head>
 <body class="home-mode pin-locked">
 
@@ -893,7 +912,7 @@ body.home-mode .home-latest{position:absolute;left:50%;bottom:16px;transform:tra
     <div class="pin-status" id="pinStatus"></div>
     <button class="pin-change" id="pinChange" type="button">PIN ändern</button>
   </div>
-  <div class="pin-version">THADEN DOKUMENTATION · V33</div>
+  <div class="pin-version">THADEN DOKUMENTATION · V45</div>
 </section>
 
 <header class="td-header-v24 td-header-logo-v27">
@@ -922,8 +941,10 @@ body.home-mode .home-latest{position:absolute;left:50%;bottom:16px;transform:tra
 <section id="new" class="screen">
   <div class="draft-bar"><span>Zwischenspeicherung: <b class="draft-step" id="draftStepStatus">Schritt 1</b></span><span class="draft-status" id="draftSaveStatus">Bereit</span></div>
   <div class="card step-card" id="step-card-1">
-    <button class="ghost no-print" onclick="show('home')">← Zur Startseite</button>
-    <h2 style="margin-top:14px">1. Auftrag</h2>
+    <div class="step1-head">
+      <button class="ghost no-print" onclick="show('home')">← Zur Startseite</button>
+      <h2>1. Auftrag</h2>
+    </div>
     <div class="row">
       <div><label>Auftragsnummer *</label><input id="jobNo" placeholder="z. B. 2026-00125"></div>
       <div><label>Datum *</label><input id="jobDate" type="date"></div>
@@ -932,13 +953,19 @@ body.home-mode .home-latest{position:absolute;left:50%;bottom:16px;transform:tra
       <div><label>Ort *</label><input id="jobCity" placeholder="Ort"></div>
       <div><label>PLZ *</label><input id="jobZip" inputmode="numeric" placeholder="PLZ"></div>
     </div>
-    <label>Adresse *</label><input id="jobAddress" placeholder="Straße und Hausnummer">
-    <label>Kunde / Objekt</label><input id="customer" placeholder="Kunde oder Objekt">
+    <div class="step1-address-row">
+      <div><label>Straße *</label><input id="jobStreet" placeholder="Straße"></div>
+      <div><label>Hausnummer *</label><input id="jobHouse" placeholder="Nr."></div>
+    </div>
+    <div class="row">
+      <div><label>Kunde</label><input id="customer" placeholder="Kunde"></div>
+      <div><label>NVT-Bereich</label><input id="nvtArea" placeholder="NVT-Bereich"></div>
+    </div>
     <div class="row">
       <div><label>Uhrzeit *</label><input id="jobTime" type="time"></div>
       <div><label>Mitarbeiter</label><input id="worker" placeholder="Name"></div>
     </div>
-  <div class="step-next"><button class="primary" onclick="saveStepAndNext(1)">✓ Schritt 1 speichern &amp; weiter →</button></div>
+    <div class="step-next"><button class="primary" onclick="saveStepAndNext(1)">✓ Schritt 1 speichern &amp; weiter →</button></div>
   </div>
 
   <div class="card step-card" id="step-card-2">
@@ -1119,7 +1146,7 @@ function persistDraft(){
 }
 function validateStep(n){
  const d=formData();
- if(n===1){if(!d.jobNo||!d.date||!d.city||!d.zip||!d.address||!d.time){$('saveNotice').innerHTML='<div class="notice warn">Bitte Auftragsnummer, Datum, Uhrzeit, Ort, PLZ und Adresse ausfüllen.</div>';scrollToStep(1);return false;}}
+ if(n===1){if(!d.jobNo||!d.date||!d.city||!d.zip||!d.street||!d.house||!d.time){$('saveNotice').innerHTML='<div class="notice warn">Bitte Auftragsnummer, Datum, Uhrzeit, Ort, PLZ, Straße und Hausnummer ausfüllen.</div>';scrollToStep(1);return false;}}
  if(n===2){if(!d.justified){$('saveNotice').innerHTML='<div class="notice warn">Bitte bei „Gerechtfertigt?“ Ja oder Nein auswählen.</div>';scrollToStep(2);return false;}if(d.justified==='ja'&&!d.faultArea){$('saveNotice').innerHTML='<div class="notice warn">Bitte bei Ja „Öffentlich“ oder „Privat“ auswählen.</div>';scrollToStep(2);return false;}}
  if(n===3){if(!photos.length){$('photoStatus').innerHTML='<div class="notice warn">Bitte mindestens ein Foto aufnehmen oder auswählen.</div>';scrollToStep(3);return false;}}
  if(n===4){if(!d.finding||!d.workDone){$('saveNotice').innerHTML='<div class="notice warn">Bitte Fehler und durchgeführte Arbeiten eintragen.</div>';scrollToStep(4);return false;}}
@@ -1154,8 +1181,8 @@ async function restoreDraft(){
  if(!draftMeta)return false;
  const d=draftMeta;
  editingId=d.id||null;
- ['jobNo','jobCity','jobZip','jobAddress','customer','worker','finding','workDone','notes'].forEach(id=>{if($(id))$(id).value=d[id]||''});
- if($('jobDate'))$('jobDate').value=d.date||today();if($('jobTime'))$('jobTime').value=d.time||nowTime();if($('docDate'))$('docDate').value=d.docDate||d.date||today();if($('docTime'))$('docTime').value=d.docTime||d.time||nowTime();
+ ['jobNo','jobCity','jobZip','jobAddress','jobStreet','jobHouse','customer','nvtArea','worker','finding','workDone','notes'].forEach(id=>{if($(id))$(id).value=d[id]||''});
+ if($('jobDate'))$('jobDate').value=d.date||today();if($('jobStreet'))$('jobStreet').value=d.street||d.address||'';if($('jobHouse'))$('jobHouse').value=d.house||'';if($('jobTime'))$('jobTime').value=d.time||nowTime();if($('docDate'))$('docDate').value=d.docDate||d.date||today();if($('docTime'))$('docTime').value=d.docTime||d.time||nowTime();
  if($('justified'))$('justified').value=d.justified||'';if($('faultArea'))$('faultArea').value=d.faultArea||'';toggleJustifiedType();
  photos=Array.isArray(d.photos)?d.photos:[];renderPhotos();
  return true;
@@ -1298,7 +1325,7 @@ async function handleProtocol(ev){
  $('protocolStatus').innerHTML=`<div class="notice ok">✓ ${esc(file.name)} (${Math.round(file.size/1024)} KB) ausgewählt.</div>`;
 }
 function formData(){return {
- jobNo:$('jobNo').value.trim(),date:$('jobDate').value||today(),time:$('jobTime').value,city:$('jobCity').value.trim(),zip:$('jobZip').value.trim(),address:$('jobAddress').value.trim(),customer:$('customer').value.trim(),worker:$('worker').value.trim(),
+ jobNo:$('jobNo').value.trim(),date:$('jobDate').value||today(),time:$('jobTime').value,city:$('jobCity').value.trim(),zip:$('jobZip').value.trim(),street:$('jobStreet')?.value.trim()||'',house:$('jobHouse')?.value.trim()||'',address:(($('jobStreet')?.value.trim()||'')+' '+($('jobHouse')?.value.trim()||'')).trim(),customer:$('customer').value.trim(),nvtArea:$('nvtArea')?.value.trim()||'',worker:$('worker').value.trim(),
  justified:$('justified').value,faultArea:$('faultArea').value,docDate:$('docDate').value||today(),docTime:$('docTime').value,finding:$('finding').value.trim(),workDone:$('workDone').value.trim(),notes:$('notes').value.trim(),seconds:timerSeconds,photos:[...photos]
 };}
 async function saveOrder(fromWorkflow=false){
@@ -1318,7 +1345,7 @@ async function createPdf(o){
  if(!window.PDFLib){alert('PDF-Modul konnte nicht geladen werden. Bitte Internetverbindung prüfen.');return}
  const {PDFDocument,rgb,StandardFonts}=PDFLib;const pdf=await PDFDocument.create();const font=await pdf.embedFont(StandardFonts.Helvetica);const bold=await pdf.embedFont(StandardFonts.HelveticaBold);const W=595,H=842;
  let page=pdf.addPage([W,H]);page.drawRectangle({x:0,y:H-95,width:W,height:95,color:rgb(.04,.06,.09)});page.drawText('THADEN DOKUMENTATION',{x:36,y:H-52,size:25,font:bold,color:rgb(1,1,1)});page.drawText('Auftragsdokumentation',{x:36,y:H-76,size:12,font,color:rgb(.62,.72,.80)});
- const rows=[['Auftragsnummer',o.jobNo],['Datum / Uhrzeit',`${fmtDate(o.date)} ${o.time||''}`],['Ort / PLZ',`${o.city||''} ${o.zip||''}`],['Adresse',o.address],['Kunde / Objekt',o.customer||'—'],['Mitarbeiter',o.worker||'—'],['Gerechtfertigt',o.justified==='ja'?`Ja – ${o.faultArea||'—'}`:o.justified==='nein'?'Nein':'—'],['Dokumentation',`${fmtDate(o.docDate||o.date)} ${o.docTime||''}`]];
+ const rows=[['Auftragsnummer',o.jobNo],['Datum / Uhrzeit',`${fmtDate(o.date)} ${o.time||''}`],['Ort / PLZ',`${o.city||''} ${o.zip||''}`],['Adresse',o.address],['Kunde',o.customer||'—'],['NVT-Bereich',o.nvtArea||'—'],['Mitarbeiter',o.worker||'—'],['Gerechtfertigt',o.justified==='ja'?`Ja – ${o.faultArea||'—'}`:o.justified==='nein'?'Nein':'—'],['Dokumentation',`${fmtDate(o.docDate||o.date)} ${o.docTime||''}`]];
  let y=H-135;for(const [k,v] of rows){page.drawText(k,{x:36,y,size:11,font:bold,color:rgb(.25,.30,.34)});page.drawText(String(v||'—'),{x:180,y,size:11,font,color:rgb(.08,.12,.15)});y-=28;}
  y-=8;page.drawText('Fehler',{x:36,y,size:13,font:bold,color:rgb(1,.42,0)});y-=20;for(const line of wrapText(o.finding||'—',78)){page.drawText(line,{x:36,y,size:11,font});y-=16;}y-=10;page.drawText('Nach Instandsetzung erledigt',{x:36,y,size:13,font:bold,color:rgb(1,.42,0)});y-=20;for(const line of wrapText(o.workDone||'—',78)){page.drawText(line,{x:36,y,size:11,font});y-=16;}if(o.notes){y-=10;page.drawText('Material / Besonderheiten',{x:36,y,size:13,font:bold,color:rgb(1,.42,0)});y-=20;for(const line of wrapText(o.notes,78)){page.drawText(line,{x:36,y,size:11,font});y-=16;}}
  page.drawText('1. Kopfdaten des Auftrags',{x:36,y:35,size:9,font,color:rgb(.45,.52,.58)});

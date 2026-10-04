@@ -1,3 +1,3 @@
-# THADEN DOKUMENTATION V44
+# THADEN DOKUMENTATION V45 – Auftrag Layout
 
-Seite angepasst: Der Kopfbereich berücksichtigt den Safe-Area-Bereich des iPhone/iPad, damit das vollständige THADEN-DOKUMENTATION-Logo sichtbar bleibt. Die bisherigen Funktionen und das Layout bleiben erhalten.
+Schritt 1 neu angeordnet: Zur Startseite + 1. Auftrag in einer Zeile, danach Auftragsnummer/Datum, Ort/PLZ, Straße/Hausnummer, Kunde/NVT-Bereich, Uhrzeit/Mitarbeiter und unten Speichern & weiter. Das vollständige Header-Logo bleibt sichtbar.
