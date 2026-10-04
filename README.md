@@ -1,3 +1,8 @@
-# THADEN DOKUMENTATION V45 – Auftrag Layout
+# THADEN DOKUMENTATION V47
 
-Schritt 1 neu angeordnet: Zur Startseite + 1. Auftrag in einer Zeile, danach Auftragsnummer/Datum, Ort/PLZ, Straße/Hausnummer, Kunde/NVT-Bereich, Uhrzeit/Mitarbeiter und unten Speichern & weiter. Das vollständige Header-Logo bleibt sichtbar.
+Neue Kopfzeile für die Dokumentationsseiten:
+- Anthrazit als Hintergrund
+- THADEN-DOKUMENTATION-Logo passend skaliert
+- „Dokumentation“ in Weiß, größer gesetzt
+- „Verteilnetzfehler Glasfaser Nordwest“ darunter in Orange
+- bestehende Funktionen und Formularabläufe bleiben erhalten

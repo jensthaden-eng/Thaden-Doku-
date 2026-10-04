@@ -912,11 +912,15 @@ body.home-mode .home-latest{position:absolute;left:50%;bottom:16px;transform:tra
     <div class="pin-status" id="pinStatus"></div>
     <button class="pin-change" id="pinChange" type="button">PIN ändern</button>
   </div>
-  <div class="pin-version">THADEN DOKUMENTATION · V45</div>
+  <div class="pin-version">THADEN DOKUMENTATION · V47</div>
 </section>
 
 <header class="td-header-v24 td-header-logo-v27 page-header-logo">
   <img class="td-header-logo-v27" src="thaden-header-logo.png" alt="THADEN DOKUMENTATION – Einfach. Digital. Dokumentiert.">
+  <div class="page-header-title">
+    <div>Dokumentation</div>
+    <span>Verteilnetzfehler Glasfaser Nordwest</span>
+  </div>
 </header>
 
 <main class="wrap">
@@ -1561,6 +1565,31 @@ body.home-mode .home-top .td-logo{transform:translateY(-38px);}
  .step-card input,.step-card select{padding:11px 12px;}
 }
 </style>
+<style id="v47-doku-header">
+.page-header-logo{
+  background:#101820!important;
+  min-height:148px!important;
+  height:auto!important;
+  padding:calc(10px + env(safe-area-inset-top)) 18px 12px!important;
+  flex-direction:column!important;
+  gap:5px!important;
+}
+.page-header-logo > img{
+  width:min(620px,92vw)!important;
+  max-height:76px!important;
+  object-fit:contain!important;
+}
+.page-header-title{text-align:center;line-height:1.05;font-weight:800;}
+.page-header-title div{color:#fff;font-size:clamp(22px,4vw,32px);letter-spacing:.2px;}
+.page-header-title span{display:block;color:#ff6b00;font-size:clamp(16px,3vw,23px);margin-top:4px;}
+@media(max-width:700px){
+  .page-header-logo{min-height:140px!important;padding:calc(8px + env(safe-area-inset-top)) 12px 10px!important;}
+  .page-header-logo > img{width:100%!important;max-height:66px!important;}
+  .page-header-title div{font-size:22px;}
+  .page-header-title span{font-size:17px;}
+}
+</style>
+
 <script>
 /* V46: eindeutige Klasse für den Seiten-Kopf, damit das Logo nicht mit alten V27-Regeln kollidiert. */
 (function(){
