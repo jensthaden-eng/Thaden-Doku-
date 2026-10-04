@@ -1,3 +1,3 @@
-# THADEN DOKUMENTATION V43 – Seite 2 Impuls
+# THADEN DOKUMENTATION V44
 
-V43 basiert auf V42. Beim Wechsel in die nächste Bearbeitungsseite erhält die aktuell aktive Seite einen kurzen, deutlich sichtbaren orangefarbenen Impuls/Ring – analog zum sichtbaren Impuls des TD-Mittelbuttons auf der Startseite. Die bisherigen Funktionen bleiben erhalten.
+Seite angepasst: Der Kopfbereich berücksichtigt den Safe-Area-Bereich des iPhone/iPad, damit das vollständige THADEN-DOKUMENTATION-Logo sichtbar bleibt. Die bisherigen Funktionen und das Layout bleiben erhalten.
