@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#101820">
-<title>THADEN DOKUMENTATION V1.0</title>
+<title>THADEN DOKUMENTATION V55</title>
 <style>
 :root{--navy:#101820;--orange:#ff6b00;--bg:#f3f5f7;--card:#fff;--text:#16232d;--muted:#697680;--green:#159b60;--border:#d8dee3}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
@@ -895,6 +895,47 @@ body.home-mode .home-latest{position:absolute;left:50%;bottom:16px;transform:tra
 @media(prefers-reduced-motion:reduce){.step-card{transition:none!important;}}
 </style>
 
+
+<style id="v55-vnf-choice">
+/* V55: Nach dem ersten Druck auf den TD-Kreis erscheinen zwei auswählbare VNF-Balken oberhalb und unterhalb des Kreises. */
+.vnf-choice{
+  position:absolute;inset:0;z-index:6;width:100%;height:100%;
+  transform:none;opacity:0;pointer-events:none;
+  transition:opacity .34s ease;
+}
+.vnf-choice.show{opacity:1;pointer-events:auto}
+.vnf-bar{
+  position:absolute;left:50%;width:min(430px,92vw);min-height:62px;
+  border:2px solid #263947;border-radius:18px;padding:12px 18px;
+  background:linear-gradient(135deg,#101820,#16242f);color:#fff;
+  box-shadow:0 8px 24px #0007;display:flex;align-items:center;justify-content:center;
+  text-align:center;font-size:18px;font-weight:900;letter-spacing:.2px;
+  transform:translateX(-50%) scale(.86);opacity:0;
+  transition:transform .42s cubic-bezier(.22,.8,.24,1),opacity .34s ease,background .18s ease,border-color .18s ease,box-shadow .18s ease,color .18s ease;
+}
+.vnf-bar:first-child{top:calc(50% - 178px)}
+.vnf-bar:last-child{top:calc(50% + 116px)}
+.vnf-choice.show .vnf-bar{transform:translateX(-50%) scale(1);opacity:1}
+.vnf-choice.show .vnf-bar:last-child{transition-delay:.08s}
+.vnf-bar:active{transform:translateX(-50%) scale(.97)}
+.vnf-bar:hover{border-color:#ff7a00;box-shadow:0 10px 30px #0009}
+.vnf-bar.vnf-white{animation:vnfWhiteFlash .62s ease both}
+@keyframes vnfWhiteFlash{
+  0%{background:#fff;color:#101820;border-color:#fff;box-shadow:0 0 0 0 #fff0,0 0 0 0 #fff0;transform:translateX(-50%) scale(1)}
+  35%{background:#fff;color:#101820;border-color:#fff;box-shadow:0 0 0 9px #ffffff33,0 0 42px 10px #ffffff88;transform:translateX(-50%) scale(1.035)}
+  100%{background:#fff;color:#101820;border-color:#fff;box-shadow:0 0 0 18px #ffffff00,0 0 65px 20px #ffffff00;transform:translateX(-50%) scale(1)}
+}
+.radial.vnf-chooser .radial-item{opacity:0!important;transform:translate(-50%,-50%) scale(.08)!important;pointer-events:none!important}
+.radial.vnf-chooser .radial-line{opacity:0!important}
+.radial.vnf-chooser .radial-core{box-shadow:0 0 0 1px #182733 inset,0 0 0 5px #0b151e,0 0 42px 8px #ff7a0055}
+@media(max-width:700px){
+  .vnf-bar{width:min(390px,88vw);min-height:58px;font-size:16px;border-radius:16px;padding:10px 14px}
+  .vnf-bar:first-child{top:calc(50% - 174px)}
+  .vnf-bar:last-child{top:calc(50% + 116px)}
+}
+@media(prefers-reduced-motion:reduce){.vnf-choice,.vnf-bar{transition:none!important}.vnf-bar.vnf-white{animation:none!important}}
+</style>
+
 </head>
 <body class="home-mode pin-locked">
 
@@ -920,7 +961,7 @@ body.home-mode .home-latest{position:absolute;left:50%;bottom:16px;transform:tra
     <div class="pin-status" id="pinStatus"></div>
     <button class="pin-change" id="pinChange" type="button">PIN ändern</button>
   </div>
-  <div class="pin-version">THADEN DOKUMENTATION · V33</div>
+  <div class="pin-version">THADEN DOKUMENTATION · V55</div>
 </section>
 
 <header class="td-header-v24 td-header-logo-v27">
@@ -940,7 +981,11 @@ body.home-mode .home-latest{position:absolute;left:50%;bottom:16px;transform:tra
     <div class="radial-item ri-step5" data-step="5"><button onclick="workflowOpen(5)"><span class="step-number">5</span><span class="ri-icon">🕐</span><b>Datum / Uhrzeit</b><small>Eintragen</small><span class="step-flow">Erfassen</span></button></div>
     <div class="radial-item ri-step6" data-step="6"><button onclick="workflowOpen(6)"><span class="step-number">6</span><span class="ri-icon">📑</span><b>Einblasprotokoll</b><small>Hochladen</small><span class="step-flow">Dokumentieren</span></button></div>
     <div class="radial-item ri-step7" data-step="7"><button onclick="workflowOpen(7)"><span class="step-number">7</span><span class="ri-icon">PDF</span><b>Abschluss</b><small>Gesamt-PDF</small><span class="step-flow">PDF erstellen</span></button></div>
-    <button type="button" class="radial-core" id="radialToggle" aria-expanded="false" aria-label="Menü einblenden"><img src="apple-touch-icon.png" alt="TD THADEN DOKUMENTATION"></button>
+    <button type="button" class="radial-core" id="radialToggle" aria-expanded="false" aria-label="VNF-Auswahl öffnen"><img src="apple-touch-icon.png" alt="TD THADEN DOKUMENTATION"></button>
+    <div class="vnf-choice" id="vnfChoice" aria-hidden="true">
+      <button type="button" class="vnf-bar" data-vnf="VNF Glasfaser NordWest"><span>Dokumentation VNF Glasfaser NordWest</span></button>
+      <button type="button" class="vnf-bar" data-vnf="VNF Telekom"><span>VNF Telekom</span></button>
+    </div>
   </div>
   </div>
   <div class="home-latest"><div class="home-latest-head"><h2>Letzte Aufträge</h2><button onclick="show('orders');renderOrders()">Alle anzeigen ›</button></div><div id="homeList"></div></div>
@@ -1220,8 +1265,9 @@ const today=()=>new Date().toISOString().slice(0,10);
 document.addEventListener('DOMContentLoaded',()=>{
  const radial=document.querySelector('.radial');
  const toggle=$('radialToggle');
+ const chooser=$('vnfChoice');
  if(radial && toggle){
-   // V42: Startseite zunächst kompakt/eingeklappt; erst der TD-Mittelbutton fährt die 7 Punkte aus.
+   // V55: Beim ersten Druck nicht mehr die 7 Arbeitspunkte ausfahren, sondern die VNF-Auswahl zeigen.
    radial.classList.add('collapsed');
    toggle.setAttribute('aria-expanded','false');
    toggle.addEventListener('click',()=>{
@@ -1229,16 +1275,38 @@ document.addEventListener('DOMContentLoaded',()=>{
      void toggle.offsetWidth;
      toggle.classList.add('is-pressed');
      setTimeout(()=>toggle.classList.remove('is-pressed'),520);
-     const opening = radial.classList.contains('collapsed');
-     toggleRadialMenu();
+     const opening = !radial.classList.contains('vnf-chooser');
      if(opening){
-       radial.classList.remove('v42-opening');
-       void radial.offsetWidth;
-       radial.classList.add('v42-opening');
-       setTimeout(()=>radial.classList.remove('v42-opening'),700);
+       radial.classList.add('vnf-chooser');
+       radial.classList.remove('collapsed');
+       toggle.setAttribute('aria-expanded','true');
+       toggle.setAttribute('aria-label','VNF-Auswahl schließen');
+       chooser?.classList.add('show');
+       chooser?.setAttribute('aria-hidden','false');
+     }else{
+       radial.classList.remove('vnf-chooser');
+       radial.classList.add('collapsed');
+       toggle.setAttribute('aria-expanded','false');
+       toggle.setAttribute('aria-label','VNF-Auswahl öffnen');
+       chooser?.classList.remove('show');
+       chooser?.setAttribute('aria-hidden','true');
      }
    });
  }
+ document.querySelectorAll('.vnf-bar').forEach(btn=>btn.addEventListener('click',()=>{
+   const vnf=btn.dataset.vnf||'';
+   localStorage.setItem('thaden_doku_vnf',vnf);
+   btn.classList.remove('vnf-white');
+   void btn.offsetWidth;
+   btn.classList.add('vnf-white');
+   document.querySelectorAll('.vnf-bar').forEach(b=>{if(b!==btn)b.disabled=true;});
+   setTimeout(()=>{
+     if(chooser){chooser.classList.remove('show');chooser.setAttribute('aria-hidden','true');}
+     show('new');
+     setTimeout(()=>scrollToStep(1),180);
+     document.querySelectorAll('.vnf-bar').forEach(b=>b.disabled=false);
+   },560);
+ });
 });
 
 const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));

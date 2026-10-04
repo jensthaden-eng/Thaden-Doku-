@@ -1,6 +1,7 @@
-# THADEN DOKUMENTATION V54
+# THADEN DOKUMENTATION V55 – VNF-Auswahl
 
-Ausgangspunkt V42/V53. Auftrag-Seite angepasst:
-- Uhrzeit und Datum jetzt getrennt untereinander
-- Uhr-Symbol im Uhrzeit-Feld
-- übrige Funktionen und Reihenfolge unverändert
+V54 als Basis. Neu: Nach dem ersten Druck auf den TD-Mittelbutton erscheinen zwei auswählbare Balken:
+- Dokumentation VNF Glasfaser NordWest
+- VNF Telekom
+
+Beim Antippen wird der gewählte Balken weiß hervorgehoben und anschließend die Arbeitsschritt-Seite geöffnet.
