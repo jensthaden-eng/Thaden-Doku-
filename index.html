@@ -1782,6 +1782,42 @@ body.home-mode .home-top .td-logo{transform:translateY(-38px);}
   body.home-mode .home-top .td-logo{transform:translateY(-24px);}
 }
 </style>
+
+<style>
+/* V66 – Kreise vergrößert, damit alle Beschriftungen sauber innerhalb der Ringe sitzen */
+@media(max-width:700px){
+  .radial{height:430px;max-width:390px;width:100%;}
+  .radial-core{width:166px;height:166px;}
+  .radial-item{width:112px;height:112px;border-width:2px;}
+  .radial-item button{padding:7px;}
+  .radial-item .ri-icon{font-size:29px;margin-bottom:4px;}
+  .radial-item b{font-size:11.5px;line-height:1.12;}
+  .radial-item small{font-size:8.5px;line-height:1.18;}
+  .radial-item .step-flow{font-size:7px;margin-top:4px;letter-spacing:.75px;}
+  .radial-item .step-number{top:-10px;width:27px;height:27px;font-size:13px;}
+  /* 7 Ringe gleichmäßig um den Mittelpunkt, mit etwas mehr Abstand zum mittleren Logo */
+  .ri-step1{transform:translate(-50%,-50%) translate(0,-142px)!important}
+  .ri-step2{transform:translate(-50%,-50%) translate(112px,-87px)!important}
+  .ri-step3{transform:translate(-50%,-50%) translate(139px,31px)!important}
+  .ri-step4{transform:translate(-50%,-50%) translate(87px,112px)!important}
+  .ri-step5{transform:translate(-50%,-50%) translate(-87px,112px)!important}
+  .ri-step6{transform:translate(-50%,-50%) translate(-139px,31px)!important}
+  .ri-step7{transform:translate(-50%,-50%) translate(-112px,-87px)!important}
+}
+@media(max-width:390px){
+  .radial{height:430px;}
+  .radial-item{width:108px;height:108px;}
+  .radial-item b{font-size:11px;}
+  .radial-item small{font-size:8px;}
+  .ri-step1{transform:translate(-50%,-50%) translate(0,-138px)!important}
+  .ri-step2{transform:translate(-50%,-50%) translate(108px,-84px)!important}
+  .ri-step3{transform:translate(-50%,-50%) translate(134px,30px)!important}
+  .ri-step4{transform:translate(-50%,-50%) translate(84px,108px)!important}
+  .ri-step5{transform:translate(-50%,-50%) translate(-84px,108px)!important}
+  .ri-step6{transform:translate(-50%,-50%) translate(-134px,30px)!important}
+  .ri-step7{transform:translate(-50%,-50%) translate(-108px,-84px)!important}
+}
+</style>
 </body>
 
 <style id="v62-workflow-circles-toggle">

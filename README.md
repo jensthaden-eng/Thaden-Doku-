@@ -1,3 +1,3 @@
-# THADEN DOKUMENTATION V65
+# THADEN DOKUMENTATION V66
 
-V65 basiert auf V64. Die 7 Arbeitsschritt-Kreise der VNF-Arbeitsschrittseite sind geometrisch gleichmäßig auf einem gemeinsamen Kreis um den mittleren TD-Kreis verteilt. Die bestehende Ein-/Ausklappfunktion, VNF-Auswahl und alle bisherigen Funktionen bleiben erhalten.
+Kreise/Ringe um den mittleren VNF-Kreis vergrößert, damit die Beschriftungen besser und vollständig innerhalb der Kreise Platz finden. Die bestehende Anordnung, Funktionen und Ein-/Ausklappfunktion bleiben erhalten.
