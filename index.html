@@ -880,8 +880,8 @@ body.home-mode .home-latest{position:absolute;left:50%;bottom:16px;transform:tra
 .step1-head{display:flex;align-items:center;gap:16px;margin-bottom:18px;min-width:0;}
 .step1-head h2{margin:0!important;white-space:nowrap;}
 .compact-row{gap:12px;margin-top:12px;}
-.time-date-row{display:block!important;margin-top:12px;}
-.time-date-row>div{width:100%;margin-bottom:14px;}
+.time-date-row{display:grid!important;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;}
+.time-date-row>div{width:auto;margin-bottom:0;}
 .time-field{position:relative;}
 .time-field::after{content:"🕐";position:absolute;right:14px;bottom:13px;font-size:22px;pointer-events:none;}
 .time-field input{padding-right:48px!important;}
@@ -1132,6 +1132,40 @@ body.home-mode .radial-item .step-number{top:-10px;width:27px;height:27px;font-s
   body.home-mode .ri-step7{transform:translate(-50%,-50%) translate(-118px,-94px)!important}
 }
 </style>
+
+<style id="v67-step1-readability">
+/* V67: Auftrag kompakt und sauber auf dem iPhone, ohne Überlappungen. */
+#new .draft-bar{position:sticky;top:74px;z-index:25;margin-bottom:14px;}
+#new .step-card{position:relative;z-index:1;}
+.step1-head{gap:10px;align-items:center;}
+.step1-head .ghost{flex:0 0 auto;}
+.step1-head h2{font-size:clamp(24px,6vw,34px)!important;}
+.time-date-row{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:12px!important;}
+.time-date-row>div{min-width:0!important;width:auto!important;margin-bottom:0!important;}
+.field-note{color:#697680;font-weight:700;font-size:.72em;white-space:nowrap;}
+.time-field::after{right:12px;bottom:12px;}
+.time-field input{padding-right:46px!important;}
+.compact-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:12px!important;}
+.compact-row>div{min-width:0!important;}
+.compact-row input,.single-field input{width:100%!important;box-sizing:border-box!important;min-width:0!important;}
+@media(max-width:520px){
+  #new .draft-bar{top:68px;}
+  .step1-head{gap:8px;}
+  .step1-head .ghost{font-size:13px!important;padding:9px 10px!important;}
+  .step1-head h2{font-size:24px!important;}
+  .time-date-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;}
+  .compact-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;}
+  .compact-row label,.single-field label{font-size:14px!important;}
+  .compact-row input,.single-field input{font-size:15px!important;padding:11px 10px!important;}
+}
+@media(max-width:380px){
+  .step1-head .ghost{font-size:12px!important;padding:8px 9px!important;}
+  .step1-head h2{font-size:22px!important;}
+  .time-date-row{gap:8px!important;}
+  .compact-row{gap:8px!important;}
+  .compact-row input,.single-field input{font-size:14px!important;}
+}
+</style>
 </head>
 <body class="home-mode pin-locked">
 <div id="vnfScreenFlash" class="vnf-screen-flash" aria-hidden="true"></div>
@@ -1218,11 +1252,11 @@ body.home-mode .radial-item .step-number{top:-10px;width:27px;height:27px;font-s
   <div class="draft-bar"><span>Zwischenspeicherung: <b class="draft-step" id="draftStepStatus">Schritt 1</b></span><span class="draft-status" id="draftSaveStatus">Bereit</span></div>
   <div class="card step-card" id="step-card-1">
     <div class="step1-head">
-      <button class="ghost no-print" onclick="show('home')">← Zur Startseite</button>
+      <button class="ghost no-print" onclick="show('vnfWorkflow')">← Zu den Arbeitsschritten</button>
       <h2>1. Auftrag</h2>
     </div>
     <div class="row compact-row time-date-row">
-      <div class="time-field"><label>Uhrzeit *</label><input id="jobTime" type="time" aria-label="Uhrzeit"></div>
+      <div class="time-field"><label>Uhrzeit * <span class="field-note">(Start)</span></label><input id="jobTime" type="time" aria-label="Uhrzeit Start"></div>
       <div><label>Datum *</label><input id="jobDate" type="date" aria-label="Datum"></div>
     </div>
     <div class="row compact-row">
@@ -1240,7 +1274,7 @@ body.home-mode .radial-item .step-number{top:-10px;width:27px;height:27px;font-s
     <div class="single-field">
       <label>Mitarbeiter</label><input id="worker" placeholder="Name">
     </div>
-    <div class="step-next"><button class="primary" onclick="saveStepAndNext(1)">✓ Schritt 1 speichern &amp; weiter →</button></div>
+    <div id="step1SaveNotice" class="step-save-notice" aria-live="polite"></div><div class="step-next"><button class="primary" onclick="saveStepAndNext(1)">✓ Schritt 1 speichern &amp; weiter →</button></div>
   </div>
 
   <div class="card step-card" id="step-card-2">
@@ -1421,7 +1455,7 @@ function persistDraft(){
 }
 function validateStep(n){
  const d=formData();
- if(n===1){if(!d.jobNo||!d.date||!d.city||!d.zip||!d.address||!d.time){$('saveNotice').innerHTML='<div class="notice warn">Bitte Auftragsnummer, Datum, Uhrzeit, Ort, PLZ und Adresse ausfüllen.</div>';scrollToStep(1);return false;}}
+ if(n===1){if(!d.jobNo||!d.date||!d.city||!d.zip||!d.address||!d.time){const msg='Bitte Auftragsnummer, Datum, Uhrzeit (Start), Ort, PLZ und Adresse ausfüllen.';if($('step1SaveNotice'))$('step1SaveNotice').innerHTML='<div class="notice warn">'+msg+'</div>';if($('saveNotice'))$('saveNotice').innerHTML='<div class="notice warn">'+msg+'</div>';scrollToStep(1);return false;}if($('step1SaveNotice'))$('step1SaveNotice').innerHTML='';}
  if(n===2){if(!d.justified){$('saveNotice').innerHTML='<div class="notice warn">Bitte bei „Gerechtfertigt?“ Ja oder Nein auswählen.</div>';scrollToStep(2);return false;}if(d.justified==='ja'&&!d.faultArea){$('saveNotice').innerHTML='<div class="notice warn">Bitte bei Ja „Öffentlich“ oder „Privat“ auswählen.</div>';scrollToStep(2);return false;}}
  if(n===3){if(!photos.length){$('photoStatus').innerHTML='<div class="notice warn">Bitte mindestens ein Foto aufnehmen oder auswählen.</div>';scrollToStep(3);return false;}}
  if(n===4){if(!d.finding||!d.workDone){$('saveNotice').innerHTML='<div class="notice warn">Bitte Fehler und durchgeführte Arbeiten eintragen.</div>';scrollToStep(4);return false;}}
@@ -1444,6 +1478,7 @@ async function saveStepAndNext(n){
  if(n<7){
    persistDraft();
    completeStep(n);
+   if(n===1&&$('step1SaveNotice'))$('step1SaveNotice').innerHTML='<div class="notice ok">✓ Schritt 1 gespeichert · weiter zu Schritt 2</div>';
    showSavePopup(n,true);
    setTimeout(()=>scrollToStep(n+1),650);
  } else {

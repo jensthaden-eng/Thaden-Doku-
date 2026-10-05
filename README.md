@@ -1,3 +1,9 @@
-# THADEN DOKUMENTATION V66
+# THADEN DOKUMENTATION V67
 
-Kreise/Ringe um den mittleren VNF-Kreis vergrößert, damit die Beschriftungen besser und vollständig innerhalb der Kreise Platz finden. Die bestehende Anordnung, Funktionen und Ein-/Ausklappfunktion bleiben erhalten.
+Änderungen gegenüber V66:
+- Schritt 1 wieder sauber und leserlich auf dem iPhone angeordnet.
+- Uhrzeit und Datum stehen nebeneinander.
+- Uhrzeit ist mit „(Start)“ gekennzeichnet.
+- „Zurück“ führt von Schritt 1 zurück auf die 7 Arbeitsschritte / VNF-Übersicht statt auf die Startseite.
+- Speichern & Weiter von Schritt 1 validiert die Pflichtfelder, speichert den Zwischenstand, setzt Schritt 1 auf erledigt, zeigt die Speicherbestätigung und öffnet anschließend Schritt 2.
+- Der Zwischenspeicherungsbalken überlappt den Kopfbereich beim Scrollen nicht mehr.
