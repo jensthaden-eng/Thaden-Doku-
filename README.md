@@ -1,9 +1,9 @@
-# THADEN DOKUMENTATION V67
+# THADEN DOKUMENTATION V68 – STEP 1 FIXED
 
-Änderungen gegenüber V66:
-- Schritt 1 wieder sauber und leserlich auf dem iPhone angeordnet.
-- Uhrzeit und Datum stehen nebeneinander.
-- Uhrzeit ist mit „(Start)“ gekennzeichnet.
-- „Zurück“ führt von Schritt 1 zurück auf die 7 Arbeitsschritte / VNF-Übersicht statt auf die Startseite.
-- Speichern & Weiter von Schritt 1 validiert die Pflichtfelder, speichert den Zwischenstand, setzt Schritt 1 auf erledigt, zeigt die Speicherbestätigung und öffnet anschließend Schritt 2.
-- Der Zwischenspeicherungsbalken überlappt den Kopfbereich beim Scrollen nicht mehr.
+- Schritt 1 auf iPhone lesbar und ohne Überlappung.
+- Uhrzeit und Datum nebeneinander.
+- Uhrzeit mit Hinweis „(Start)“ und Uhr-Symbol.
+- Pflichtfeldprüfung und Speichern-&-Weiter wieder funktionsfähig.
+- Straße + Hausnummer werden korrekt als Adresse gespeichert.
+- Zwischenspeicherung und grüner Abschlussstatus bleiben erhalten.
+- Zurück aus Schritt 1 führt zur 7-Schritte/VNF-Arbeitsübersicht.

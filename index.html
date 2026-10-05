@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#101820">
-<title>THADEN DOKUMENTATION V55</title>
+<title>THADEN DOKUMENTATION V68</title>
 <style>
 :root{--navy:#101820;--orange:#ff6b00;--bg:#f3f5f7;--card:#fff;--text:#16232d;--muted:#697680;--green:#159b60;--border:#d8dee3}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
@@ -1135,11 +1135,11 @@ body.home-mode .radial-item .step-number{top:-10px;width:27px;height:27px;font-s
 
 <style id="v67-step1-readability">
 /* V67: Auftrag kompakt und sauber auf dem iPhone, ohne Überlappungen. */
-#new .draft-bar{position:sticky;top:74px;z-index:25;margin-bottom:14px;}
+#new .draft-bar{position:relative;top:auto;z-index:5;margin:8px auto 14px;}
 #new .step-card{position:relative;z-index:1;}
 .step1-head{gap:10px;align-items:center;}
 .step1-head .ghost{flex:0 0 auto;}
-.step1-head h2{font-size:clamp(24px,6vw,34px)!important;}
+.step1-head h2{font-size:clamp(22px,5.8vw,34px)!important;min-width:0;}
 .time-date-row{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:12px!important;}
 .time-date-row>div{min-width:0!important;width:auto!important;margin-bottom:0!important;}
 .field-note{color:#697680;font-weight:700;font-size:.72em;white-space:nowrap;}
@@ -1149,10 +1149,10 @@ body.home-mode .radial-item .step-number{top:-10px;width:27px;height:27px;font-s
 .compact-row>div{min-width:0!important;}
 .compact-row input,.single-field input{width:100%!important;box-sizing:border-box!important;min-width:0!important;}
 @media(max-width:520px){
-  #new .draft-bar{top:68px;}
+  #new .draft-bar{top:auto;margin-top:8px;}
   .step1-head{gap:8px;}
   .step1-head .ghost{font-size:13px!important;padding:9px 10px!important;}
-  .step1-head h2{font-size:24px!important;}
+  .step1-head h2{font-size:22px!important;}
   .time-date-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;}
   .compact-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;}
   .compact-row label,.single-field label{font-size:14px!important;}
@@ -1455,7 +1455,7 @@ function persistDraft(){
 }
 function validateStep(n){
  const d=formData();
- if(n===1){if(!d.jobNo||!d.date||!d.city||!d.zip||!d.address||!d.time){const msg='Bitte Auftragsnummer, Datum, Uhrzeit (Start), Ort, PLZ und Adresse ausfüllen.';if($('step1SaveNotice'))$('step1SaveNotice').innerHTML='<div class="notice warn">'+msg+'</div>';if($('saveNotice'))$('saveNotice').innerHTML='<div class="notice warn">'+msg+'</div>';scrollToStep(1);return false;}if($('step1SaveNotice'))$('step1SaveNotice').innerHTML='';}
+ if(n===1){if(!d.jobNo||!d.date||!d.time||!d.city||!d.zip||!d.street||!d.house){const msg='Bitte Auftragsnummer, Datum, Uhrzeit (Start), Ort, PLZ, Straße und Hausnummer ausfüllen.';if($('step1SaveNotice'))$('step1SaveNotice').innerHTML='<div class="notice warn">'+msg+'</div>';if($('saveNotice'))$('saveNotice').innerHTML='<div class="notice warn">'+msg+'</div>';scrollToStep(1);return false;}if($('step1SaveNotice'))$('step1SaveNotice').innerHTML='';}
  if(n===2){if(!d.justified){$('saveNotice').innerHTML='<div class="notice warn">Bitte bei „Gerechtfertigt?“ Ja oder Nein auswählen.</div>';scrollToStep(2);return false;}if(d.justified==='ja'&&!d.faultArea){$('saveNotice').innerHTML='<div class="notice warn">Bitte bei Ja „Öffentlich“ oder „Privat“ auswählen.</div>';scrollToStep(2);return false;}}
  if(n===3){if(!photos.length){$('photoStatus').innerHTML='<div class="notice warn">Bitte mindestens ein Foto aufnehmen oder auswählen.</div>';scrollToStep(3);return false;}}
  if(n===4){if(!d.finding||!d.workDone){$('saveNotice').innerHTML='<div class="notice warn">Bitte Fehler und durchgeführte Arbeiten eintragen.</div>';scrollToStep(4);return false;}}
@@ -1654,7 +1654,7 @@ function newOrder(){
 async function loadOrder(id){
  const o=orders.find(x=>x.id===id); if(!o)return;
  editingId=id; photos=o.photos||[]; timerSeconds=o.seconds||0;
- $('jobNo').value=o.jobNo||'';$('jobDate').value=o.date||today();$('jobTime').value=o.time||'';$('jobCity').value=o.city||'';$('jobZip').value=o.zip||'';$('jobAddress').value=o.address||'';$('customer').value=o.customer||'';$('worker').value=o.worker||'';
+ $('jobNo').value=o.jobNo||'';$('nvtArea').value=o.nvtArea||'';$('jobDate').value=o.date||today();$('jobTime').value=o.time||'';$('jobCity').value=o.city||'';$('jobZip').value=o.zip||'';$('jobStreet').value=o.street||'';$('jobHouse').value=o.house||'';if($('jobAddress'))$('jobAddress').value=o.address||'';$('customer').value=o.customer||'';$('worker').value=o.worker||'';
  $('justified').value=o.justified||'';$('faultArea').value=o.faultArea||'';toggleJustifiedType();$('finding').value=o.finding||'';$('workDone').value=o.workDone||'';$('notes').value=o.notes||'';
  $('docDate').value=o.docDate||o.date||today();$('docTime').value=o.docTime||o.time||'';$('photoGrid').innerHTML='';renderPhotos();updateTimer();resetProtocolUI();
  if(o.protocolMeta){protocolFile=await getAttachment(o.protocolMeta.id);$('protocolStatus').innerHTML=protocolFile?`<div class="notice ok">✓ ${esc(o.protocolMeta.name)} geladen.</div>`:'<div class="notice warn">Einblasprotokoll konnte nicht geladen werden.</div>';}
@@ -1689,10 +1689,16 @@ async function handleProtocol(ev){
  protocolFile=file; $('protocolStatus').innerHTML='<div class="notice">Einblasprotokoll wird vorbereitet…</div>';
  $('protocolStatus').innerHTML=`<div class="notice ok">✓ ${esc(file.name)} (${Math.round(file.size/1024)} KB) ausgewählt.</div>`;
 }
-function formData(){return {
- jobNo:$('jobNo').value.trim(),nvtArea:$('nvtArea')?.value.trim()||'',date:$('jobDate').value||today(),time:$('jobTime').value,city:$('jobCity').value.trim(),zip:$('jobZip').value.trim(),street:$('jobStreet')?.value.trim()||'',house:$('jobHouse')?.value.trim()||'',address:((($('jobStreet')?.value||'').trim()+' '+(($('jobHouse')?.value||'').trim())).trim()||$('jobAddress').value.trim()),customer:$('customer').value.trim(),worker:$('worker').value.trim(),
- justified:$('justified').value,faultArea:$('faultArea').value,docDate:$('docDate').value||today(),docTime:$('docTime').value,finding:$('finding').value.trim(),workDone:$('workDone').value.trim(),notes:$('notes').value.trim(),seconds:timerSeconds,photos:[...photos]
-};}
+function formData(){
+ const street=$('jobStreet')?.value.trim()||'';
+ const house=$('jobHouse')?.value.trim()||'';
+ const legacyAddress=$('jobAddress')?.value.trim()||'';
+ const address=[street,house].filter(Boolean).join(' ')||legacyAddress;
+ return {
+  jobNo:$('jobNo')?.value.trim()||'',nvtArea:$('nvtArea')?.value.trim()||'',date:$('jobDate')?.value||today(),time:$('jobTime')?.value||'',city:$('jobCity')?.value.trim()||'',zip:$('jobZip')?.value.trim()||'',street,house,address,customer:$('customer')?.value.trim()||'',worker:$('worker')?.value.trim()||'',
+  justified:$('justified')?.value||'',faultArea:$('faultArea')?.value||'',docDate:$('docDate')?.value||today(),docTime:$('docTime')?.value||'',finding:$('finding')?.value.trim()||'',workDone:$('workDone')?.value.trim()||'',notes:$('notes')?.value.trim()||'',seconds:timerSeconds,photos:[...photos]
+ };
+}
 async function saveOrder(fromWorkflow=false){
  const d=formData();
  if(!d.jobNo||!d.city||!d.zip||!d.address){$('saveNotice').innerHTML='<div class="notice warn">Bitte Auftragsnummer, Ort, PLZ und Adresse ausfüllen.</div>';return false}
