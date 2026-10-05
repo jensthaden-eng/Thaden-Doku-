@@ -1,8 +1,3 @@
-# THADEN DOKUMENTATION V61
+# THADEN DOKUMENTATION V65
 
-VNF-Auswahl mit eigener 7-Arbeitsschritte-Seite.
-
-- Ausgewählte VNF steht als Überschrift oben.
-- 7 Arbeitsschritte sind gleichmäßig mit kleinem Abstand um den TD-Mittelkreis angeordnet.
-- Die VNF bleibt zusätzlich im inneren Kreis sichtbar.
-- Statusfarben für aktuell, erledigt und gesperrt bleiben erhalten.
+V65 basiert auf V64. Die 7 Arbeitsschritt-Kreise der VNF-Arbeitsschrittseite sind geometrisch gleichmäßig auf einem gemeinsamen Kreis um den mittleren TD-Kreis verteilt. Die bestehende Ein-/Ausklappfunktion, VNF-Auswahl und alle bisherigen Funktionen bleiben erhalten.
