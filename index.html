@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#101820">
-<title>THADEN DOKUMENTATION V69</title>
+<title>THADEN DOKUMENTATION V70</title>
 <style>
 :root{--navy:#101820;--orange:#ff6b00;--bg:#f3f5f7;--card:#fff;--text:#16232d;--muted:#697680;--green:#159b60;--border:#d8dee3}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
@@ -1189,6 +1189,112 @@ body.home-mode .radial-item .step-number{top:-10px;width:27px;height:27px;font-s
  #new .time-date-row input,#new .compact-row input,#new .single-field input{font-size:14px!important;padding:11px 10px!important;}
 }
 </style>
+
+<style id="v70-step1-fit-screen">
+/* V70: Schritt 1 kompakt auf dem iPhone – alle Felder, Kopf und Speichern-Button in einer Ansicht. */
+html,body{overflow-x:hidden}
+@media(max-width:600px){
+  body:has(#new.active){
+    background:#f3f5f7!important;
+  }
+  body:has(#new.active) .td-header-v24.td-header-logo-v27{
+    min-height:58px!important;
+    height:58px!important;
+    padding:5px 12px!important;
+    position:relative!important;
+    box-shadow:0 2px 8px #0002!important;
+  }
+  body:has(#new.active) .td-header-v24.td-header-logo-v27 > img.td-header-logo-v27{
+    width:min(300px,92vw)!important;
+    height:48px!important;
+    max-height:48px!important;
+    object-fit:contain!important;
+  }
+  body:has(#new.active) .wrap{
+    padding:4px 8px 18px!important;
+    max-width:600px!important;
+  }
+  #new.active .draft-bar{
+    margin:4px auto 6px!important;
+    padding:7px 10px!important;
+    min-height:44px!important;
+    border-radius:12px!important;
+    font-size:14px!important;
+    box-shadow:0 4px 12px #0002!important;
+  }
+  #new.active .draft-bar .draft-status{font-size:12px!important}
+  #new.active .step-card#step-card-1{
+    padding:10px 12px 12px!important;
+    margin:0!important;
+    border-radius:16px!important;
+    box-shadow:0 4px 14px #18324b12!important;
+  }
+  #new.active .step1-head{
+    gap:7px!important;
+    margin-bottom:5px!important;
+    min-height:40px!important;
+  }
+  #new.active .step1-head .ghost{
+    font-size:12px!important;
+    line-height:1!important;
+    padding:10px 9px!important;
+    border-radius:10px!important;
+  }
+  #new.active .step1-head h2{
+    font-size:21px!important;
+    line-height:1!important;
+    margin:0!important;
+  }
+  #new.active .time-date-row,
+  #new.active .compact-row{
+    gap:7px!important;
+    margin-top:4px!important;
+  }
+  #new.active .time-date-row label,
+  #new.active .compact-row label,
+  #new.active .single-field label{
+    font-size:12px!important;
+    line-height:1.05!important;
+    margin:5px 0 3px!important;
+  }
+  #new.active .field-note{font-size:.72em!important}
+  #new.active .time-date-row input,
+  #new.active .compact-row input,
+  #new.active .single-field input{
+    height:39px!important;
+    min-height:39px!important;
+    padding:7px 9px!important;
+    border-radius:9px!important;
+    font-size:14px!important;
+  }
+  #new.active .time-field input{padding-right:36px!important}
+  #new.active .time-field::after{right:8px!important;bottom:8px!important;font-size:18px!important}
+  #new.active .single-field{margin-top:4px!important}
+  #new.active .step-next{margin-top:8px!important}
+  #new.active .step-next .primary{
+    min-height:44px!important;
+    height:44px!important;
+    padding:8px 10px!important;
+    font-size:14px!important;
+    border-radius:11px!important;
+    white-space:nowrap!important;
+  }
+  #new.active .step-save-notice{font-size:12px!important;margin:4px 0 0!important}
+  #new.active .step-save-notice .notice{padding:6px 8px!important;margin-top:4px!important}
+  /* Nur Schritt 1 wird beim Öffnen gezeigt; die weiteren Schritte bleiben im Workflow verfügbar. */
+  #new.active .step-card:not(#step-card-1){display:none!important}
+}
+@media(max-width:380px){
+  #new.active .step1-head .ghost{font-size:11px!important;padding:9px 8px!important}
+  #new.active .step1-head h2{font-size:20px!important}
+  #new.active .draft-bar{font-size:13px!important}
+  #new.active .time-date-row input,
+  #new.active .compact-row input,
+  #new.active .single-field input{font-size:13px!important}
+  #new.active .step-next .primary{font-size:13px!important}
+}
+</style>
+
 </head>
 <body class="home-mode pin-locked">
 <div id="vnfScreenFlash" class="vnf-screen-flash" aria-hidden="true"></div>
