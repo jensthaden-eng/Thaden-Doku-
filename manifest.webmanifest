@@ -1,12 +1,22 @@
 {
   "name": "THADEN DOKUMENTATION",
   "short_name": "THADEN DOKU",
-  "start_url": "./index.html?v=10",
+  "start_url": "./index.html?v=9",
   "display": "standalone",
   "background_color": "#101820",
   "theme_color": "#101820",
   "icons": [
-    {"src":"assets/icon-192-td-approved-v10.png?v=10","sizes":"192x192","type":"image/png","purpose":"any maskable"},
-    {"src":"assets/icon-512-td-approved-v10.png?v=10","sizes":"512x512","type":"image/png","purpose":"any maskable"}
+    {
+      "src": "assets/icon-192-td-full-anthrazit-v9.png?v=9",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icon-512-td-full-anthrazit-v9.png?v=9",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
   ]
 }
