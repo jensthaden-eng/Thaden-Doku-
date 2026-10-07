@@ -1321,7 +1321,7 @@ html,body{overflow-x:hidden}
     <div class="pin-status" id="pinStatus"></div>
     <button class="pin-change" id="pinChange" type="button">PIN ändern</button>
   </div>
-  <div class="pin-version">THADEN DOKUMENTATION · V59</div>
+  <div class="pin-version">THADEN DOKUMENTATION · V71</div>
 </section>
 
 <header class="td-header-v24 td-header-logo-v27">
@@ -1352,36 +1352,13 @@ html,body{overflow-x:hidden}
 </section>
 
 
-<section id="vnfWorkflow" class="screen">
-  <div class="vnf-workflow-page">
-    <div class="vnf-workflow-head">
-      <h1 id="vnfWorkflowTitle">VNF</h1>
-      <p>Gewünschten Arbeitsschritt öffnen</p>
-    </div>
-    <button type="button" class="vnf-workflow-back" onclick="show('home')">← Zur VNF-Auswahl</button>
-    <div class="work-radial-wrap no-print">
-      <div class="work-radial" id="vnfWorkflowRadial">
-        <div class="work-radial-item wr1" data-step="1"><button type="button" onclick="workflowOpen(1)"><span class="wr-num">1</span><span>📄</span><b>Auftrag</b><small>Auftragsdaten</small><span class="wr-flow">Start</span></button></div>
-        <div class="work-radial-item wr2" data-step="2"><button type="button" onclick="workflowOpen(2)"><span class="wr-num">2</span><span>✓?</span><b>Gerechtfertigt?</b><small>Prüfen</small><span class="wr-flow">Prüfen</span></button></div>
-        <div class="work-radial-item wr3" data-step="3"><button type="button" onclick="workflowOpen(3)"><span class="wr-num">3</span><span>📷</span><b>Fotos</b><small>Aufnehmen</small><span class="wr-flow">Dokumentieren</span></button></div>
-        <div class="work-radial-item wr4" data-step="4"><button type="button" onclick="workflowOpen(4)"><span class="wr-num">4</span><span>🛠</span><b>Instandsetzung</b><small>Fehler · erledigt</small><span class="wr-flow">Bearbeiten</span></button></div>
-        <div class="work-radial-item wr5" data-step="5"><button type="button" onclick="workflowOpen(5)"><span class="wr-num">5</span><span>🕐</span><b>Datum / Zeit</b><small>Erfassen</small><span class="wr-flow">Erfassen</span></button></div>
-        <div class="work-radial-item wr6" data-step="6"><button type="button" onclick="workflowOpen(6)"><span class="wr-num">6</span><span>📑</span><b>Einblasprotokoll</b><small>Hochladen</small><span class="wr-flow">Dokumentieren</span></button></div>
-        <div class="work-radial-item wr7" data-step="7"><button type="button" onclick="workflowOpen(7)"><span class="wr-num">7</span><span>PDF</span><b>Abschluss</b><small>Gesamt-PDF</small><span class="wr-flow">PDF erstellen</span></button></div>
-        <div class="work-radial-core" aria-label="Ausgewählte VNF">
-          <img src="apple-touch-icon.png" alt="TD Logo">
-          <div class="vnf-center-vnf" id="vnfCenterLabel">Ausgewählte VNF</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <section id="new" class="screen">
   <div class="draft-bar"><span>Zwischenspeicherung: <b class="draft-step" id="draftStepStatus">Schritt 1</b></span><span class="draft-status" id="draftSaveStatus">Bereit</span></div>
   <div class="card step-card" id="step-card-1">
     <div class="step1-head">
-      <button class="ghost no-print" onclick="show('vnfWorkflow')">← Zu den Arbeitsschritten</button>
+      <button class="ghost no-print" onclick="show('home')">← Zu den Arbeitsschritten</button>
       <h2>1. Auftrag</h2>
     </div>
     <div class="row compact-row time-date-row">
@@ -1712,7 +1689,7 @@ document.addEventListener('DOMContentLoaded',()=>{
      document.querySelectorAll('.vnf-bar').forEach(b=>b.disabled=false);
      window.__thadenActiveStep=1;
      renderWorkflow();
-     show('vnfWorkflow');
+     show('new');
      window.scrollTo({top:0,behavior:'smooth'});
    },520);
  };
@@ -1736,19 +1713,6 @@ function show(id){
  if(map[id])$(map[id]).classList.add('active');
  if(id==='home')renderHome();
  if(id==='orders')renderOrders();
- if(id==='vnfWorkflow'){
-   const next=workflowState.done.length?Math.min(7,Math.max(...workflowState.done)+1):1;
-   window.__thadenActiveStep=next;
-   renderWorkflow();
-   const vnf=localStorage.getItem('thaden_doku_vnf')||'Ausgewählte VNF';
-   const label=$('vnfCenterLabel');
-   const title=$('vnfWorkflowTitle');
-   if(title) title.textContent=vnf || 'VNF';
-   if(label){
-     const clean=vnf.replace(/^VNF\s*/,'');
-     label.innerHTML='<span>VNF</span><strong>'+esc(clean)+'</strong>';
-   }
- }
  if(id==='new'){
    const next=workflowState.done.length?Math.min(7,Math.max(...workflowState.done)+1):1;
    window.__thadenActiveStep=next;
