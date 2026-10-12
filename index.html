@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#101820">
-<title>THADEN DOKUMENTATION V55</title>
+<title>THADEN DOKUMENTATION V70</title>
 <style>
 :root{--navy:#101820;--orange:#ff6b00;--bg:#f3f5f7;--card:#fff;--text:#16232d;--muted:#697680;--green:#159b60;--border:#d8dee3}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
@@ -880,8 +880,8 @@ body.home-mode .home-latest{position:absolute;left:50%;bottom:16px;transform:tra
 .step1-head{display:flex;align-items:center;gap:16px;margin-bottom:18px;min-width:0;}
 .step1-head h2{margin:0!important;white-space:nowrap;}
 .compact-row{gap:12px;margin-top:12px;}
-.time-date-row{display:block!important;margin-top:12px;}
-.time-date-row>div{width:100%;margin-bottom:14px;}
+.time-date-row{display:grid!important;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;}
+.time-date-row>div{width:auto;margin-bottom:0;}
 .time-field{position:relative;}
 .time-field::after{content:"🕐";position:absolute;right:14px;bottom:13px;font-size:22px;pointer-events:none;}
 .time-field input{padding-right:48px!important;}
@@ -988,6 +988,7 @@ body.home-mode .home-latest{position:absolute;left:50%;bottom:16px;transform:tra
 }
 </style>
 
+<style id="v72-work-page">body.work-mode{background:#071018!important;color:#eef4f8}body.work-mode .wrap{max-width:none!important;padding:0 0 80px!important}body.work-mode header{display:block}#work.screen{background:#071018;min-height:calc(100vh - 150px)}.work-page{background:#071018;color:#eef4f8;min-height:calc(100vh - 150px);padding:34px 10px 50px;box-sizing:border-box;overflow:hidden}.work-head{text-align:center;max-width:720px;margin:0 auto 4px}.work-head h1{margin:0;color:#ff7a00;font-size:clamp(28px,7vw,44px);line-height:1.08;font-weight:900}.work-head p{margin:7px 0 13px;color:#a8bac9;font-size:17px;font-weight:800}.work-back{border:1px solid #28404f;background:#101c25;color:#eef4f8;border-radius:16px;padding:12px 22px;font-size:17px;font-weight:900;cursor:pointer;box-shadow:0 6px 18px #0005}.work-radial-page{width:min(680px,100%);height:600px;margin:0 auto;position:relative}.work-radial-page .radial-item{width:138px;height:138px;background:#071018;border:3px solid currentColor;box-shadow:0 8px 25px #0007;z-index:6}.work-radial-page .radial-item button{padding:10px}.work-radial-page .radial-item .ri-icon{font-size:34px;margin-bottom:5px}.work-radial-page .radial-item b{font-size:15px;line-height:1.12}.work-radial-page .radial-item small{font-size:10px;line-height:1.2;color:#aebdca}.work-radial-page .radial-item .step-flow{font-size:8px;letter-spacing:1px;margin-top:4px;color:#ff9a24}.work-radial-page .radial-item .step-number{top:-15px;width:36px;height:36px;font-size:18px;border:3px solid #071018;box-shadow:0 3px 10px #0008}.work-radial-page .ri-step1{left:50%;top:4px;right:auto;bottom:auto;transform:translateX(-50%)!important;color:#18b96b}.work-radial-page .ri-step2{right:4%;top:19%;left:auto;bottom:auto;transform:none!important;color:#18b96b}.work-radial-page .ri-step3{right:0;top:46%;left:auto;bottom:auto;transform:none!important;color:#18b96b}.work-radial-page .ri-step4{right:12%;bottom:6%;left:auto;top:auto;transform:none!important;color:#18b96b}.work-radial-page .ri-step5{left:50%;bottom:0;right:auto;top:auto;transform:translateX(-50%)!important;color:#18b96b}.work-radial-page .ri-step6{left:12%;bottom:6%;right:auto;top:auto;transform:none!important;color:#18b96b}.work-radial-page .ri-step7{left:0;top:46%;right:auto;bottom:auto;transform:none!important;color:#ff8a00}.work-radial-page .radial-item.is-done{box-shadow:0 0 0 3px #159b60,0 12px 30px #0009}.work-radial-page .radial-item.is-current{box-shadow:0 0 0 3px #ff8a00,0 12px 30px #0009}.work-radial-page .radial-item.is-locked{filter:grayscale(.72);opacity:.42}.work-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:250px;height:250px;border:3px solid #ff7a00;border-radius:50%;background:#071018;box-shadow:0 0 0 2px #17232d inset,0 12px 35px #0008;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;z-index:5;box-sizing:border-box}.work-center-logo{margin-top:42px;width:130px;height:78px;border-radius:16px;display:flex;align-items:center;justify-content:center;background:#09121b}.work-center-logo img{width:125px;height:70px;object-fit:contain}.work-center-label{margin-top:12px;color:#fff;font-size:16px;font-weight:900}.work-center strong{color:#ff7a00;font-size:16px;text-align:center;line-height:1.1;margin-top:3px;max-width:200px}@media(max-width:700px){.work-page{padding:30px 6px 35px}.work-head h1{font-size:28px}.work-head p{font-size:15px;margin:5px 0 11px}.work-back{font-size:16px;padding:11px 18px}.work-radial-page{height:500px;max-width:390px}.work-radial-page .radial-item{width:104px;height:104px;border-width:2px}.work-radial-page .radial-item button{padding:6px}.work-radial-page .radial-item .ri-icon{font-size:27px;margin-bottom:3px}.work-radial-page .radial-item b{font-size:11px;line-height:1.15}.work-radial-page .radial-item small{font-size:8px}.work-radial-page .radial-item .step-flow{font-size:7px;margin-top:3px;letter-spacing:.8px}.work-radial-page .radial-item .step-number{top:-10px;width:28px;height:28px;font-size:14px;border-width:2px}.work-radial-page .ri-step1{left:50%;top:4px;transform:translateX(-50%)!important}.work-radial-page .ri-step2{right:2px;top:76px}.work-radial-page .ri-step3{right:0;top:250px}.work-radial-page .ri-step4{right:22px;bottom:12px}.work-radial-page .ri-step5{left:50%;bottom:0;transform:translateX(-50%)!important}.work-radial-page .ri-step6{left:22px;bottom:12px}.work-radial-page .ri-step7{left:0;top:250px}.work-center{width:166px;height:166px}.work-center-logo{margin-top:24px;width:90px;height:62px}.work-center-logo img{width:88px;height:56px}.work-center-label{margin-top:8px;font-size:13px}.work-center strong{font-size:12px;max-width:135px}}</style>
 <style id="v58-vnf-workflow-page">
 /* V59: Die 7 Arbeitsschritte liegen auf einer eigenen Seite. Der gewählte VNF steht im TD-Zentrum. */
 .vnf-workflow-page{min-height:calc(100vh - 24px);background:#071018;color:#eef4f8;padding:18px 12px 28px;box-sizing:border-box;}
@@ -1089,6 +1090,212 @@ body:has(#vnfWorkflow.active) .td-header-v24{background:#071018!important;}
  #vnfWorkflow.active .wr7{--x:-129px;--y:-103px;}
 }
 </style>
+
+<style id="v64-radial-layout">
+/* V64: saubere, gleichmäßige 7er-Anordnung rund um den mittleren TD-Kreis */
+body.home-mode .radial{
+  width:100%; max-width:390px; height:430px; margin:0 auto; position:relative;
+}
+body.home-mode .radial-core{
+  width:180px; height:180px;
+  left:50%; top:50%; transform:translate(-50%,-50%);
+}
+body.home-mode .radial-item{
+  width:116px; height:116px;
+  left:50%; top:50%; right:auto; bottom:auto;
+  transform:translate(-50%,-50%);
+  box-sizing:border-box;
+}
+/* gleichmäßig auf einem Kreis verteilt; genug Abstand zum mittleren Logo */
+body.home-mode .ri-step1{transform:translate(-50%,-50%) translate(0,-155px)!important}
+body.home-mode .ri-step2{transform:translate(-50%,-50%) translate(121px,-97px)!important}
+body.home-mode .ri-step3{transform:translate(-50%,-50%) translate(151px,35px)!important}
+body.home-mode .ri-step4{transform:translate(-50%,-50%) translate(94px,123px)!important}
+body.home-mode .ri-step5{transform:translate(-50%,-50%) translate(-94px,123px)!important}
+body.home-mode .ri-step6{transform:translate(-50%,-50%) translate(-151px,35px)!important}
+body.home-mode .ri-step7{transform:translate(-50%,-50%) translate(-121px,-97px)!important}
+body.home-mode .radial-item button{padding:8px}
+body.home-mode .radial-item .ri-icon{font-size:29px;margin-bottom:4px}
+body.home-mode .radial-item b{font-size:12px;line-height:1.12}
+body.home-mode .radial-item small{font-size:8.5px;line-height:1.18}
+body.home-mode .radial-item .step-flow{font-size:7px;line-height:1.1;margin-top:4px;letter-spacing:.75px}
+body.home-mode .radial-item .step-number{top:-10px;width:27px;height:27px;font-size:13px}
+@media(max-width:390px){
+  body.home-mode .radial{max-width:390px;height:430px}
+  body.home-mode .radial-core{width:176px;height:176px}
+  body.home-mode .radial-item{width:112px;height:112px}
+  body.home-mode .ri-step1{transform:translate(-50%,-50%) translate(0,-151px)!important}
+  body.home-mode .ri-step2{transform:translate(-50%,-50%) translate(118px,-94px)!important}
+  body.home-mode .ri-step3{transform:translate(-50%,-50%) translate(147px,34px)!important}
+  body.home-mode .ri-step4{transform:translate(-50%,-50%) translate(91px,120px)!important}
+  body.home-mode .ri-step5{transform:translate(-50%,-50%) translate(-91px,120px)!important}
+  body.home-mode .ri-step6{transform:translate(-50%,-50%) translate(-147px,34px)!important}
+  body.home-mode .ri-step7{transform:translate(-50%,-50%) translate(-118px,-94px)!important}
+}
+</style>
+
+<style id="v67-step1-readability">
+/* V67: Auftrag kompakt und sauber auf dem iPhone, ohne Überlappungen. */
+#new .draft-bar{position:relative;top:auto;z-index:5;margin:8px auto 14px;}
+#new .step-card{position:relative;z-index:1;}
+.step1-head{gap:10px;align-items:center;}
+.step1-head .ghost{flex:0 0 auto;}
+.step1-head h2{font-size:clamp(22px,5.8vw,34px)!important;min-width:0;}
+.time-date-row{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:12px!important;}
+.time-date-row>div{min-width:0!important;width:auto!important;margin-bottom:0!important;}
+.field-note{color:#697680;font-weight:700;font-size:.72em;white-space:nowrap;}
+.time-field::after{right:12px;bottom:12px;}
+.time-field input{padding-right:46px!important;}
+.compact-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:12px!important;}
+.compact-row>div{min-width:0!important;}
+.compact-row input,.single-field input{width:100%!important;box-sizing:border-box!important;min-width:0!important;}
+@media(max-width:520px){
+  #new .draft-bar{top:auto;margin-top:8px;}
+  .step1-head{gap:8px;}
+  .step1-head .ghost{font-size:13px!important;padding:9px 10px!important;}
+  .step1-head h2{font-size:22px!important;}
+  .time-date-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;}
+  .compact-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;}
+  .compact-row label,.single-field label{font-size:14px!important;}
+  .compact-row input,.single-field input{font-size:15px!important;padding:11px 10px!important;}
+}
+@media(max-width:380px){
+  .step1-head .ghost{font-size:12px!important;padding:8px 9px!important;}
+  .step1-head h2{font-size:22px!important;}
+  .time-date-row{gap:8px!important;}
+  .compact-row{gap:8px!important;}
+  .compact-row input,.single-field input{font-size:14px!important;}
+}
+</style>
+
+<style id="v69-step1-hard-fix">
+/* V69: hard fix – Step 1 layout is always two columns on phone */
+#new .step1-head{display:grid!important;grid-template-columns:auto 1fr!important;align-items:center!important;gap:10px!important;}
+#new .step1-head .ghost{white-space:nowrap!important;}
+#new .step1-head h2{white-space:nowrap!important;}
+#new .time-date-row,#new .compact-row{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;gap:10px!important;width:100%!important;}
+#new .time-date-row>div,#new .compact-row>div{flex:1 1 0!important;min-width:0!important;width:0!important;}
+#new .time-date-row input,#new .compact-row input{width:100%!important;min-width:0!important;box-sizing:border-box!important;}
+#new .time-field{position:relative!important;}
+#new .time-field::after{content:'🕐'!important;position:absolute!important;right:10px!important;bottom:11px!important;font-size:20px!important;pointer-events:none!important;}
+#new .time-field input{padding-right:40px!important;}
+#new .field-note{display:inline!important;color:#697680!important;font-weight:700!important;font-size:.72em!important;}
+#new .single-field{width:100%!important;}
+@media(max-width:520px){
+ #new .step1-head{grid-template-columns:auto 1fr!important;gap:8px!important;}
+ #new .step1-head .ghost{font-size:13px!important;padding:9px 10px!important;}
+ #new .step1-head h2{font-size:22px!important;}
+ #new .time-date-row,#new .compact-row{gap:8px!important;}
+ #new .time-date-row label,#new .compact-row label,#new .single-field label{font-size:14px!important;}
+ #new .time-date-row input,#new .compact-row input,#new .single-field input{font-size:14px!important;padding:11px 10px!important;}
+}
+</style>
+
+<style id="v70-step1-fit-screen">
+/* V70: Schritt 1 kompakt auf dem iPhone – alle Felder, Kopf und Speichern-Button in einer Ansicht. */
+html,body{overflow-x:hidden}
+@media(max-width:600px){
+  body:has(#new.active){
+    background:#f3f5f7!important;
+  }
+  body:has(#new.active) .td-header-v24.td-header-logo-v27{
+    min-height:58px!important;
+    height:58px!important;
+    padding:5px 12px!important;
+    position:relative!important;
+    box-shadow:0 2px 8px #0002!important;
+  }
+  body:has(#new.active) .td-header-v24.td-header-logo-v27 > img.td-header-logo-v27{
+    width:min(300px,92vw)!important;
+    height:48px!important;
+    max-height:48px!important;
+    object-fit:contain!important;
+  }
+  body:has(#new.active) .wrap{
+    padding:4px 8px 18px!important;
+    max-width:600px!important;
+  }
+  #new.active .draft-bar{
+    margin:4px auto 6px!important;
+    padding:7px 10px!important;
+    min-height:44px!important;
+    border-radius:12px!important;
+    font-size:14px!important;
+    box-shadow:0 4px 12px #0002!important;
+  }
+  #new.active .draft-bar .draft-status{font-size:12px!important}
+  #new.active .step-card#step-card-1{
+    padding:10px 12px 12px!important;
+    margin:0!important;
+    border-radius:16px!important;
+    box-shadow:0 4px 14px #18324b12!important;
+  }
+  #new.active .step1-head{
+    gap:7px!important;
+    margin-bottom:5px!important;
+    min-height:40px!important;
+  }
+  #new.active .step1-head .ghost{
+    font-size:12px!important;
+    line-height:1!important;
+    padding:10px 9px!important;
+    border-radius:10px!important;
+  }
+  #new.active .step1-head h2{
+    font-size:21px!important;
+    line-height:1!important;
+    margin:0!important;
+  }
+  #new.active .time-date-row,
+  #new.active .compact-row{
+    gap:7px!important;
+    margin-top:4px!important;
+  }
+  #new.active .time-date-row label,
+  #new.active .compact-row label,
+  #new.active .single-field label{
+    font-size:12px!important;
+    line-height:1.05!important;
+    margin:5px 0 3px!important;
+  }
+  #new.active .field-note{font-size:.72em!important}
+  #new.active .time-date-row input,
+  #new.active .compact-row input,
+  #new.active .single-field input{
+    height:39px!important;
+    min-height:39px!important;
+    padding:7px 9px!important;
+    border-radius:9px!important;
+    font-size:14px!important;
+  }
+  #new.active .time-field input{padding-right:36px!important}
+  #new.active .time-field::after{right:8px!important;bottom:8px!important;font-size:18px!important}
+  #new.active .single-field{margin-top:4px!important}
+  #new.active .step-next{margin-top:8px!important}
+  #new.active .step-next .primary{
+    min-height:44px!important;
+    height:44px!important;
+    padding:8px 10px!important;
+    font-size:14px!important;
+    border-radius:11px!important;
+    white-space:nowrap!important;
+  }
+  #new.active .step-save-notice{font-size:12px!important;margin:4px 0 0!important}
+  #new.active .step-save-notice .notice{padding:6px 8px!important;margin-top:4px!important}
+  /* Nur Schritt 1 wird beim Öffnen gezeigt; die weiteren Schritte bleiben im Workflow verfügbar. */
+  #new.active .step-card:not(#step-card-1){display:none!important}
+}
+@media(max-width:380px){
+  #new.active .step1-head .ghost{font-size:11px!important;padding:9px 8px!important}
+  #new.active .step1-head h2{font-size:20px!important}
+  #new.active .draft-bar{font-size:13px!important}
+  #new.active .time-date-row input,
+  #new.active .compact-row input,
+  #new.active .single-field input{font-size:13px!important}
+  #new.active .step-next .primary{font-size:13px!important}
+}
+</style>
+
 </head>
 <body class="home-mode pin-locked">
 <div id="vnfScreenFlash" class="vnf-screen-flash" aria-hidden="true"></div>
@@ -1115,7 +1322,7 @@ body:has(#vnfWorkflow.active) .td-header-v24{background:#071018!important;}
     <div class="pin-status" id="pinStatus"></div>
     <button class="pin-change" id="pinChange" type="button">PIN ändern</button>
   </div>
-  <div class="pin-version">THADEN DOKUMENTATION · V59</div>
+  <div class="pin-version">THADEN DOKUMENTATION · V72</div>
 </section>
 
 <header class="td-header-v24 td-header-logo-v27">
@@ -1146,40 +1353,19 @@ body:has(#vnfWorkflow.active) .td-header-v24{background:#071018!important;}
 </section>
 
 
-<section id="vnfWorkflow" class="screen">
-  <div class="vnf-workflow-page">
-    <div class="vnf-workflow-head">
-      <h1 id="vnfWorkflowTitle">VNF</h1>
-      <p>Gewünschten Arbeitsschritt öffnen</p>
-    </div>
-    <button type="button" class="vnf-workflow-back" onclick="show('home')">← Zur VNF-Auswahl</button>
-    <div class="work-radial-wrap no-print">
-      <div class="work-radial" id="vnfWorkflowRadial">
-        <div class="work-radial-item wr1" data-step="1"><button type="button" onclick="workflowOpen(1)"><span class="wr-num">1</span><span>📄</span><b>Auftrag</b><small>Auftragsdaten</small><span class="wr-flow">Start</span></button></div>
-        <div class="work-radial-item wr2" data-step="2"><button type="button" onclick="workflowOpen(2)"><span class="wr-num">2</span><span>✓?</span><b>Gerechtfertigt?</b><small>Prüfen</small><span class="wr-flow">Prüfen</span></button></div>
-        <div class="work-radial-item wr3" data-step="3"><button type="button" onclick="workflowOpen(3)"><span class="wr-num">3</span><span>📷</span><b>Fotos</b><small>Aufnehmen</small><span class="wr-flow">Dokumentieren</span></button></div>
-        <div class="work-radial-item wr4" data-step="4"><button type="button" onclick="workflowOpen(4)"><span class="wr-num">4</span><span>🛠</span><b>Instandsetzung</b><small>Fehler · erledigt</small><span class="wr-flow">Bearbeiten</span></button></div>
-        <div class="work-radial-item wr5" data-step="5"><button type="button" onclick="workflowOpen(5)"><span class="wr-num">5</span><span>🕐</span><b>Datum / Zeit</b><small>Erfassen</small><span class="wr-flow">Erfassen</span></button></div>
-        <div class="work-radial-item wr6" data-step="6"><button type="button" onclick="workflowOpen(6)"><span class="wr-num">6</span><span>📑</span><b>Einblasprotokoll</b><small>Hochladen</small><span class="wr-flow">Dokumentieren</span></button></div>
-        <div class="work-radial-item wr7" data-step="7"><button type="button" onclick="workflowOpen(7)"><span class="wr-num">7</span><span>PDF</span><b>Abschluss</b><small>Gesamt-PDF</small><span class="wr-flow">PDF erstellen</span></button></div>
-        <div class="work-radial-core" aria-label="Ausgewählte VNF">
-          <img src="apple-touch-icon.png" alt="TD Logo">
-          <div class="vnf-center-vnf" id="vnfCenterLabel">Ausgewählte VNF</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+
+
+<section id="work" class="screen"><div class="work-page"><div class="work-head"><h1 id="workVnfName">VNF Glasfaser NordWest</h1><p>Gewünschten Arbeitsschritt öffnen</p><button type="button" class="work-back" onclick="backToVnfSelection()">← Zur VNF-Auswahl</button></div><div class="radial work-radial-page"><div class="radial-item ri-step1" data-step="1"><button onclick="workflowOpen(1)"><span class="step-number">1</span><span class="ri-icon">📄</span><b>Auftrag</b><small>Auftragsdaten</small><span class="step-flow">START</span></button></div><div class="radial-item ri-step2" data-step="2"><button onclick="workflowOpen(2)"><span class="step-number">2</span><span class="ri-icon">✓?</span><b>Gerechtfertigt?</b><small>Prüfen</small><span class="step-flow">PRÜFEN</span></button></div><div class="radial-item ri-step3" data-step="3"><button onclick="workflowOpen(3)"><span class="step-number">3</span><span class="ri-icon">📷</span><b>Fotos</b><small>Aufnehmen</small><span class="step-flow">DOKUMENTIEREN</span></button></div><div class="radial-item ri-step4" data-step="4"><button onclick="workflowOpen(4)"><span class="step-number">4</span><span class="ri-icon">🛠</span><b>Instandsetzung</b><small>Fehler · erledigt</small><span class="step-flow">BEARBEITEN</span></button></div><div class="radial-item ri-step5" data-step="5"><button onclick="workflowOpen(5)"><span class="step-number">5</span><span class="ri-icon">🕐</span><b>Datum / Zeit</b><small>Erfassen</small><span class="step-flow">ERFASSEN</span></button></div><div class="radial-item ri-step6" data-step="6"><button onclick="workflowOpen(6)"><span class="step-number">6</span><span class="ri-icon">📑</span><b>Einblasprotokoll</b><small>Hochladen</small><span class="step-flow">DOKUMENTIEREN</span></button></div><div class="radial-item ri-step7" data-step="7"><button onclick="workflowOpen(7)"><span class="step-number">7</span><span class="ri-icon">PDF</span><b>Abschluss</b><small>Gesamt-PDF</small><span class="step-flow">PDF ERSTELLEN</span></button></div><div class="work-center"><div class="work-center-logo"><img src="apple-touch-icon.png" alt="TD"></div><div class="work-center-label">VNF</div><strong id="workVnfCenter">Glasfaser NordWest</strong></div></div></div></section>
 
 <section id="new" class="screen">
   <div class="draft-bar"><span>Zwischenspeicherung: <b class="draft-step" id="draftStepStatus">Schritt 1</b></span><span class="draft-status" id="draftSaveStatus">Bereit</span></div>
   <div class="card step-card" id="step-card-1">
     <div class="step1-head">
-      <button class="ghost no-print" onclick="show('home')">← Zur Startseite</button>
+      <button class="ghost no-print" onclick="backToVnfSelection()">← Zur VNF-Auswahl</button>
       <h2>1. Auftrag</h2>
     </div>
     <div class="row compact-row time-date-row">
-      <div class="time-field"><label>Uhrzeit *</label><input id="jobTime" type="time" aria-label="Uhrzeit"></div>
+      <div class="time-field"><label>Uhrzeit * <span class="field-note">(Start)</span></label><input id="jobTime" type="time" aria-label="Uhrzeit Start"></div>
       <div><label>Datum *</label><input id="jobDate" type="date" aria-label="Datum"></div>
     </div>
     <div class="row compact-row">
@@ -1197,7 +1383,7 @@ body:has(#vnfWorkflow.active) .td-header-v24{background:#071018!important;}
     <div class="single-field">
       <label>Mitarbeiter</label><input id="worker" placeholder="Name">
     </div>
-    <div class="step-next"><button class="primary" onclick="saveStepAndNext(1)">✓ Schritt 1 speichern &amp; weiter →</button></div>
+    <div id="step1SaveNotice" class="step-save-notice" aria-live="polite"></div><div class="step-next"><button class="primary" onclick="saveStepAndNext(1)">✓ Schritt 1 speichern &amp; weiter →</button></div>
   </div>
 
   <div class="card step-card" id="step-card-2">
@@ -1378,7 +1564,7 @@ function persistDraft(){
 }
 function validateStep(n){
  const d=formData();
- if(n===1){if(!d.jobNo||!d.date||!d.city||!d.zip||!d.address||!d.time){$('saveNotice').innerHTML='<div class="notice warn">Bitte Auftragsnummer, Datum, Uhrzeit, Ort, PLZ und Adresse ausfüllen.</div>';scrollToStep(1);return false;}}
+ if(n===1){if(!d.jobNo||!d.date||!d.time||!d.city||!d.zip||!d.street||!d.house){const msg='Bitte Auftragsnummer, Datum, Uhrzeit (Start), Ort, PLZ, Straße und Hausnummer ausfüllen.';if($('step1SaveNotice'))$('step1SaveNotice').innerHTML='<div class="notice warn">'+msg+'</div>';if($('saveNotice'))$('saveNotice').innerHTML='<div class="notice warn">'+msg+'</div>';scrollToStep(1);return false;}if($('step1SaveNotice'))$('step1SaveNotice').innerHTML='';}
  if(n===2){if(!d.justified){$('saveNotice').innerHTML='<div class="notice warn">Bitte bei „Gerechtfertigt?“ Ja oder Nein auswählen.</div>';scrollToStep(2);return false;}if(d.justified==='ja'&&!d.faultArea){$('saveNotice').innerHTML='<div class="notice warn">Bitte bei Ja „Öffentlich“ oder „Privat“ auswählen.</div>';scrollToStep(2);return false;}}
  if(n===3){if(!photos.length){$('photoStatus').innerHTML='<div class="notice warn">Bitte mindestens ein Foto aufnehmen oder auswählen.</div>';scrollToStep(3);return false;}}
  if(n===4){if(!d.finding||!d.workDone){$('saveNotice').innerHTML='<div class="notice warn">Bitte Fehler und durchgeführte Arbeiten eintragen.</div>';scrollToStep(4);return false;}}
@@ -1401,6 +1587,7 @@ async function saveStepAndNext(n){
  if(n<7){
    persistDraft();
    completeStep(n);
+   if(n===1&&$('step1SaveNotice'))$('step1SaveNotice').innerHTML='<div class="notice ok">✓ Schritt 1 gespeichert · weiter zu Schritt 2</div>';
    showSavePopup(n,true);
    setTimeout(()=>scrollToStep(n+1),650);
  } else {
@@ -1505,7 +1692,7 @@ document.addEventListener('DOMContentLoaded',()=>{
      document.querySelectorAll('.vnf-bar').forEach(b=>b.disabled=false);
      window.__thadenActiveStep=1;
      renderWorkflow();
-     show('vnfWorkflow');
+     show('new');
      window.scrollTo({top:0,behavior:'smooth'});
    },520);
  };
@@ -1516,6 +1703,8 @@ document.addEventListener('DOMContentLoaded',()=>{
  });
 });
 
+function backToVnfSelection(){show('home');setTimeout(()=>{const t=$('radialToggle'),c=$('vnfChoice');if(t&&c&&!c.classList.contains('show'))t.click();},140);}
+
 const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 const fmtDate=d=>d?new Date(d+'T00:00:00').toLocaleDateString('de-DE'):'';
 const fmtTime=s=>{s=Math.max(0,Math.floor(s));let h=String(Math.floor(s/3600)).padStart(2,'0'),m=String(Math.floor(s%3600/60)).padStart(2,'0'),x=String(s%60).padStart(2,'0');return `${h}:${m}:${x}`};
@@ -1524,24 +1713,13 @@ function show(id){
  document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));
  $(id).classList.add('active');
  document.body.classList.toggle('home-mode',id==='home');
+ document.body.classList.toggle('work-mode',id==='work');
  document.querySelectorAll('.bottom button').forEach(x=>x.classList.remove('active'));
  const map={home:'nav-home',new:'nav-new',orders:'nav-orders'};
  if(map[id])$(map[id]).classList.add('active');
  if(id==='home')renderHome();
  if(id==='orders')renderOrders();
- if(id==='vnfWorkflow'){
-   const next=workflowState.done.length?Math.min(7,Math.max(...workflowState.done)+1):1;
-   window.__thadenActiveStep=next;
-   renderWorkflow();
-   const vnf=localStorage.getItem('thaden_doku_vnf')||'Ausgewählte VNF';
-   const label=$('vnfCenterLabel');
-   const title=$('vnfWorkflowTitle');
-   if(title) title.textContent=vnf || 'VNF';
-   if(label){
-     const clean=vnf.replace(/^VNF\s*/,'');
-     label.innerHTML='<span>VNF</span><strong>'+esc(clean)+'</strong>';
-   }
- }
+ if(id==='work'){const v=localStorage.getItem('thaden_doku_vnf')||'';const n=$('workVnfName'),c=$('workVnfCenter');if(n)n.textContent=v||'VNF Glasfaser NordWest';if(c)c.textContent=(v||'VNF Glasfaser NordWest').replace(/^VNF\s*/,'');renderWorkflow();}
  if(id==='new'){
    const next=workflowState.done.length?Math.min(7,Math.max(...workflowState.done)+1):1;
    window.__thadenActiveStep=next;
@@ -1576,7 +1754,7 @@ function newOrder(){
 async function loadOrder(id){
  const o=orders.find(x=>x.id===id); if(!o)return;
  editingId=id; photos=o.photos||[]; timerSeconds=o.seconds||0;
- $('jobNo').value=o.jobNo||'';$('jobDate').value=o.date||today();$('jobTime').value=o.time||'';$('jobCity').value=o.city||'';$('jobZip').value=o.zip||'';$('jobAddress').value=o.address||'';$('customer').value=o.customer||'';$('worker').value=o.worker||'';
+ $('jobNo').value=o.jobNo||'';$('nvtArea').value=o.nvtArea||'';$('jobDate').value=o.date||today();$('jobTime').value=o.time||'';$('jobCity').value=o.city||'';$('jobZip').value=o.zip||'';$('jobStreet').value=o.street||'';$('jobHouse').value=o.house||'';if($('jobAddress'))$('jobAddress').value=o.address||'';$('customer').value=o.customer||'';$('worker').value=o.worker||'';
  $('justified').value=o.justified||'';$('faultArea').value=o.faultArea||'';toggleJustifiedType();$('finding').value=o.finding||'';$('workDone').value=o.workDone||'';$('notes').value=o.notes||'';
  $('docDate').value=o.docDate||o.date||today();$('docTime').value=o.docTime||o.time||'';$('photoGrid').innerHTML='';renderPhotos();updateTimer();resetProtocolUI();
  if(o.protocolMeta){protocolFile=await getAttachment(o.protocolMeta.id);$('protocolStatus').innerHTML=protocolFile?`<div class="notice ok">✓ ${esc(o.protocolMeta.name)} geladen.</div>`:'<div class="notice warn">Einblasprotokoll konnte nicht geladen werden.</div>';}
@@ -1611,10 +1789,16 @@ async function handleProtocol(ev){
  protocolFile=file; $('protocolStatus').innerHTML='<div class="notice">Einblasprotokoll wird vorbereitet…</div>';
  $('protocolStatus').innerHTML=`<div class="notice ok">✓ ${esc(file.name)} (${Math.round(file.size/1024)} KB) ausgewählt.</div>`;
 }
-function formData(){return {
- jobNo:$('jobNo').value.trim(),nvtArea:$('nvtArea')?.value.trim()||'',date:$('jobDate').value||today(),time:$('jobTime').value,city:$('jobCity').value.trim(),zip:$('jobZip').value.trim(),street:$('jobStreet')?.value.trim()||'',house:$('jobHouse')?.value.trim()||'',address:((($('jobStreet')?.value||'').trim()+' '+(($('jobHouse')?.value||'').trim())).trim()||$('jobAddress').value.trim()),customer:$('customer').value.trim(),worker:$('worker').value.trim(),
- justified:$('justified').value,faultArea:$('faultArea').value,docDate:$('docDate').value||today(),docTime:$('docTime').value,finding:$('finding').value.trim(),workDone:$('workDone').value.trim(),notes:$('notes').value.trim(),seconds:timerSeconds,photos:[...photos]
-};}
+function formData(){
+ const street=$('jobStreet')?.value.trim()||'';
+ const house=$('jobHouse')?.value.trim()||'';
+ const legacyAddress=$('jobAddress')?.value.trim()||'';
+ const address=[street,house].filter(Boolean).join(' ')||legacyAddress;
+ return {
+  jobNo:$('jobNo')?.value.trim()||'',nvtArea:$('nvtArea')?.value.trim()||'',date:$('jobDate')?.value||today(),time:$('jobTime')?.value||'',city:$('jobCity')?.value.trim()||'',zip:$('jobZip')?.value.trim()||'',street,house,address,customer:$('customer')?.value.trim()||'',worker:$('worker')?.value.trim()||'',
+  justified:$('justified')?.value||'',faultArea:$('faultArea')?.value||'',docDate:$('docDate')?.value||today(),docTime:$('docTime')?.value||'',finding:$('finding')?.value.trim()||'',workDone:$('workDone')?.value.trim()||'',notes:$('notes')?.value.trim()||'',seconds:timerSeconds,photos:[...photos]
+ };
+}
 async function saveOrder(fromWorkflow=false){
  const d=formData();
  if(!d.jobNo||!d.city||!d.zip||!d.address){$('saveNotice').innerHTML='<div class="notice warn">Bitte Auftragsnummer, Ort, PLZ und Adresse ausfüllen.</div>';return false}
@@ -1739,6 +1923,42 @@ body.home-mode .home-top .td-logo{transform:translateY(-38px);}
   body.home-mode .home-top .td-logo{transform:translateY(-24px);}
 }
 </style>
+
+<style>
+/* V66 – Kreise vergrößert, damit alle Beschriftungen sauber innerhalb der Ringe sitzen */
+@media(max-width:700px){
+  .radial{height:430px;max-width:390px;width:100%;}
+  .radial-core{width:166px;height:166px;}
+  .radial-item{width:112px;height:112px;border-width:2px;}
+  .radial-item button{padding:7px;}
+  .radial-item .ri-icon{font-size:29px;margin-bottom:4px;}
+  .radial-item b{font-size:11.5px;line-height:1.12;}
+  .radial-item small{font-size:8.5px;line-height:1.18;}
+  .radial-item .step-flow{font-size:7px;margin-top:4px;letter-spacing:.75px;}
+  .radial-item .step-number{top:-10px;width:27px;height:27px;font-size:13px;}
+  /* 7 Ringe gleichmäßig um den Mittelpunkt, mit etwas mehr Abstand zum mittleren Logo */
+  .ri-step1{transform:translate(-50%,-50%) translate(0,-142px)!important}
+  .ri-step2{transform:translate(-50%,-50%) translate(112px,-87px)!important}
+  .ri-step3{transform:translate(-50%,-50%) translate(139px,31px)!important}
+  .ri-step4{transform:translate(-50%,-50%) translate(87px,112px)!important}
+  .ri-step5{transform:translate(-50%,-50%) translate(-87px,112px)!important}
+  .ri-step6{transform:translate(-50%,-50%) translate(-139px,31px)!important}
+  .ri-step7{transform:translate(-50%,-50%) translate(-112px,-87px)!important}
+}
+@media(max-width:390px){
+  .radial{height:430px;}
+  .radial-item{width:108px;height:108px;}
+  .radial-item b{font-size:11px;}
+  .radial-item small{font-size:8px;}
+  .ri-step1{transform:translate(-50%,-50%) translate(0,-138px)!important}
+  .ri-step2{transform:translate(-50%,-50%) translate(108px,-84px)!important}
+  .ri-step3{transform:translate(-50%,-50%) translate(134px,30px)!important}
+  .ri-step4{transform:translate(-50%,-50%) translate(84px,108px)!important}
+  .ri-step5{transform:translate(-50%,-50%) translate(-84px,108px)!important}
+  .ri-step6{transform:translate(-50%,-50%) translate(-134px,30px)!important}
+  .ri-step7{transform:translate(-50%,-50%) translate(-108px,-84px)!important}
+}
+</style>
 </body>
 
 <style id="v62-workflow-circles-toggle">
@@ -1759,13 +1979,14 @@ body.home-mode .home-top .td-logo{transform:translateY(-38px);}
   #vnfWorkflow.active .work-radial-core{width:150px;height:150px}
   #vnfWorkflow.active .work-radial-core img{width:70px;height:70px;top:22px}
   #vnfWorkflow.active .work-radial-item{width:96px;height:96px}
+  /* V65: gleicher Mittelpunkt-Abstand für alle 7 Kreise */
   #vnfWorkflow.active .wr1{--x:0px;--y:-135px}
-  #vnfWorkflow.active .wr2{--x:116px;--y:-69px}
-  #vnfWorkflow.active .wr3{--x:135px;--y:36px}
-  #vnfWorkflow.active .wr4{--x:84px;--y:112px}
-  #vnfWorkflow.active .wr5{--x:-84px;--y:112px}
-  #vnfWorkflow.active .wr6{--x:-135px;--y:36px}
-  #vnfWorkflow.active .wr7{--x:-116px;--y:-69px}
+  #vnfWorkflow.active .wr2{--x:106px;--y:-84px}
+  #vnfWorkflow.active .wr3{--x:132px;--y:30px}
+  #vnfWorkflow.active .wr4{--x:58px;--y:122px}
+  #vnfWorkflow.active .wr5{--x:-58px;--y:122px}
+  #vnfWorkflow.active .wr6{--x:-132px;--y:30px}
+  #vnfWorkflow.active .wr7{--x:-106px;--y:-84px}
 }
 @media(min-width:600px){
   #vnfWorkflow.active .work-radial{width:430px;height:440px}
@@ -1774,13 +1995,14 @@ body.home-mode .home-top .td-logo{transform:translateY(-38px);}
   #vnfWorkflow.active .work-radial-item button{font-size:11px}
   #vnfWorkflow.active .work-radial-item b{font-size:12px}
   #vnfWorkflow.active .work-radial-item small{font-size:8px}
-  #vnfWorkflow.active .wr1{--x:0px;--y:-165px}
-  #vnfWorkflow.active .wr2{--x:145px;--y:-91px}
-  #vnfWorkflow.active .wr3{--x:160px;--y:42px}
-  #vnfWorkflow.active .wr4{--x:90px;--y:145px}
-  #vnfWorkflow.active .wr5{--x:-90px;--y:145px}
-  #vnfWorkflow.active .wr6{--x:-160px;--y:42px}
-  #vnfWorkflow.active .wr7{--x:-145px;--y:-91px}
+  /* V65: gleicher Mittelpunkt-Abstand für alle 7 Kreise */
+  #vnfWorkflow.active .wr1{--x:0px;--y:-150px}
+  #vnfWorkflow.active .wr2{--x:117px;--y:-94px}
+  #vnfWorkflow.active .wr3{--x:146px;--y:33px}
+  #vnfWorkflow.active .wr4{--x:66px;--y:134px}
+  #vnfWorkflow.active .wr5{--x:-66px;--y:134px}
+  #vnfWorkflow.active .wr6{--x:-146px;--y:33px}
+  #vnfWorkflow.active .wr7{--x:-117px;--y:-94px}
 }
 </style>
 <script id="v62-workflow-toggle-script">
@@ -1801,6 +2023,13 @@ document.addEventListener('DOMContentLoaded',()=>{
   core.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}});
 });
 </script>
+
+<style id="v73-direct-work-mask">
+/* V73: Nach der VNF-Auswahl direkt die neue Arbeitsmaske öffnen.
+   Die frühere 7-Ringe-Übersicht wird nicht mehr als Zwischenseite angezeigt. */
+#work{display:none!important;}
+body.work-mode{background:#071018!important;}
+</style>
 </html>
 
 <style id="v42-start-collapsed-logo-wave">
