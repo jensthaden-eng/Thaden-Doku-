@@ -1,13 +1,9 @@
 # THADEN DOKUMENTATION – Testversion
 
-Testablauf:
-1. VNF Glasfaser NordWest oder Telekom auswählen
-2. Auftragsdaten
-3. Fehler & Instandsetzung
-4. Fotos
-5. Protokoll
-6. Arbeitszeit mit automatischer Pausenberechnung
-7. Kontrolle
-8. Gesamt-PDF
+Design und Ablauf als Testprototyp nach der bereitgestellten Vorlage.
 
-Die Version ist als Testprototyp gedacht. Die PDF-Erstellung nutzt jsPDF aus dem CDN.
+Test-PIN: **1234**
+
+Enthalten: PIN, VNF-Auswahl, Arbeitsübersicht, 7 Schritte, Fotoaufnahme mit Zeit/GPS-Versuch, Protokoll-Upload, Arbeitszeitberechnung, Kontrolle, Druck/PDF und Woche/Monat-Auswertungsansicht.
+
+Hinweis: Dies ist ein Browser-Prototyp. Die echte Produktivversion sollte Speicherung, Benutzerverwaltung, PDF-Engine, GPS-Datenschutz und Mehrbenutzer-Auswertung serverseitig sauber umsetzen.
