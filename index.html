@@ -15,13 +15,58 @@
 /* stats */.stats h1{text-align:left;font-size:25px}.switch{display:grid;grid-template-columns:1fr 1fr;background:#12232d;border:1px solid var(--line);border-radius:10px;padding:2px;margin-bottom:12px}.switch button{border:0;background:transparent;color:#a8b8c3;border-radius:8px;padding:7px;font-size:11px;font-weight:800}.switch button.active{background:#f0f3f5;color:#16232d}.statgrid{display:grid;grid-template-columns:1fr 1fr;gap:7px}.statbox{padding:11px;border:1px solid #2a4555;border-radius:10px;background:#0d1a23}.statbox span{font-size:9px;color:var(--muted)}.statbox b{display:block;font-size:19px;margin-top:2px}.bars{padding:11px;margin-top:8px}.barrow{display:grid;grid-template-columns:1fr 100px 20px;gap:6px;align-items:center;font-size:10px;margin:8px 0}.bar{height:9px;background:#182a34;border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;background:var(--orange);width:var(--w)}
 /* nav */.bottom{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:min(100%,430px);background:#08131b;border-top:1px solid #1b3848;display:grid;grid-template-columns:repeat(4,1fr);padding:8px 5px calc(8px + env(safe-area-inset-bottom));z-index:30}.nav{border:0;background:transparent;color:#91a4b2;font-size:10px;font-weight:800}.nav.active{color:var(--orange)}.navicon{display:block;font-size:18px;margin-bottom:3px}
 @media(max-width:360px){.header{height:64px}.h1{font-size:26px}.key{height:56px}.tcard b{font-size:13px}.fields{gap:7px}.field input,.field textarea,.field select{padding:9px;font-size:12px}}
+
+/* Startseite im neuen THADEN-Dashboard-Design; bestehende Workflow-Funktionen bleiben erhalten */
+.dashboard{padding:0 2px 10px}
+.dash-brandline{display:none}
+.dash-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:stretch}
+.dash-tile{min-width:0;min-height:126px;border:2px solid var(--tile,var(--orange));border-radius:24px;background:linear-gradient(160deg,#0d1b25,#071018);color:var(--white);padding:10px 5px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:0 8px 18px #0003;cursor:pointer}
+.dash-tile:active{transform:scale(.97)}
+.dash-tile .tile-icon{font-size:36px;line-height:1.15;margin-bottom:7px}
+.dash-tile .tile-title{font-size:14px;line-height:1.15;font-weight:900;overflow-wrap:anywhere}
+.dash-tile .tile-sub{font-size:11px;line-height:1.25;color:var(--muted);margin-top:5px}
+.dash-tile .tile-action{font-size:10px;line-height:1.2;font-weight:900;color:#ffb21a;margin-top:6px;text-transform:uppercase}
+.dash-tile.pdf{--tile:#d51bea}.dash-tile.order{--tile:#ff6500}.dash-tile.check{--tile:#14d59a}.dash-tile.protocol{--tile:#13d4e8}.dash-tile.photos{--tile:#1293ff}.dash-tile.time{--tile:#ffba26}.dash-tile.repair{--tile:#b9c4ce}
+.dash-center{grid-column:2;grid-row:2;min-height:166px;border:2px solid var(--orange);border-radius:30px;background:radial-gradient(ellipse at center,#13232e 0%,#09141c 72%);display:flex;align-items:center;justify-content:center;padding:12px;box-shadow:0 0 22px #ff65001b}
+.dash-center img{width:100%;max-width:180px;height:auto;object-fit:contain}
+.dash-tile.order{grid-column:2;grid-row:1}
+.dash-tile.pdf{grid-column:1;grid-row:1}
+.dash-tile.check{grid-column:3;grid-row:1}
+.dash-tile.protocol{grid-column:1;grid-row:2}
+.dash-tile.photos{grid-column:3;grid-row:2}
+.dash-tile.time{grid-column:1 / span 1;grid-row:3}
+.dash-tile.repair{grid-column:3;grid-row:3}
+.dash-recent{margin:16px 0 10px;padding:18px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:82px}
+.dash-recent h2{font-size:21px;line-height:1.1;margin:0;font-weight:900}
+.dash-recent button{border:0;background:transparent;color:var(--orange2);font-weight:900;font-size:15px;padding:6px 0}
+.dash-progress{margin-top:10px}
+.dash-progress summary{font-size:13px;font-weight:800;color:var(--muted);padding:12px 14px;cursor:pointer}
+.dash-progress .timeline{padding-bottom:8px}
+@media(max-width:360px){.dash-grid{gap:7px}.dash-tile{min-height:115px;padding:8px 3px;border-radius:20px}.dash-tile .tile-icon{font-size:30px}.dash-tile .tile-title{font-size:12px}.dash-tile .tile-sub{font-size:10px}.dash-center{min-height:148px;padding:8px}.dash-recent h2{font-size:18px}}
+
 </style></head><body><div class="toast" id="toast"></div><main class="app"><header class="header"><img src="thaden-header-logo.png" alt="THADEN DOKUMENTATION"></header>
 
 <section id="login" class="screen active login"><div class="eyebrow">Sicherer Start</div><h1 class="h1">Willkommen</h1><p class="lead">Bitte PIN eingeben</p><div class="panel loginbox" id="pinPanel"><div class="dots" id="dots"></div><div class="keypad" id="keypad"></div><div class="pin-note">Test-PIN: <b>1234</b> · Tastendruck mit Pulseffekt</div></div></section>
 
 <section id="vnf" class="screen vnf-screen"><div class="eyebrow">Auftraggeber auswählen</div><h1 class="h1">VNF auswählen</h1><p class="lead">Bitte den gewünschten Auftraggeber auswählen.</p><div><button class="vnf-card" id="vnfNW"><img src="vnf-glasfaser-nordwest.jpeg" alt="Glasfaser NordWest"><div class="vnf-row"><span>VNF Glasfaser NordWest</span><span class="arr">›</span></div></button><button class="vnf-card" id="vnfT"><div class="telekom-img"><b>T</b></div><div class="vnf-row"><span>VNF Telekom</span><span class="arr">›</span></div></button></div></section>
 
-<section id="overview" class="screen"><div class="overview-top"><div class="lock">🔒</div><div class="order"><b id="ovOrder">Aktueller Auftrag</b><span id="ovVnf">VNF noch nicht gewählt</span></div></div><div class="timeline" id="timeline"></div></section>
+<section id="overview" class="screen">
+<div class="overview-top"><div class="lock">🔒</div><div class="order"><b id="ovOrder">Aktueller Auftrag</b><span id="ovVnf">VNF noch nicht gewählt</span></div></div>
+<div class="dashboard">
+<div class="dash-grid">
+<button class="dash-tile pdf" onclick="openStep(7)" aria-label="PDF-Abschluss öffnen"><span class="tile-icon">📄</span><span class="tile-title">PDF</span><span class="tile-title">Abschluss</span><span class="tile-sub">Gesamt-PDF</span><span class="tile-action">PDF erstellen</span></button>
+<button class="dash-tile order" onclick="openStep(1)" aria-label="Auftragsdaten öffnen"><span class="tile-icon">📄</span><span class="tile-title">Auftrag</span><span class="tile-sub">Nr. · Ort · PLZ · Adresse</span><span class="tile-action">Start</span></button>
+<button class="dash-tile check" onclick="openStep(6)" aria-label="Kontrolle öffnen"><span class="tile-icon">✓?</span><span class="tile-title">Gerechtfertigt?</span><span class="tile-sub">Ja / Nein · öffentlich / privat</span><span class="tile-action">Prüfen</span></button>
+<button class="dash-tile protocol" onclick="openStep(4)" aria-label="Einblasprotokoll öffnen"><span class="tile-icon">📄</span><span class="tile-title">Einblasprotokoll</span><span class="tile-sub">Hochladen</span><span class="tile-action">Dokumentieren</span></button>
+<div class="dash-center"><img src="apple-touch-icon.png" alt="THADEN DOKUMENTATION"></div>
+<button class="dash-tile photos" onclick="openStep(3)" aria-label="Fotos öffnen"><span class="tile-icon">📷</span><span class="tile-title">Fotos</span><span class="tile-sub">Fotos aufnehmen</span><span class="tile-action">Dokumentieren</span></button>
+<button class="dash-tile time" onclick="openStep(5)" aria-label="Arbeitszeit öffnen"><span class="tile-icon">⏱️</span><span class="tile-title">Datum / Uhrzeit</span><span class="tile-sub">Eintragen</span><span class="tile-action">Erfassen</span></button>
+<button class="dash-tile repair" onclick="openStep(2)" aria-label="Instandsetzung öffnen"><span class="tile-icon">🛠️</span><span class="tile-title">Instandsetzung</span><span class="tile-sub">Fehler · erledigt</span><span class="tile-action">Bearbeiten</span></button>
+</div>
+<div class="panel dash-recent"><h2>Letzte Aufträge</h2><button onclick="toast('Auftragsübersicht: aktueller Auftrag')">Alle anzeigen ›</button></div>
+<details class="panel dash-progress"><summary>Arbeitsablauf und Fortschritt anzeigen</summary><div class="timeline" id="timeline"></div></details>
+</div>
+</section>
 
 <section id="s1" class="screen"><div class="topline"><button class="btn back" data-back="overview">←</button><h2 class="stephead">1. Auftragsdaten</h2></div><p class="stepdesc">Bitte alle relevanten Daten erfassen.</p><div class="panel section"><div class="fields"><div class="field"><label>Startzeit Auftrag *</label><input id="start" type="time"></div><div class="field"><label>Datum *</label><input id="date" type="date"></div><div class="field"><label>Auftragsnummer *</label><input id="order" placeholder="GS-23458"></div><div class="field"><label>NVT-Bereich</label><input id="nvt" placeholder="NVT-9051"></div><div class="field"><label>Ort *</label><input id="city" placeholder="Borkum"></div><div class="field"><label>PLZ *</label><input id="zip" placeholder="26607"></div><div class="field"><label>Straße *</label><input id="street" placeholder="Straße"></div><div class="field"><label>Hausnummer *</label><input id="house" placeholder="73a"></div><div class="field full"><label>Mitarbeiter *</label><select id="employee"><option value="">Mitarbeiter auswählen</option><option>Jens Thaden</option><option>Max Müller</option><option>Tom Becker</option><option>Lukas Meier</option></select></div></div><button class="btn" id="addDay" style="width:100%;margin-top:8px">＋ Weiteren Arbeitstag hinzufügen</button><div id="days"></div><button class="btn orange save" id="save1">Speichern & weiter →</button></div></section>
 
