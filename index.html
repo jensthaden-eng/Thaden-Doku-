@@ -86,6 +86,50 @@ box-shadow:0 8px 25px rgba(0,0,0,.4);transition:.2s;pointer-events:none}
   #page2 .label{font-size:19px}
 }
 
+
+#page3 .section{margin-top:38px}
+#page3 .kicker{font-size:13px;letter-spacing:5px;margin-bottom:14px}
+#page3 h1{font-size:36px}
+#page3 .sub{font-size:16px;margin-top:22px}
+#page3 .area-buttons{width:min(100%,455px);margin:46px auto 0;display:grid;gap:15px}
+#page3 .area{
+ height:68px;border-radius:20px;border:1.5px solid var(--edge);
+ background:linear-gradient(180deg,#122737,#0e202e);color:#f7f9fb;
+ display:flex;align-items:center;text-align:left;padding:0 25px 0 30px;
+ box-shadow:0 9px 18px rgba(0,0,0,.32),inset 0 1px rgba(255,255,255,.06);
+ cursor:pointer;transition:.12s;position:relative;overflow:hidden
+}
+#page3 .area:before{content:"";position:absolute;inset:0;
+ background:linear-gradient(105deg,transparent 25%,rgba(255,255,255,.08) 48%,transparent 70%);
+ transform:translateX(-110%);transition:.45s}
+#page3 .area:active,#page3 .area.selected{
+ transform:translateY(3px) scale(.988);border-color:var(--orange);
+ box-shadow:0 0 22px rgba(255,107,10,.34),0 5px 12px rgba(0,0,0,.45),inset 0 2px 5px rgba(0,0,0,.25)
+}
+#page3 .area:active:before,#page3 .area.selected:before{transform:translateX(110%)}
+#page3 .area-label{font-size:19px;font-weight:760}
+#page3 .area-arrow{margin-left:auto;color:var(--orange);font-size:36px;font-weight:300}
+#page3 .back{
+ height:64px;border-radius:20px;border:1.5px solid var(--edge);
+ background:linear-gradient(180deg,#122737,#0e202e);color:#f7f9fb;
+ display:flex;align-items:center;justify-content:center;gap:15px;
+ box-shadow:0 9px 18px rgba(0,0,0,.32),inset 0 1px rgba(255,255,255,.06);
+ cursor:pointer;transition:.12s;font-size:18px;font-weight:750
+}
+#page3 .back:active{transform:translateY(3px) scale(.988);border-color:var(--orange);
+ box-shadow:0 0 20px rgba(255,107,10,.3),inset 0 2px 5px rgba(0,0,0,.25)}
+#page3 .back-arrow{color:var(--orange);font-size:32px;line-height:1}
+@media(max-width:600px){
+ #page3 .section{margin-top:38px}
+ #page3 h1{font-size:36px}
+ #page3 .sub{font-size:16px}
+ #page3 .area-buttons{margin-top:46px;gap:15px}
+ #page3 .area{height:66px;padding-left:30px;padding-right:25px}
+ #page3 .area-label{font-size:18px}
+ #page3 .area-arrow{font-size:35px}
+ #page3 .back{height:62px;font-size:18px}
+}
+
 </style>
 </head>
 <body>
@@ -121,6 +165,25 @@ box-shadow:0 8px 25px rgba(0,0,0,.4);transition:.2s;pointer-events:none}
   </div>
 </section>
 
+
+<section id="page3" class="page">
+  <div class="status"><span>22:21</span><div class="status-right"><span class="signal">▮▮▮</span><span>4G</span><span class="battery">81</span></div></div>
+  <div class="header"><img src="assets/thaden-wide-logo.png" alt="THADEN Dokumentation"></div>
+  <div class="section">
+    <div class="kicker">VNF GLASFASER NORDWEST</div>
+    <h1>Bereich auswählen</h1>
+    <p class="sub">Bitte den gewünschten Bereich<br>auswählen.</p>
+    <div class="area-buttons">
+      <button class="area" data-area="Hausanschluss"><span class="area-label">Hausanschluss</span><span class="area-arrow">›</span></button>
+      <button class="area" data-area="Verteiler"><span class="area-label">Verteiler</span><span class="area-arrow">›</span></button>
+      <button class="area" data-area="Tiefbau"><span class="area-label">Tiefbau</span><span class="area-arrow">›</span></button>
+      <button class="area" data-area="Montage"><span class="area-label">Montage</span><span class="area-arrow">›</span></button>
+      <button class="area" data-area="Sonstiges"><span class="area-label">Sonstiges</span><span class="area-arrow">›</span></button>
+      <button class="back" id="backToVnf"><span class="back-arrow">‹</span><span>Zurück</span></button>
+    </div>
+  </div>
+</section>
+
 <div id="toast" class="toast"></div>
 <script>
 const PIN="1234";let entered="";
@@ -139,8 +202,23 @@ document.querySelectorAll(".key").forEach(k=>k.onclick=()=>{
 forgot.onclick=()=>msg("Bitte Administrator kontaktieren");
 document.querySelectorAll(".choice").forEach(b=>b.onclick=()=>{
  document.querySelectorAll(".choice").forEach(x=>x.classList.remove("selected"));
- b.classList.add("selected");localStorage.setItem("thaden_vnf_selection",b.dataset.name);msg(b.dataset.name+" ausgewählt");
+ b.classList.add("selected");
+ const name=b.dataset.name;
+ localStorage.setItem("thaden_vnf_selection",name);
+ msg(name+" ausgewählt");
+ if(name==="VNF Glasfaser NordWest" || name==="VNF Telekom"){
+   setTimeout(()=>{page2.classList.remove("active");page3.classList.add("active");},220);
+ }
 });
+document.querySelectorAll(".area").forEach(b=>b.onclick=()=>{
+ document.querySelectorAll(".area").forEach(x=>x.classList.remove("selected"));
+ b.classList.add("selected");
+ localStorage.setItem("thaden_area_selection",b.dataset.area);
+ msg(b.dataset.area+" ausgewählt");
+});
+document.getElementById("backToVnf").onclick=()=>{
+ page3.classList.remove("active");page2.classList.add("active");
+};
 </script>
 </body>
 </html>

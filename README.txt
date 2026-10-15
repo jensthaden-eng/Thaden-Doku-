@@ -1,2 +1,3 @@
-Korrigierte Version: Seite 1 + kompaktere Seite 2.
-Das THADEN-Dokumentationslogo ist direkt in index.html eingebettet, damit es auch beim alleinigen Hochladen der index.html geladen wird.
+THADEN DOKUMENTATION – Seite 1 + 2 + 3
+Seite 3: Bereich auswählen mit Hausanschluss, Verteiler, Tiefbau, Montage, Sonstiges und Zurück.
+VNF Glasfaser NordWest und VNF Telekom öffnen Seite 3.
