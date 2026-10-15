@@ -3,95 +3,101 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#07111a">
-<title>THADEN DOKUMENTATION – Seite 2</title>
+<meta name="theme-color" content="#06111a">
+<title>THADEN Dokumentation – VNF auswählen</title>
 <style>
 :root{
-  --bg:#07111a; --bg2:#0b1621; --text:#f5f7fa; --muted:#b8c4cf;
-  --orange:#ff6b12; --edge:#315a72;
+  --bg:#06111a; --panel:#102331; --edge:#3a708b; --white:#f5f7fa;
+  --muted:#c0ccd6; --orange:#ff6b0a;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;min-height:100%;background:linear-gradient(180deg,var(--bg),#061019 55%,#050d14);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--text)}
-body{min-height:100svh;overflow:hidden}
-.screen{min-height:100svh;padding:18px 22px 28px;display:flex;flex-direction:column}
-.status{height:34px;display:flex;align-items:center;justify-content:space-between;padding:0 7px;font-weight:700;font-size:18px}
-.status .right{display:flex;gap:10px;align-items:center;font-size:17px}
-.logoBox{margin-top:11px;border:1px solid #173b51;border-radius:28px;padding:9px 11px;background:rgba(8,17,26,.72);box-shadow:0 10px 28px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.035)}
-.logoBox img{width:100%;display:block;height:auto;border-radius:20px}
-.content{text-align:center;margin-top:70px}
-.kicker{font-size:16px;letter-spacing:7px;color:#aebbc7;margin-bottom:22px}
-h1{font-size:44px;line-height:1.02;margin:0;font-weight:800;letter-spacing:-1.2px}
-.sub{font-size:20px;color:#bdc9d4;margin:28px 0 0;line-height:1.25}
-.choices{width:min(100%,590px);margin:72px auto 0;display:grid;gap:28px}
-.choice{
-  position:relative;width:100%;height:108px;border-radius:25px;
-  border:1px solid #38667e;
-  background:linear-gradient(180deg,#122534,#0b1721);
-  color:#f7f9fb;display:flex;align-items:center;text-align:left;
-  padding:0 28px 0 30px;box-shadow:0 13px 28px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.08);
-  cursor:pointer;transition:transform .12s ease,box-shadow .16s ease,border-color .16s ease,background .16s ease;
-  overflow:hidden;user-select:none;
-}
-.choice:before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.07) 48%,transparent 61%);transform:translateX(-120%);transition:transform .45s ease}
-.choice:active{transform:translateY(4px) scale(.985);box-shadow:0 5px 14px rgba(0,0,0,.45),inset 0 2px 5px rgba(0,0,0,.28);border-color:var(--orange)}
-.choice.pressed{border-color:var(--orange);box-shadow:0 0 0 1px rgba(255,107,18,.32),0 0 28px rgba(255,107,18,.32),0 12px 28px rgba(0,0,0,.35)}
-.choice.pressed:before{transform:translateX(120%)}
-.label{font-size:25px;font-weight:750;letter-spacing:-.3px}
-.arrow{margin-left:auto;font-size:44px;line-height:1;color:var(--orange);font-weight:400;transition:transform .16s ease}
-.choice.pressed .arrow{transform:translateX(3px) scale(1.06)}
-.toast{position:fixed;left:50%;bottom:34px;transform:translate(-50%,18px);opacity:0;padding:12px 18px;border-radius:15px;background:rgba(15,27,38,.96);border:1px solid rgba(255,107,18,.6);box-shadow:0 8px 28px rgba(0,0,0,.4),0 0 20px rgba(255,107,18,.14);font-weight:700;transition:.22s ease;pointer-events:none;white-space:nowrap}
+html,body{margin:0;width:100%;min-height:100%;background:#06111a;color:var(--white);
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+body{overflow:hidden}
+.app{min-height:100svh;padding:25px 26px 28px;position:relative}
+.status{height:42px;display:flex;align-items:center;justify-content:space-between;
+font-size:17px;font-weight:700;padding:0 9px}
+.status-right{display:flex;align-items:center;gap:9px}
+.signal{letter-spacing:-2px;font-size:15px}.battery{border:2px solid #fff;border-radius:5px;
+padding:0 4px;line-height:18px;font-size:13px;position:relative}
+.header{height:137px;margin-top:13px;border:1.5px solid #173d54;border-radius:25px;
+display:flex;align-items:center;justify-content:center;background:rgba(8,18,28,.5);
+box-shadow:inset 0 1px 0 rgba(255,255,255,.025),0 16px 35px rgba(0,0,0,.15)}
+.brand{display:flex;align-items:center;width:86%;max-width:590px;height:90px}
+.mark{width:205px;height:76px;position:relative;flex:none}
+.mark .t1{position:absolute;left:0;top:0;width:110px;height:25px;background:#fff;transform:skewX(-25deg)}
+.mark .t2{position:absolute;left:15px;top:29px;width:108px;height:25px;background:#fff;transform:skewX(-25deg)}
+.mark .d{position:absolute;right:0;top:0;width:105px;height:55px;border-radius:0 36px 36px 0;background:var(--orange)}
+.mark .cut{position:absolute;right:9px;top:14px;width:69px;height:27px;border-radius:0 18px 18px 0;background:#06111a}
+.sep{height:72px;width:2px;background:#fff;margin:0 17px 0 9px}
+.words{line-height:.9}.thaden{font-size:34px;font-weight:850;letter-spacing:-1.7px}
+.doku{font-size:21px;font-weight:850;color:var(--orange);letter-spacing:-.7px;margin-top:4px}
+.tag{font-size:8px;letter-spacing:2px;font-weight:700;margin-top:7px;white-space:nowrap}
+.content{text-align:center;margin-top:56px}
+.kicker{font-size:16px;letter-spacing:7px;color:#b9c5cf;margin-bottom:18px}
+h1{font-size:42px;line-height:1;margin:0;font-weight:850;letter-spacing:-1.4px}
+.sub{font-size:19px;color:#c2ced8;margin:29px 0 0;line-height:1.25}
+.buttons{width:min(100%,495px);margin:72px auto 0;display:grid;gap:29px}
+.btn{height:108px;border-radius:24px;border:1.5px solid var(--edge);
+background:linear-gradient(180deg,#122737 0%,#0e202e 100%);display:flex;align-items:center;
+padding:0 35px 0 40px;color:#f7f9fb;text-align:left;box-shadow:0 11px 22px rgba(0,0,0,.34),
+inset 0 1px 0 rgba(255,255,255,.06);cursor:pointer;position:relative;overflow:hidden;
+transition:transform .12s ease,box-shadow .15s ease,border-color .15s ease}
+.btn:after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 25%,
+rgba(255,255,255,.08) 48%,transparent 70%);transform:translateX(-110%);transition:.45s}
+.btn:active,.btn.selected{transform:translateY(3px) scale(.988);border-color:var(--orange);
+box-shadow:0 0 22px rgba(255,107,10,.34),0 5px 12px rgba(0,0,0,.45),inset 0 2px 5px rgba(0,0,0,.25)}
+.btn:active:after,.btn.selected:after{transform:translateX(110%)}
+.label{font-size:23px;font-weight:760;letter-spacing:-.4px}
+.arrow{margin-left:auto;color:var(--orange);font-size:43px;font-weight:300;line-height:1}
+.btn.selected .arrow{transform:translateX(3px) scale(1.08)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,15px);opacity:0;
+background:#102331;border:1px solid rgba(255,107,10,.7);border-radius:13px;padding:10px 16px;
+font-size:14px;font-weight:700;box-shadow:0 8px 25px rgba(0,0,0,.4);transition:.2s;pointer-events:none}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 @media(max-width:600px){
- .screen{padding-left:22px;padding-right:22px}
- .content{margin-top:62px}.kicker{font-size:14px;letter-spacing:5px}
- h1{font-size:42px}.sub{font-size:18px}
- .choices{margin-top:64px;gap:22px}
- .choice{height:96px;padding-left:25px;padding-right:24px;border-radius:23px}
- .label{font-size:21px}.arrow{font-size:39px}
+ .app{padding:20px 26px 26px}.status{height:35px}
+ .header{height:137px;margin-top:12px}.brand{width:91%}.mark{width:175px;transform:scale(.88);transform-origin:left center}
+ .sep{margin-left:0;margin-right:12px}.thaden{font-size:30px}.doku{font-size:18px}.tag{font-size:6.5px;letter-spacing:1.5px}
+ .content{margin-top:57px}.kicker{font-size:14px;letter-spacing:6px}h1{font-size:41px}.sub{font-size:18px;margin-top:28px}
+ .buttons{margin-top:72px;gap:29px}.btn{height:106px;padding-left:40px;padding-right:34px}.label{font-size:22px}
 }
 </style>
 </head>
 <body>
-<main class="screen">
-  <div class="status"><span>22:21</span><div class="right"><span>▮▮▮</span><span>4G</span><span>81</span></div></div>
-
-  <div class="logoBox"><img src="assets/thaden-header-logo.png" alt="THADEN Dokumentation"></div>
-
+<div class="app">
+  <div class="status"><span>22:21</span><div class="status-right"><span class="signal">▮▮▮</span><span>4G</span><span class="battery">81</span></div></div>
+  <div class="header">
+    <div class="brand">
+      <div class="mark"><i class="t1"></i><i class="t2"></i><i class="d"></i><i class="cut"></i></div>
+      <div class="sep"></div>
+      <div class="words"><div class="thaden">THADEN<sup style="font-size:10px">®</sup></div><div class="doku">DOKUMENTATION</div><div class="tag">EINFACH. DIGITAL. DOKUMENTIERT.</div></div>
+    </div>
+  </div>
   <section class="content">
     <div class="kicker">DOKUMENTATION</div>
     <h1>VNF auswählen</h1>
     <p class="sub">Bitte den gewünschten Auftraggeber auswählen.</p>
-
-    <div class="choices">
-      <button class="choice" data-name="VNF Glasfaser NordWest">
-        <span class="label">VNF Glasfaser NordWest</span><span class="arrow">›</span>
-      </button>
-      <button class="choice" data-name="VNF Telekom">
-        <span class="label">VNF Telekom</span><span class="arrow">›</span>
-      </button>
-      <button class="choice" data-name="Auswertung">
-        <span class="label">Auswertung</span><span class="arrow">›</span>
-      </button>
+    <div class="buttons">
+      <button class="btn" data-name="VNF Glasfaser NordWest"><span class="label">VNF Glasfaser NordWest</span><span class="arrow">›</span></button>
+      <button class="btn" data-name="VNF Telekom"><span class="label">VNF Telekom</span><span class="arrow">›</span></button>
+      <button class="btn" data-name="Auswertung"><span class="label">Auswertung</span><span class="arrow">›</span></button>
     </div>
   </section>
-</main>
-
-<div class="toast" id="toast"></div>
-
+</div>
+<div id="toast" class="toast"></div>
 <script>
 const toast=document.getElementById('toast');
-document.querySelectorAll('.choice').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.choice').forEach(b=>b.classList.remove('pressed'));
-    btn.classList.add('pressed');
-    const name=btn.dataset.name;
-    toast.textContent = name + ' ausgewählt';
-    toast.classList.add('show');
-    clearTimeout(window.__toastTimer);
-    window.__toastTimer=setTimeout(()=>toast.classList.remove('show'),1100);
-    // Selection is saved for the next page/workflow.
-    localStorage.setItem('thaden_vnf_selection', name);
-  });
+document.querySelectorAll('.btn').forEach(btn=>{
+ btn.addEventListener('click',()=>{
+   document.querySelectorAll('.btn').forEach(x=>x.classList.remove('selected'));
+   btn.classList.add('selected');
+   const name=btn.dataset.name;
+   localStorage.setItem('thaden_vnf_selection',name);
+   toast.textContent=name+' ausgewählt';
+   toast.classList.add('show');
+   clearTimeout(window.t); window.t=setTimeout(()=>toast.classList.remove('show'),1100);
+ });
 });
 </script>
 </body>
