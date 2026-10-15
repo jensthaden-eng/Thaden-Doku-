@@ -1,4 +1,2 @@
-THADEN DOKUMENTATION – Seite 1 + Seite 2
-Seite 1: PIN 1234, grüne Freischaltung über korrekte PIN, roter Fehler-Effekt.
-Seite 2: VNF-Auswahl + Auswertung mit 3D-Drückeffekt.
-Die Statusanzeige wird pro Seite nur einmal gerendert.
+Korrigierte Version: Seite 1 + kompaktere Seite 2.
+Das THADEN-Dokumentationslogo ist direkt in index.html eingebettet, damit es auch beim alleinigen Hochladen der index.html geladen wird.
